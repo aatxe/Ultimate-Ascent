@@ -20,11 +20,11 @@ public interface Component {
 	 * @since 1/8/13
 	 */
 	public final static class ComponentState {
-		public int COMPONENT_OFF = 0;
-		public int COMPONENT_ON = 1;
-		public int COMPONENT_FORWARD = 2;
-		public int COMPONENT_REVERSE = 3;
-		public int COMPONENT_RESET = 4;
-		public int COMPONENT_NEED_RESET = 5;
+		public final static int COMPONENT_OFF = 0;
+		public final static int COMPONENT_ON = 1;
+		public final static int COMPONENT_FORWARD = 2;
+		public final static int COMPONENT_REVERSE = 3;
+		public final static int COMPONENT_RESET = 4;
+		public final static int COMPONENT_NEED_RESET = 5;
 	}
 }
