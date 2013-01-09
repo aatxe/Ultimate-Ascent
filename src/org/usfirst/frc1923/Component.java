@@ -11,7 +11,7 @@ public interface Component {
 	 * Gets the component's current state.
 	 * @return the component's current state
 	 */
-	public ComponentState getState();
+	public int getState();
 	
 	/**
 	 * A static class for abstracting away robot states.
