@@ -14,6 +14,11 @@ public interface Component {
 	public int getState();
 	
 	/**
+	 * Destroys the component, freeing up any used resources.
+	 */
+	public void destroy();
+	
+	/**
 	 * A static class for abstracting away robot states.
 	 * @author Aaron Weiss
 	 * @version 1.0
