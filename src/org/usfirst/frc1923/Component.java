@@ -28,7 +28,8 @@ public interface Component {
 		public final static int COMPONENT_ON = 1;
 		public final static int COMPONENT_FORWARD = 2;
 		public final static int COMPONENT_REVERSE = 3;
-		public final static int COMPONENT_RESET = 4;
-		public final static int COMPONENT_NEED_RESET = 5;
+		public final static int COMPONENT_STOPPED = 4;
+		public final static int COMPONENT_RESET = 5;
+		public final static int COMPONENT_NEED_RESET = 6;
 	}
 }
