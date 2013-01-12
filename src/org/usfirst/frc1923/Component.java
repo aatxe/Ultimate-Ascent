@@ -17,7 +17,6 @@ public interface Component {
 	 * Destroys the component, freeing up any used resources.
 	 */
 	public void destroy();
-	
 	/**
 	 * A static class for abstracting away robot states.
 	 * @author Aaron Weiss
