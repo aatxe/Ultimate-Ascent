@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 
 /**
  * A basic component for managing drive commands.
- * @author Aayush Sharma, N00beel Rangwala, Pavan Hegde
+ * @author Aayush Sharma, Nabeel Rangwala, Pavan Hegde
  * @version 1.0
  * @since 1/12/13
  */
@@ -18,32 +18,41 @@ public class DriveComponent implements Component {
 	public DriveComponent(VictorGroup leftGroup,VictorGroup rightGroup){
 		roboDrive=new RobotDrive(leftGroup,rightGroup);
 	}
+	
 	/**
-	 * Drives the robot in one direction.
-	 * @param outputMagnitude The forward component of the output magnitude to send to the motors.
-	 * @param curve The rate of turn, constant for different forward speeds.
+	 * Drives the robot in one direction with added curvature.
+	 * @param outputMagnitude the forward component of the output magnitude to send to the motors
+	 * @param curve the rate of turn, constant for different forward speeds
 	 */
 	public void drive(double outputMagnitude, double curve){
 		roboDrive.drive(outputMagnitude, curve);
 	}
+	
 	/**
-	 * Configure the scaling factor for using RobotDrive 
-	 * with motor controllers in a mode other than PercentVbus.
-	 * @param maxOutput Multiplied with the output percentage computed by the drive functions.
+	 * Drives the robot via respective powers for each side.
+	 * @param leftMagnitude the value to move left with
+	 * @param rightMagnitude the value to move right with
+	 */
+	public void tankDrive(double leftMagnitude, double rightMagnitude) {
+		roboDrive.tankDrive(leftMagnitude, rightMagnitude);
+	}
+	
+	/**
+	 * Configure the scaling factor for using RobotDrive with motor controllers in a mode other than PercentVbus.
+	 * @param maxOutput multiplied with the output percentage computed by the drive functions
 	 */
 	public void setMaxOutput(double maxOutput){
 		roboDrive.setMaxOutput(maxOutput);
 	}
 	/**
 	 * Enables safety of robot.
-	 * @param enabled A boolean that tells whether or not safety is enabled.
+	 * @param enabled a boolean that tells whether or not safety is enabled
 	 */
 	public void setSafety(boolean enabled){
 		roboDrive.setSafetyEnabled(enabled);
 	}
 	/**
-	 *   Configure the scaling factor for using RobotDrive 
-	 *   with motor controllers in a mode other than PercentVbus.
+	 *   Configure the scaling factor for using RobotDrive with motor controllers in a mode other than PercentVbus.
 	 */
 	public void stopMotor(){
 		roboDrive.stopMotor();
@@ -56,6 +65,4 @@ public class DriveComponent implements Component {
 	public void destroy() {
 		roboDrive.free();
 	}
-
-	
 }

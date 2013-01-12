@@ -33,7 +33,6 @@ public class VictorGroup implements SpeedController {
 	 * @param victorTwo
 	 *            The second victor of the group.
 	 */
-
 	public VictorGroup(Victor victorOne, Victor victorTwo) {
 		vector.addElement(victorOne);
 		vector.addElement(victorTwo);
@@ -49,7 +48,6 @@ public class VictorGroup implements SpeedController {
 	 * @param victorThree
 	 *            The third victor of the group.
 	 */
-
 	public VictorGroup(Victor victorOne, Victor victorTwo, Victor victorThree) {
 		vector.addElement(victorOne);
 		vector.addElement(victorTwo);
@@ -57,15 +55,16 @@ public class VictorGroup implements SpeedController {
 	}
 
 	public void pidWrite(double output) {
-		// TODO Auto-generated method stub
 		System.out.println(((Victor) (vector.elementAt(0))).get());
 	}
 
 	public double get() {
-		// TODO Auto-generated method stub
 		return ((Victor) (vector.elementAt(0))).get();
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void set(double speed, byte syncGroup) {
 		for (int i = 0; i < vector.size(); i++) {
 			((Victor) (vector.elementAt(i))).set(speed, syncGroup);
@@ -75,7 +74,6 @@ public class VictorGroup implements SpeedController {
 	}
 
 	public void set(double speed) {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < vector.size(); i++) {
 			((Victor) (vector.elementAt(i))).set(speed);
 
@@ -84,7 +82,6 @@ public class VictorGroup implements SpeedController {
 	}
 
 	public void disable() {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < vector.size(); i++) {
 			((Victor) (vector.elementAt(i))).disable();
 		}
