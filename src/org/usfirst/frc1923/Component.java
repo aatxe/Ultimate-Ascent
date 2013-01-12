@@ -3,7 +3,7 @@ package org.usfirst.frc1923;
 /**
  * The basic interface for system components.
  * @author Aaron Weiss, Bhavish Yalamanchi
- * @version 1.0
+ * @version 1.2
  * @since 1/8/13
  */
 public interface Component {
@@ -17,6 +17,7 @@ public interface Component {
 	 * Destroys the component, freeing up any used resources.
 	 */
 	public void destroy();
+	
 	/**
 	 * A static class for abstracting away robot states.
 	 * @author Aaron Weiss

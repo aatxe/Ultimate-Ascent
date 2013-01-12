@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 /**
  * A basic component for managing drive commands.
  * @author Aayush Sharma, Nabeel Rangwala, Pavan Hegde
- * @version 1.0
+ * @version 1.1
  * @since 1/12/13
  */
 public class DriveComponent implements Component {
@@ -44,6 +44,7 @@ public class DriveComponent implements Component {
 	public void setMaxOutput(double maxOutput){
 		roboDrive.setMaxOutput(maxOutput);
 	}
+	
 	/**
 	 * Enables safety of robot.
 	 * @param enabled a boolean that tells whether or not safety is enabled
@@ -51,6 +52,7 @@ public class DriveComponent implements Component {
 	public void setSafety(boolean enabled){
 		roboDrive.setSafetyEnabled(enabled);
 	}
+	
 	/**
 	 *   Configure the scaling factor for using RobotDrive with motor controllers in a mode other than PercentVbus.
 	 */
