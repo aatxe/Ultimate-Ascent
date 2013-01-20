@@ -1,68 +1,95 @@
 package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.components.DriveComponent;
+import org.usfirst.frc1923.components.DriveGearBox;
 import org.usfirst.frc1923.components.Joyfulstick;
-import org.usfirst.frc1923.utils.VictorGroup;
+import org.usfirst.frc1923.components.ShooterComponent;
+import org.usfirst.frc1923.components.ShooterGearBox;
+import org.usfirst.frc1923.components.XboxController;
+import org.usfirst.frc1923.utils.JaguarGroup;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Jaguar;
 
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
+ * 
  * @author Aaron Weiss, Bhavish Yalamanchi
- * @version 1.0
+ * @version 1.0.1
  * @since 1/8/13
  */
 public class AscentRobot extends IterativeRobot {
 	Joyfulstick left = new Joyfulstick(1);
 	Joyfulstick right = new Joyfulstick(2);
-	Victor one = new Victor(0);
-	Victor two = new Victor(0);
-	Victor three = new Victor(0);
-	Victor four = new Victor(0);
-	VictorGroup groupLeft = new VictorGroup(one, two);
-	VictorGroup groupRight = new VictorGroup(three, four);
-	DriveComponent drive = new DriveComponent(groupLeft, groupRight);
-	HumanDriver driver = new HumanDriver(left, right, drive);
-    public void robotInit() {
-    	// TODO: this
-    }
-    
-    public void disabledInit() {
-    	// TODO: this
-    }
-    
-    public void autonomousInit() {
-    	// TODO: this
-    }
-    
-    public void teleopInit() {
-    	// TODO: this
-    	
-    
-    }
-    
-    public void disabledPeriodic() {
-    	// TODO: this
-    }
-    
-    public void autonomousPeriodic() {
-    	// TODO: this
-    }
+	Jaguar one = new Jaguar(1);
+	Jaguar two = new Jaguar(2);
+	Jaguar three = new Jaguar(3);
+	Jaguar four = new Jaguar(4);
+	Jaguar five = new Jaguar(5);
+	Jaguar six = new Jaguar(6);
+	Jaguar seven = new Jaguar(7);
+	Jaguar eight = new Jaguar(8);
+	JaguarGroup driveGroupLeft = new JaguarGroup(one, two);
+	JaguarGroup driveGroupRight = new JaguarGroup(three, four);
+	JaguarGroup shooterGroupLeft = new JaguarGroup(five, six);
+	JaguarGroup shooterGroupRight = new JaguarGroup(seven, eight);
+	DriveComponent drive = new DriveComponent(driveGroupLeft, driveGroupRight);
+	ShooterGearBox shooterGearBox = new ShooterGearBox(0,100, 5, 0, 100, drive);
+	DriveGearBox driveGearBox = new DriveGearBox(0, 100, 5, drive);
+	XboxController operator = new XboxController(3);
+	ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
+	HumanDriver driver = new HumanDriver(left, right, drive, driveGearBox, operator, shooterGearBox, shooter);
 
-    public void teleopPeriodic() {
-    	// TODO: this
-    }
-    
-    public void disabledContinuous() {
-    	// TODO: this
-    }
-    
-    public void autonomousContinuous() {
-    	// TODO: this
-    }
-    
-    public void teleopContinuous() {
-    	// TODO: this
-    }
+	public void robotInit() {
+		new Thread(new Runnable() {
+			public void run() {
+				while (true) {
+					try {
+						Thread.sleep(250);
+					} catch (InterruptedException e) {}
+				}
+			}
+		}).start();
+	}
+
+	public void disabledInit() {
+		// TODO: this
+	}
+
+	public void autonomousInit() {
+		// TODO: this
+	}
+
+	public void teleopInit() {
+		
+		System.out.println("Robot Enabled:: Tele-Operated Mode Initialized");
+		//Does some more stuff, other classes required
+	}
+
+	public void disabledPeriodic() {
+		// TODO: this
+	}
+
+	public void autonomousPeriodic() {
+		// TODO: this
+	}
+
+	public void teleopPeriodic() {
+		driver.handleActiveDriving();
+		driver.handlePassiveOperating();
+	}
+
+	public void disabledContinuous() {
+		// TODO: this
+	}
+
+	public void autonomousContinuous() {
+		// TODO: this
+	}
+
+	public void teleopContinuous() {
+		driver.handleActiveDriving();
+		driver.handleActiveOperating();
+		//must also run shooter, class needed
+	}
 }

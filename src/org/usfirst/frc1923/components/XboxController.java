@@ -62,8 +62,8 @@ public class XboxController {
 	 *            Indicates type of button to read.
 	 * @return The state if the button
 	 */
-	public boolean getButton(ButtonType inputButton) {
-		return joystick.getButton(inputButton);
+	public boolean getButton(XboxController.Button inputButton) {
+		return joystick.getRawButton(inputButton.value);
 
 	}
 
@@ -83,7 +83,7 @@ public class XboxController {
 	 * @return TriggerAxis
 	 */
 	public double getTriggerAxis() {
-		return this.getTriggerAxis();
+		return joystick.getRawAxis(3);
 
 	}
 
@@ -101,8 +101,8 @@ public class XboxController {
 		public final static int kB_val = 2;
 		public final static int kX_val = 3;
 		public final static int kY_val = 4;
-		public final static int kRb_val = 5;
-		public final static int kLb_val = 6;
+		public final static int kLb_val = 5;
+		public final static int kRb_val = 6;
 		public final static int kBack_val = 7;
 		public final static int kStart_val = 8;
 		public final static int kRightClick_val = 9;
