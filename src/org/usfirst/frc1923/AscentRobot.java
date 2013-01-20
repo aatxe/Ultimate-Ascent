@@ -19,6 +19,9 @@ import edu.wpi.first.wpilibj.Jaguar;
  * @since 1/8/13
  */
 public class AscentRobot extends IterativeRobot {
+	/**
+	 * Most of this should me moved to Components.java
+	 */
 	Joyfulstick left = new Joyfulstick(1);
 	Joyfulstick right = new Joyfulstick(2);
 	Jaguar one = new Jaguar(1);

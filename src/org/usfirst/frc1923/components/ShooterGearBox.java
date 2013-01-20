@@ -1,5 +1,9 @@
 package org.usfirst.frc1923.components;
-
+/**
+ * @author Bhavish Yalamanchi
+ * @version 1.0
+ * @since 1/19/13
+ */
 public class ShooterGearBox {
 	
 	private double[] leftGears;

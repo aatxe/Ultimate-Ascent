@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.*;
 
 /**
- * @author Olu Olorode, Nihar Sidhu, Nabeel Rangwala, Pavan Hegde
+ * @author Olu Olorode, Nihar Sidhu, Nabeel Rangwala, Pavan Hegde, Bhavish Yalamanchi
  * @version 1.0
  * @since 1/14/13
  */
