@@ -3,13 +3,17 @@ package org.usfirst.frc1923.components;
 import org.usfirst.frc1923.utils.Coalescor;
 
 import edu.wpi.first.wpilibj.Joystick;
-/*
-* @author Bhavish Yalamanchi
-* @version 1.0
-* @since 1/19/13
-*/
+
+
+/**
+ * A <code>Joystick</code> with a built-in <code>Coalescor</code>.
+ * @author Bhavish Yalamanchi, Aayush Sharma, Aaron Weiss
+ * @version 1.0
+ * @since 1/19/13
+ */
 public class Joyfulstick extends Joystick {
-	Coalescor coalescor = new Coalescor();
+	private Coalescor coalescor = new Coalescor();
+
 	public Joyfulstick(int port){
 		super(port);
 	}

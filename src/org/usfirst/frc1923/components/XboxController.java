@@ -1,7 +1,6 @@
 package org.usfirst.frc1923.components;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.*;
 
 /**
  * @author Olu Olorode, Nihar Sidhu, Nabeel Rangwala, Pavan Hegde, Bhavish Yalamanchi

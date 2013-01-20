@@ -1,17 +1,18 @@
 package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.components.DriveComponent;
-import org.usfirst.frc1923.components.DriveGearBox;
+import org.usfirst.frc1923.components.DriveGearbox;
 import org.usfirst.frc1923.components.Joyfulstick;
+import org.usfirst.frc1923.components.PneumaticComponent;
 import org.usfirst.frc1923.components.ShooterComponent;
-import org.usfirst.frc1923.components.ShooterGearBox;
+import org.usfirst.frc1923.components.ShooterGearbox;
 import org.usfirst.frc1923.components.XboxController;
 import org.usfirst.frc1923.utils.Coalescor;
 
 /**
  * Joysticks provide input to drive the robot
  * 
- * @author Aayush Sharma, Olu Olorode
+ * @author Aayush Sharma, Olu Olorode, Bhavish Yalamanchi
  * @version 1.0
  * @since 1/19/12
  */
@@ -21,14 +22,15 @@ public class HumanDriver {
 	Joyfulstick left;
 	Joyfulstick right;
 	DriveComponent robotDrive;
-	DriveGearBox driveGearBox;
+	DriveGearbox driveGearBox;
 	XboxController operator;
-	ShooterGearBox shooterGearBox;
+	ShooterGearbox shooterGearBox;
 	ShooterComponent shooter;
+	PneumaticComponent solenoid;
 
 	public HumanDriver(Joyfulstick left, Joyfulstick right,
-			DriveComponent robotDrive, DriveGearBox driveGearBox,
-			XboxController operator, ShooterGearBox shooterGearBox, ShooterComponent shooter) {
+			DriveComponent robotDrive, DriveGearbox driveGearBox,
+			XboxController operator, ShooterGearbox shooterGearBox, ShooterComponent shooter, PneumaticComponent solenoid) {
 		this.left = left;
 		this.right = right;
 		this.robotDrive = robotDrive;
@@ -36,6 +38,7 @@ public class HumanDriver {
 		this.operator = operator;
 		this.shooterGearBox = shooterGearBox;
 		this.shooter = shooter;
+		this.solenoid = solenoid;
 	}
 
 	public void handleActiveDriving() {
@@ -53,6 +56,7 @@ public class HumanDriver {
 			shooter.stop();
 		}
 	}
+	
 	public void handlePassiveOperating() {
 		if(operator.getButton(XboxController.Button.X) && shooterGearBox.getLeftSpeed() < 1.00)  {
 			shooterGearBox.leftGearUp();

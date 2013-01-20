@@ -4,20 +4,21 @@ package org.usfirst.frc1923.components;
  * @version 1.0
  * @since 1/19/13
  */
-public class ShooterGearBox {
+public class ShooterGearbox {
 	
 	private double[] leftGears;
 	private double[] rightGears;
 	private int leftGear = 0;
 	private int rightGear = 0;
-	private DriveComponent drive;
+	private MotorComponent motor;
 	
-	public ShooterGearBox(double[] leftGears, double[] rightGears, DriveComponent drive) {
+	public ShooterGearbox(double[] leftGears, double[] rightGears, MotorComponent motor) {
 		this.leftGears = leftGears;
 		this.rightGears = rightGears;
+		this.motor = motor;
 	}
 	
-	public ShooterGearBox(int leftStart, int leftEnd, int increment, int rightStart, int rightEnd, DriveComponent drive) {
+	public ShooterGearbox(int leftStart, int leftEnd, int increment, int rightStart, int rightEnd, MotorComponent motor) {
 		int leftLength = ((leftEnd - leftStart) / increment) + 1;
 		this.leftGears = new double[leftLength];
 		for (int i = 0; i < leftLength; i++) {
@@ -28,7 +29,7 @@ public class ShooterGearBox {
 		for (int i = 0; i < rightLength; i++) {
 			rightGears[i] = (rightStart + (i * increment)) / 100;
 		}
-		this.drive = drive;
+		this.motor = motor;
 	}
 
 	public int getLeftGear() {
@@ -55,7 +56,7 @@ public class ShooterGearBox {
 	public int leftGearDown() {
 		if (leftGear < (leftGears.length - 1)) {
 			--leftGear;
-			drive.setMaxOutput(leftGears[leftGear]);
+			motor.set(leftGears[leftGear]);
 			System.out.println("Shooter Left geared down to: " + leftGear);
 		} else {
 			System.out.println("Shooter Left cannot go any lower.");
@@ -66,7 +67,7 @@ public class ShooterGearBox {
 	public int rightGearDown() {
 		if (rightGear < (rightGears.length - 1)) {
 			--rightGear;
-			drive.setMaxOutput(rightGears[rightGear]);
+			motor.set(rightGears[rightGear]);
 			System.out.println("Shooter Right geared down to: " + rightGear);
 		} else {
 			System.out.println("Shooter Right cannot go any lower");
@@ -77,7 +78,7 @@ public class ShooterGearBox {
 	public int leftGearUp() {
 		if (leftGear < (leftGears.length - 1)) {
 			++leftGear;
-			drive.setMaxOutput(leftGears[leftGear]);
+			motor.set(leftGears[leftGear]);
 
 			System.out.println("Shooter Left geared up to: " + leftGear);
 		} else {
@@ -89,7 +90,7 @@ public class ShooterGearBox {
 	public int rightGearUp() {
 		if (rightGear < (rightGears.length - 1)) {
 			++rightGear;
-			drive.setMaxOutput(rightGears[leftGear]);
+			motor.set(rightGears[leftGear]);
 			System.out.println("Shooter Right geared up to: " + rightGear);
 		} else {
 			System.out.println("Shooter Right cannot go any higher.");
