@@ -26,33 +26,21 @@ public class XboxController {
 	 * @return the value of the Axis
 	 */
 	public double getAxis(int stickNumber, int axisNumber) {
-		int axisReturn = 0;
-		int[] posAxes = { 1, 2, 3, 4 };
-
-		if (stickNumber == 1) {
-			switch (axisNumber) {
-			case 1:
-				axisReturn = posAxes[0];
-				break;
-			case 2:
-				axisReturn = posAxes[1];
-				break;
-			}
-		} else if (stickNumber == 2) {
-			switch (axisNumber) {
-			case 1:
-				axisReturn = posAxes[2];
-				break;
-			case 2:
-				axisReturn = posAxes[3];
-				break;
-			}
-		} 
+		if (stickNumber == 1 && axisNumber == 1) {
+			return joystick.getRawAxis(1);
+		}
+		else if( stickNumber == 1 && axisNumber == 2) {
+			return joystick.getRawAxis(2);
+		}
+		else if (stickNumber == 2 && axisNumber == 1) {
+			return joystick.getRawAxis(3);
+		}
+		else if( stickNumber == 2 && axisNumber == 2) {
+			return joystick.getRawAxis(4);
+		}
 		else {
 			return -69;
 		}
-		return joystick.getRawAxis(axisReturn);
-
 	}
 
 	/**
