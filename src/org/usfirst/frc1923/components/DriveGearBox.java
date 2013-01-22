@@ -1,5 +1,10 @@
 package org.usfirst.frc1923.components;
-
+/**
+ * Contolls drive gear box
+ * @author Bhavish Y. and Pavan Hegde
+ * @version 1.0
+ * @since 1/22/13
+ */
 public class DriveGearBox {
 
 	public double[] gears;
@@ -31,7 +36,7 @@ public class DriveGearBox {
 	}
 
 	public int gearUp() {
-		if (gear < (gears.length - 1)) {
+		if (gear < (gears.length)) {
 			++gear;
 			drive.setMaxOutput(gears[gear]);
 		}
@@ -39,7 +44,7 @@ public class DriveGearBox {
 	}
 
 	public int gearDown() {
-		if (gear < (gears.length - 1)) {
+		if (gear < (gears.length)) {
 			--gear;
 			drive.setMaxOutput(gears[gear]);
 		}

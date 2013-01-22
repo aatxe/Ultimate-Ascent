@@ -3,8 +3,9 @@ package org.usfirst.frc1923;
 import org.usfirst.frc1923.components.DriveComponent;
 import org.usfirst.frc1923.components.DriveGearBox;
 import org.usfirst.frc1923.components.Joyfulstick;
+import org.usfirst.frc1923.components.MotorComponent;
 import org.usfirst.frc1923.components.ShooterComponent;
-import org.usfirst.frc1923.components.ShooterGearBox;
+import org.usfirst.frc1923.components.ShooterGearbox;
 import org.usfirst.frc1923.components.XboxController;
 import org.usfirst.frc1923.utils.JaguarGroup;
 
@@ -36,8 +37,9 @@ public class AscentRobot extends IterativeRobot {
 	JaguarGroup driveGroupRight = new JaguarGroup(three, four);
 	JaguarGroup shooterGroupLeft = new JaguarGroup(five, six);
 	JaguarGroup shooterGroupRight = new JaguarGroup(seven, eight);
+	MotorComponent motorComponent = new MotorComponent(1,1);
+	ShooterGearbox shooterGearBox = new ShooterGearbox(0,100, 5, 0, 100, motorComponent);
 	DriveComponent drive = new DriveComponent(driveGroupLeft, driveGroupRight);
-	ShooterGearBox shooterGearBox = new ShooterGearBox(0,100, 5, 0, 100, drive);
 	DriveGearBox driveGearBox = new DriveGearBox(0, 100, 5, drive);
 	XboxController operator = new XboxController(3);
 	ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
@@ -78,7 +80,6 @@ public class AscentRobot extends IterativeRobot {
 	}
 
 	public void teleopPeriodic() {
-		driver.handleActiveDriving();
 		driver.handlePassiveOperating();
 	}
 

@@ -5,7 +5,7 @@ package org.usfirst.frc1923.components;
  * @version 1.0
  * @since 1/21/13
  */
-public class ShooterGearBox {
+public class ShooterGearbox {
 	
 	private double[] leftGearSet, rightGearSet;
 	private int leftGearNum, rightGearNum;
@@ -19,7 +19,7 @@ public class ShooterGearBox {
 	 * @param rightGearSet the right gear set
 	 * @param motorComponent the motor component
 	 */
-	public ShooterGearBox(double[] leftGearSet, double[] rightGearSet, MotorComponent motorComponent) {
+	public ShooterGearbox(double[] leftGearSet, double[] rightGearSet, MotorComponent motorComponent) {
 		this.rightGearSet = rightGearSet;
 		this.leftGearSet = leftGearSet;
 		this.motorComponent = motorComponent;
@@ -34,7 +34,7 @@ public class ShooterGearBox {
 	 * @param rightEnd The end of the range for the right
 	 * @param motorComponent the motor component
 	 */
-	public ShooterGearBox(int leftStart, int leftEnd, int increment, int rightStart, int rightEnd, MotorComponent motorComponent) {
+	public ShooterGearbox(int leftStart, int leftEnd, int increment, int rightStart, int rightEnd, MotorComponent motorComponent) {
 		int leftLength = ((leftEnd - leftStart) / increment) + 1;
 		this.leftGearSet = new double[leftLength];
 		for (int i = 0; i < leftLength; i++) {

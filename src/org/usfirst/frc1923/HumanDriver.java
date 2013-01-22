@@ -4,7 +4,7 @@ import org.usfirst.frc1923.components.DriveComponent;
 import org.usfirst.frc1923.components.DriveGearBox;
 import org.usfirst.frc1923.components.Joyfulstick;
 import org.usfirst.frc1923.components.ShooterComponent;
-import org.usfirst.frc1923.components.ShooterGearBox;
+import org.usfirst.frc1923.components.ShooterGearbox;
 import org.usfirst.frc1923.components.XboxController;
 import org.usfirst.frc1923.utils.Coalescor;
 
@@ -23,12 +23,12 @@ public class HumanDriver {
 	DriveComponent robotDrive;
 	DriveGearBox driveGearBox;
 	XboxController operator;
-	ShooterGearBox shooterGearBox;
+	ShooterGearbox shooterGearBox;
 	ShooterComponent shooter;
 
 	public HumanDriver(Joyfulstick left, Joyfulstick right,
 			DriveComponent robotDrive, DriveGearBox driveGearBox,
-			XboxController operator, ShooterGearBox shooterGearBox, ShooterComponent shooter) {
+			XboxController operator, ShooterGearbox shooterGearBox, ShooterComponent shooter) {
 		this.left = left;
 		this.right = right;
 		this.robotDrive = robotDrive;
