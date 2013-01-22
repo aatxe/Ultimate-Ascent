@@ -1,6 +1,8 @@
 package org.usfirst.frc1923.components;
 
 import org.usfirst.frc1923.Component;
+
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Victor;
 
 /**
@@ -11,14 +13,14 @@ import edu.wpi.first.wpilibj.Victor;
  */
 public class MotorComponent implements Component {
 	private int currentState = Component.ComponentState.COMPONENT_OFF;
-	private Victor victor;
+	private Jaguar jag;
 
 	/**
 	 * Creates a new motor component.
 	 * @param channel the desired digital channel
 	 */
 	public MotorComponent(int channel) {
-		victor = new Victor(channel);
+		jag = new Jaguar(channel);
 	}
 
 	/**
@@ -27,7 +29,7 @@ public class MotorComponent implements Component {
 	 * @param channel the desired digital channel
 	 */
 	public MotorComponent(int moduleNumber, int channel) {
-		victor = new Victor(moduleNumber, channel);
+		jag = new Jaguar(moduleNumber, channel);
 	}
 
 	/**
@@ -35,7 +37,7 @@ public class MotorComponent implements Component {
 	 * @param speed the desired speed to move at
 	 */
 	public void forward(int speed) {
-		victor.set(speed);
+		jag.set(speed);
 		currentState = Component.ComponentState.COMPONENT_FORWARD;
 	}
 
@@ -44,7 +46,7 @@ public class MotorComponent implements Component {
 	 * @param speed the desired to move at
 	 */
 	public void reverse(int speed) {
-		victor.set(-speed);
+		jag.set(-speed);
 		currentState = Component.ComponentState.COMPONENT_REVERSE;
 	}
 
@@ -53,7 +55,7 @@ public class MotorComponent implements Component {
 	 * @return the current PWM value of the component
 	 */
 	public double get() {
-		return victor.get();
+		return jag.get();
 	}
 
 	/**
@@ -61,11 +63,11 @@ public class MotorComponent implements Component {
 	 * @param speed the motor speed between -1.0 and 1.0
 	 */
 	public void set(double speed) {
-		victor.set(speed);
+		jag.set(speed);
 	}
 
 	public void destroy() {
-		victor.free();
+		jag.free();
 	}
 
 	public int getState() {

@@ -45,6 +45,7 @@ public class HumanDriver {
 		double leftY = left.getCoalescedY();
 		double rightY = right.getCoalescedY();
 		robotDrive.tankDrive(leftY, -rightY);
+		System.out.println("Joystick left: " + leftY + "Joystick right: " + rightY);
 	}
 	
 	public void handleActiveOperating() {

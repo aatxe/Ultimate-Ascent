@@ -39,13 +39,13 @@ public class AscentRobot extends IterativeRobot {
 	JaguarGroup shooterGroupLeft = new JaguarGroup(five, six);
 	JaguarGroup shooterGroupRight = new JaguarGroup(seven, eight);
 	DriveComponent drive = new DriveComponent(driveGroupLeft, driveGroupRight);
-	MotorComponent motor= new MotorComponent(1);
-	ShooterGearbox shooterGearBox = new ShooterGearbox(0,100, 5, 0, 100, motor);
-	DriveGearbox driveGearBox = new DriveGearbox(0, 100, 5, drive);
+	MotorComponent motor= new MotorComponent(9);
+	ShooterGearbox shooterGearbox = new ShooterGearbox(0,100, 5, 0, 100, motor);
+	DriveGearbox driveGearbox = new DriveGearbox(0, 100, 5, drive);
 	XboxController operator = new XboxController(3);
 	ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
 	PneumaticComponent pneumatic = new PneumaticComponent(7);
-	HumanDriver driver = new HumanDriver(left, right, drive, driveGearBox, operator, shooterGearBox, shooter, pneumatic);
+	HumanDriver driver = new HumanDriver(left, right, drive, driveGearbox, operator, shooterGearbox, shooter, pneumatic);
 
 	public void robotInit() {
 		new Thread(new Runnable() {
@@ -82,7 +82,6 @@ public class AscentRobot extends IterativeRobot {
 	}
 
 	public void teleopPeriodic() {
-		driver.handleActiveDriving();
 		driver.handlePassiveOperating();
 	}
 

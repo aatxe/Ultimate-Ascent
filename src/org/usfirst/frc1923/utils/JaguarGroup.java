@@ -73,9 +73,7 @@ public class JaguarGroup implements SpeedController {
 	public void set(double speed) {
 		for (int i = 0; i < vector.size(); i++) {
 			((Jaguar) (vector.elementAt(i))).set(speed);
-
 		}
-
 	}
 
 	public void disable() {

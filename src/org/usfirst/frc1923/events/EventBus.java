@@ -53,4 +53,5 @@ public class EventBus {
 	public void destroy() {
 		stack.empty();
 	}
+	
 }
