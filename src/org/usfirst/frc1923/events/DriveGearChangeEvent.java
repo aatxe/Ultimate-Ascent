@@ -1,6 +1,7 @@
 package org.usfirst.frc1923.events;
 
-import org.usfirst.frc1923.components.DriveGearBox;
+import org.usfirst.frc1923.components.DriveGearbox;
+
 /**
  *  An event to handle the Drive Gear
  * @author Pavan Hegde
@@ -8,14 +9,14 @@ import org.usfirst.frc1923.components.DriveGearBox;
  * @since 1/22/13
  */
 public class DriveGearChangeEvent implements Event {
-	private DriveGearBox driveGear;
+	private DriveGearbox driveGear;
 	private int gear;
 	/**
 	 *  A constructor to create the event
 	 * @param gear the gear
 	 * @param driveGear the Drive Gearbox
 	 */
-	public DriveGearChangeEvent (int gear, DriveGearBox driveGear) {
+	public DriveGearChangeEvent (int gear, DriveGearbox driveGear) {
 		this.driveGear = driveGear;
 		this.gear = gear;
 	}
