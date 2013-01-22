@@ -4,7 +4,11 @@ import java.util.Vector;
 
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.SpeedController;
-
+/**
+ * @author Bhavish Yalamanchi, Olu Olurade
+ * @version 1.0
+ * @since 1/19/13
+*/
 public class JaguarGroup implements SpeedController {
 	private final Vector vector = new Vector();
 
@@ -69,9 +73,7 @@ public class JaguarGroup implements SpeedController {
 	public void set(double speed) {
 		for (int i = 0; i < vector.size(); i++) {
 			((Jaguar) (vector.elementAt(i))).set(speed);
-
 		}
-
 	}
 
 	public void disable() {
