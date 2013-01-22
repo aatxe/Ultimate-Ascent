@@ -7,7 +7,7 @@ import org.usfirst.frc1923.components.ShooterGearbox;
  * @version 1.0
  * @since 1/22/13
  */
-public class ShooterGearChangeEvent {
+public class ShooterGearChangeEvent implements Event {
 	private ShooterGearbox shooterGearbox;
 	private int leftGear, rightGear;
 	/**
@@ -77,5 +77,10 @@ public class ShooterGearChangeEvent {
 		public int getValue() {
 			return this.value;
 		}
+	}
+	
+	public void reset() {
+		// TODO Auto-generated method stub
+		
 	}
 }
