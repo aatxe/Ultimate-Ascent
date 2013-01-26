@@ -1,5 +1,6 @@
 package org.usfirst.frc1923.events;
 
+import org.usfirst.frc1923.components.DriveComponent;
 import org.usfirst.frc1923.components.DriveGearbox;
 
 /**
@@ -9,6 +10,7 @@ import org.usfirst.frc1923.components.DriveGearbox;
  * @since 1/22/13
  */
 public class DriveGearChangeEvent implements Event {
+	private DriveComponent drive;
 	private DriveGearbox driveGear;
 	private int gear;
 	/**
@@ -25,10 +27,11 @@ public class DriveGearChangeEvent implements Event {
 	 */
 	public void run() {
 		driveGear.setGear(gear);
+		drive.setMaxOutput(driveGear.getSpeed());
 	}
 
 	public void reset() {
-		// Quouting Aaron Weiss "Do shit"
+		// Quoting Aaron Weiss "Do shit"
 		
 	}
 }
