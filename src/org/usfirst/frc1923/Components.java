@@ -9,8 +9,9 @@ import org.usfirst.frc1923.components.ShooterComponent;
 import org.usfirst.frc1923.components.ShooterGearbox;
 import org.usfirst.frc1923.components.XboxController;
 import org.usfirst.frc1923.utils.Coalescor;
-import org.usfirst.frc1923.utils.JaguarGroup;
-import org.usfirst.frc1923.utils.VictorGroup;
+import org.usfirst.frc1923.utils.MotorGroup;
+
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Victor;
@@ -26,10 +27,10 @@ public final class Components {
 	public static final Joyfulstick leftStick = new Joyfulstick(1);
 	public static final Joyfulstick rightStick = new Joyfulstick(2);
 	public static final Compressor compressor = new Compressor(12, 0);
-	public static final DriveComponent robotDrive = new DriveComponent(new VictorGroup(new Victor(1), new Victor(3)), new VictorGroup(new Victor(2), new Victor(4)));
+	public static final DriveComponent robotDrive = new DriveComponent(new MotorGroup(new Victor(1), new Victor(3)), new MotorGroup(new Victor(2), new Victor(4)));
 	public static final DriveGearbox driveGearbox = new DriveGearbox(new double[]{0.5, 0.8, 1.0});
 	public static final XboxController operator = new XboxController(3);
 	public static final ShooterGearbox shooterGearbox = new ShooterGearbox(0,100, 5, 0, 100, new MotorComponent(0));
-	public static final ShooterComponent shooter = new ShooterComponent(new JaguarGroup(new Jaguar(1),new Jaguar(2)), new JaguarGroup(new Jaguar(3), new Jaguar(4)));
+	public static final ShooterComponent shooter = new ShooterComponent(new MotorGroup(new Jaguar(1),new Jaguar(2)), new MotorGroup(new Jaguar(3), new Jaguar(4)));
 	public static final PneumaticComponent solenoid = new PneumaticComponent(1,2);
 }

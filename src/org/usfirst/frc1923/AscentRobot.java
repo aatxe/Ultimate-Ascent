@@ -3,12 +3,10 @@ package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.components.DriveComponent;
 import org.usfirst.frc1923.components.DriveGearbox;
-import org.usfirst.frc1923.components.Joyfulstick;
 import org.usfirst.frc1923.components.MotorComponent;
 import org.usfirst.frc1923.components.ShooterComponent;
 import org.usfirst.frc1923.components.ShooterGearbox;
-import org.usfirst.frc1923.components.XboxController;
-import org.usfirst.frc1923.utils.JaguarGroup;
+import org.usfirst.frc1923.utils.MotorGroup;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Jaguar;
@@ -29,10 +27,10 @@ public class AscentRobot extends IterativeRobot {
 
 	Components components = new Components();
 
-	JaguarGroup driveGroupLeft = new JaguarGroup(new Jaguar(1), new Jaguar(2));
-	JaguarGroup driveGroupRight = new JaguarGroup(new Jaguar(3), new Jaguar(4));
-	JaguarGroup shooterGroupLeft = new JaguarGroup(new Jaguar(5), new Jaguar(6));
-	JaguarGroup shooterGroupRight = new JaguarGroup(new Jaguar(7), new Jaguar(8));
+	MotorGroup driveGroupLeft = new MotorGroup(new Jaguar(1), new Jaguar(2));
+	MotorGroup driveGroupRight = new MotorGroup(new Jaguar(3), new Jaguar(4));
+	MotorGroup shooterGroupLeft = new MotorGroup(new Jaguar(5), new Jaguar(6));
+	MotorGroup shooterGroupRight = new MotorGroup(new Jaguar(7), new Jaguar(8));
 	
 	MotorComponent motorComponent = new MotorComponent(1,1);
 	ShooterGearbox shooterGearBox = new ShooterGearbox(0,100, 5, 0, 100, motorComponent);

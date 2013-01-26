@@ -1,8 +1,8 @@
 package org.usfirst.frc1923.components;
 
 import org.usfirst.frc1923.Component;
-import org.usfirst.frc1923.utils.JaguarGroup;
-import org.usfirst.frc1923.utils.VictorGroup;
+import org.usfirst.frc1923.utils.MotorGroup;
+
 import edu.wpi.first.wpilibj.RobotDrive;
 
 /**
@@ -16,11 +16,7 @@ public class DriveComponent implements Component {
 	private int currentState = Component.ComponentState.COMPONENT_STOPPED;
 	private RobotDrive roboDrive;
 
-	public DriveComponent(VictorGroup leftGroup, VictorGroup rightGroup) {
-		roboDrive = new RobotDrive(leftGroup, rightGroup);
-	}
-	
-	public DriveComponent(JaguarGroup leftGroup, JaguarGroup rightGroup) {
+	public DriveComponent(MotorGroup leftGroup, MotorGroup rightGroup) {
 		roboDrive = new RobotDrive(leftGroup, rightGroup);
 	}
 	/**

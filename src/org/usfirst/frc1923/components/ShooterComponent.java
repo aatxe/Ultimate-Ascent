@@ -1,6 +1,6 @@
 package org.usfirst.frc1923.components;
 
-import org.usfirst.frc1923.utils.JaguarGroup;
+import org.usfirst.frc1923.utils.MotorGroup;
 /**
  *  The shooter component
  * @author Pavan Hegde, Aaron Weiss
@@ -8,15 +8,15 @@ import org.usfirst.frc1923.utils.JaguarGroup;
  * @since 1/26/13
  */
 public class ShooterComponent {
-	private JaguarGroup left;
-	private JaguarGroup right;
+	private MotorGroup left;
+	private MotorGroup right;
 	private boolean shooterRunning = false;
 	/**
 	 * A constructor to set the Jaguars and create the shooter component
 	 * @param left left Jaguar
 	 * @param right right Jaguar
 	 */
-	public ShooterComponent(JaguarGroup left, JaguarGroup right) {
+	public ShooterComponent(MotorGroup left, MotorGroup right) {
 		this.left = left;
 		this.right = right;
 	}
