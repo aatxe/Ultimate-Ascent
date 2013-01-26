@@ -29,7 +29,7 @@ public class ShooterAngleControllerEvent implements Event {
 			motor.up(motor.getXboxLeftJoystick());
 		}
 		else {
-			motor.down(motor.getXboxLeftJoystick());
+			motor.down(-motor.getXboxLeftJoystick());
 		}
 	}
 
