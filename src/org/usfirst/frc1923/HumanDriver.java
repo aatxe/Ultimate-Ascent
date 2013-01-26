@@ -3,6 +3,7 @@ package org.usfirst.frc1923;
 import org.usfirst.frc1923.components.DriveComponent;
 import org.usfirst.frc1923.components.DriveGearbox;
 import org.usfirst.frc1923.components.Joyfulstick;
+import org.usfirst.frc1923.components.PneumaticComponent;
 import org.usfirst.frc1923.components.ShooterComponent;
 import org.usfirst.frc1923.components.ShooterGearbox;
 import org.usfirst.frc1923.components.XboxController;
@@ -25,6 +26,7 @@ public class HumanDriver {
 	XboxController operator;
 	ShooterGearbox shooterGearBox;
 	ShooterComponent shooter;
+	PneumaticComponent solenoid;
 	Components components;
 	
 	public HumanDriver(Components components) {
@@ -51,6 +53,10 @@ public class HumanDriver {
 		}
 		if(operator.getButton(XboxController.Button.LB)) {
 			shooter.stop();
+		}
+		if (operator.getButton(XboxController.Button.Start)) {
+			solenoid.activate();
+			solenoid.deactivate();
 		}
 	}
 	
