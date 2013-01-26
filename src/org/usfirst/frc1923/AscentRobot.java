@@ -21,31 +21,28 @@ import edu.wpi.first.wpilibj.Jaguar;
  * @since 1/8/13
  */
 public class AscentRobot extends IterativeRobot {
+	
 	/**
 	 * Most of this should me moved to Components.java
+	 * Everything using Jaguars should stay here temporarily
 	 */
-	Joyfulstick left = new Joyfulstick(1);
-	Joyfulstick right = new Joyfulstick(2);
-	Jaguar one = new Jaguar(1);
-	Jaguar two = new Jaguar(2);
-	Jaguar three = new Jaguar(3);
-	Jaguar four = new Jaguar(4);
-	Jaguar five = new Jaguar(5);
-	Jaguar six = new Jaguar(6);
-	Jaguar seven = new Jaguar(7);
-	Jaguar eight = new Jaguar(8);
-	JaguarGroup driveGroupLeft = new JaguarGroup(one, two);
-	JaguarGroup driveGroupRight = new JaguarGroup(three, four);
-	JaguarGroup shooterGroupLeft = new JaguarGroup(five, six);
-	JaguarGroup shooterGroupRight = new JaguarGroup(seven, eight);
+
+	Components components = new Components();
+
+	JaguarGroup driveGroupLeft = new JaguarGroup(new Jaguar(1), new Jaguar(2));
+	JaguarGroup driveGroupRight = new JaguarGroup(new Jaguar(3), new Jaguar(4));
+	JaguarGroup shooterGroupLeft = new JaguarGroup(new Jaguar(5), new Jaguar(6));
+	JaguarGroup shooterGroupRight = new JaguarGroup(new Jaguar(7), new Jaguar(8));
+	
 	MotorComponent motorComponent = new MotorComponent(1,1);
 	ShooterGearbox shooterGearBox = new ShooterGearbox(0,100, 5, 0, 100, motorComponent);
+	ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
+	
 	DriveComponent drive = new DriveComponent(driveGroupLeft, driveGroupRight);
 	DriveGearbox driveGearBox = new DriveGearbox(0, 100, 5, drive);
-	XboxController operator = new XboxController(3);
-	ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
-	HumanDriver driver = new HumanDriver(left, right, drive, driveGearBox, operator, shooterGearBox, shooter);
-
+	
+	HumanDriver driver = new HumanDriver(components);
+	
 	public void robotInit() {
 		new Thread(new Runnable() {
 			public void run() {

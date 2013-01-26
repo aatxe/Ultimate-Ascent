@@ -25,17 +25,17 @@ public class HumanDriver {
 	XboxController operator;
 	ShooterGearbox shooterGearBox;
 	ShooterComponent shooter;
-
-	public HumanDriver(Joyfulstick left, Joyfulstick right,
-			DriveComponent robotDrive, DriveGearbox driveGearBox,
-			XboxController operator, ShooterGearbox shooterGearBox, ShooterComponent shooter) {
-		this.left = left;
-		this.right = right;
-		this.robotDrive = robotDrive;
-		this.driveGearBox = driveGearBox;
-		this.operator = operator;
-		this.shooterGearBox = shooterGearBox;
-		this.shooter = shooter;
+	Components components;
+	
+	public HumanDriver(Components components) {
+		this.components = components;
+		this.left = components.leftStick;
+		this.right = components.rightStick;
+		this.robotDrive = components.robotDrive;
+		this.driveGearBox = components.driveGearbox;
+		this.operator = components.operator;
+		this.shooterGearBox = components.shooterGearbox;
+		this.shooter = components.shooter;
 	}
 
 	public void handleActiveDriving() {
@@ -53,6 +53,7 @@ public class HumanDriver {
 			shooter.stop();
 		}
 	}
+	
 	public void handlePassiveOperating() {
 		if(operator.getButton(XboxController.Button.X) && shooterGearBox.getLeftSpeed() < 1.00)  {
 			shooterGearBox.leftGearUp();

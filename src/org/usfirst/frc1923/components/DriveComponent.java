@@ -3,7 +3,6 @@ package org.usfirst.frc1923.components;
 import org.usfirst.frc1923.Component;
 import org.usfirst.frc1923.utils.JaguarGroup;
 import org.usfirst.frc1923.utils.VictorGroup;
-
 import edu.wpi.first.wpilibj.RobotDrive;
 
 /**
@@ -20,11 +19,10 @@ public class DriveComponent implements Component {
 	public DriveComponent(VictorGroup leftGroup, VictorGroup rightGroup) {
 		roboDrive = new RobotDrive(leftGroup, rightGroup);
 	}
-
+	
 	public DriveComponent(JaguarGroup leftGroup, JaguarGroup rightGroup) {
 		roboDrive = new RobotDrive(leftGroup, rightGroup);
 	}
-
 	/**
 	 * Drives the robot in one direction with added curvature.
 	 * 
@@ -65,7 +63,8 @@ public class DriveComponent implements Component {
 	/**
 	 * Enables safety of robot.
 	 * 
-	 * @param enabled a boolean that tells whether or not safety is enabled
+	 * @param enabled
+	 *            a boolean that tells whether or not safety is enabled
 	 */
 	public void setSafety(boolean enabled) {
 		roboDrive.setSafetyEnabled(enabled);
