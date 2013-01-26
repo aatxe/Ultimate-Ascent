@@ -12,9 +12,9 @@ public class ShooterComponent {
 	private MotorGroup right;
 	private boolean shooterRunning = false;
 	/**
-	 * A constructor to set the Jaguars and create the shooter component
-	 * @param left left Jaguar
-	 * @param right right Jaguar
+	 * A constructor to set the MotorComponents and create the shooter component
+	 * @param left left MotorGroup
+	 * @param right right MotorGroup
 	 */
 	public ShooterComponent(MotorGroup left, MotorGroup right) {
 		this.left = left;
