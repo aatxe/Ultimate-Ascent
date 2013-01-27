@@ -1,77 +1,68 @@
 package org.usfirst.frc1923.components;
 
 import org.usfirst.frc1923.Component;
-import org.usfirst.frc1923.utils.MotorGroup;
 
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SpeedController;
 
 /**
  * A basic component for managing drive commands.
- * 
- * @author Aayush Sharma, Nabeel Rangwala, Pavan Hegde
- * @version 1.1
+ * @author Aayush Sharma, Nabeel Rangwala, Pavan Hegde, Aaron Weiss
+ * @version 1.3
  * @since 1/12/13
  */
 public class DriveComponent implements Component {
 	private int currentState = Component.ComponentState.COMPONENT_STOPPED;
-	private RobotDrive roboDrive;
+	private RobotDrive robotDrive;
 
-	public DriveComponent(MotorGroup leftGroup, MotorGroup rightGroup) {
-		roboDrive = new RobotDrive(leftGroup, rightGroup);
-	}
 	/**
-	 * Drives the robot in one direction with added curvature.
-	 * 
-	 * @param outputMagnitude
-	 *            the forward component of the output magnitude to send to the
-	 *            motors
-	 * @param curve
-	 *            the rate of turn, constant for different forward speeds
+	 * Creates a <code>DriveComponent</code> using the desired <code>SpeedControllers</code>. 
+	 * @param leftController the controller for the left side of the drive train
+	 * @param rightController the controller for the right side of the drive train
+	 */
+	public DriveComponent(SpeedController leftController, SpeedController rightController) {
+		robotDrive = new RobotDrive(leftController, rightController);
+	}
+	
+	/**
+	 * Drives the robot in one direction with the specified curvature.
+	 * @param outputMagnitude the magnitude by which to move forward
+	 * @param curve the desired curvature for the movement
 	 */
 	public void drive(double outputMagnitude, double curve) {
-		roboDrive.drive(outputMagnitude, curve);
+		robotDrive.drive(outputMagnitude, curve);
 	}
 
 	/**
-	 * Drives the robot via respective powers for each side.
-	 * 
-	 * @param leftMagnitude
-	 *            the value to move left with
-	 * @param rightMagnitude
-	 *            the value to move right with
+	 * Drives the robot using respective powers for each side.
+	 * @param leftMagnitude the magnitude for the left side
+	 * @param rightMagnitude the magnitude for the right side
 	 */
 	public void tankDrive(double leftMagnitude, double rightMagnitude) {
-		roboDrive.tankDrive(leftMagnitude, rightMagnitude);
+		robotDrive.tankDrive(leftMagnitude, rightMagnitude);
 	}
 
 	/**
-	 * Configure the scaling factor for using RobotDrive with motor controllers
-	 * in a mode other than PercentVbus.
-	 * 
-	 * @param maxOutput
-	 *            multiplied with the output percentage computed by the drive
-	 *            functions
+	 * Limits the maximum output of the drive train.
+	 * @param maxOutput the desired maximum speed
 	 */
 	public void setMaxOutput(double maxOutput) {
-		roboDrive.setMaxOutput(maxOutput);
+		robotDrive.setMaxOutput(maxOutput);
 	}
 
 	/**
-	 * Enables safety of robot.
-	 * 
-	 * @param enabled
-	 *            a boolean that tells whether or not safety is enabled
+	 * Sets whether or not the drive train requires a <code>Watchdog</code>.
+	 * @param enabled whether or not to use the <code>Watchdog</code>
 	 */
 	public void setSafety(boolean enabled) {
-		roboDrive.setSafetyEnabled(enabled);
+		robotDrive.setSafetyEnabled(enabled);
 	}
 
 	/**
-	 * Configure the scaling factor for using RobotDrive with motor controllers
-	 * in a mode other than PercentVbus.
+	 * Stops the drive train.
 	 */
-	public void stopMotor() {
-		roboDrive.stopMotor();
+	public void stop() {
+		robotDrive.stopMotor();
 	}
 
 	public int getState() {
@@ -79,6 +70,7 @@ public class DriveComponent implements Component {
 	}
 
 	public void destroy() {
-		roboDrive.free();
+		this.stop();
+		robotDrive.free();
 	}
 }

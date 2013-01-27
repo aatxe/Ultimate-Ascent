@@ -1,17 +1,19 @@
 package org.usfirst.frc1923.events;
 
 import org.usfirst.frc1923.components.ShooterGearbox;
+
 /**
  *  An event for controlling a <code>ShooterGearbox</code>.
  * @author Pavan Hegde, Aaron Weiss
  * @version 1.0
- * @since 1/22/13
+ * @since 1/27/13
  */
 public class ShooterGearChangeEvent implements Event {
 	private ShooterGearbox shooterGearbox;
 	private int leftGear, rightGear;
+	
 	/**
-	 * A constructor to create the event
+	 * Creates the event 
 	 * @param gearNum The gear number that indicates left or right
 	 * @param side the side of the gear set
 	 * @param shooterGearbox the shooter gear box
@@ -31,8 +33,9 @@ public class ShooterGearChangeEvent implements Event {
 			this.rightGear = -1;
 		}
 	}
+	
 	/**
-	 *  Another constructor used to create the event.
+	 * Creates the event by setting the gear number and gear box
 	 * @param leftGear the left gear value
 	 * @param rightGear the right gear value
 	 * @param shooterGearbox the <code>ShooterGearbox</code>.
@@ -42,6 +45,7 @@ public class ShooterGearChangeEvent implements Event {
 		this.leftGear = leftGear;
 		this.rightGear = rightGear;
 	}
+	
 	/**
 	 * Sets the left or right gear
 	 */
@@ -51,6 +55,7 @@ public class ShooterGearChangeEvent implements Event {
 		if (this.rightGear != -1)
 			shooterGearbox.setRightGear(rightGear);
 	}
+	
 	/**
 	 *  A class for the gear side
 	 * @author Aaron Weiss, Pavan Hegde
@@ -64,14 +69,16 @@ public class ShooterGearChangeEvent implements Event {
 		public static final GearSide rightSide = new GearSide(kRight_val);
 		
 		public final int value;
+		
 		/**
-		 * A constructor that sets the value
-		 * @param value the value 
+		 * Creates this class by setting the value
+		 * @param value the desired value 
 		 */
 		public GearSide(int value) {
 			this.value = value;
 		}
 		/**
+		 * Gets the value.
 		 * @return the value
 		 */
 		public int getValue() {
@@ -80,7 +87,6 @@ public class ShooterGearChangeEvent implements Event {
 	}
 	
 	public void reset() {
-		// TODO Auto-generated method stub
-		
+		// Hi
 	}
 }

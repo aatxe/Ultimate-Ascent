@@ -5,7 +5,7 @@ import org.usfirst.frc1923.Component;
 import edu.wpi.first.wpilibj.DigitalOutput;
 
 /**
- * A basic electrical component using <code>DigitalOutput</code>.
+ * The class to represent the electrical component of the robot.
  * @author Nihar Sidhu
  * @version 1.0
  * @since 1/9/13
@@ -68,13 +68,19 @@ public class ElectricalComponent implements Component {
 		else
 			this.activate();
 	}
-
-	public void destroy() {
-		digitalOutput.free();
-	}
 	
-
+	/**
+	 * Gets the state of the component
+	 * @return the state of the component
+	 */
 	public int getState() {
 		return this.currentState;
+	}
+	
+	/**
+	 * Destroys/Frees the component.
+	 */
+	public void destroy() {
+		digitalOutput.free();
 	}
 }

@@ -2,6 +2,7 @@ package org.usfirst.frc1923.events;
 
 import org.usfirst.frc1923.Component;
 import org.usfirst.frc1923.components.PneumaticComponent;
+
 /**
  * An event for actuating pneumatic components.
  * @author Pavan Hegde, Aaron Weiss, Nabeel Rangwala
@@ -12,6 +13,7 @@ public class PistonActuationEvent implements Event {
 	
 	private int desiredState;
 	private PneumaticComponent pneumaticComponent;
+	
 	/**
 	 * Creates a piston actuation event
 	 * @param desiredState the desired state of the component
@@ -22,6 +24,9 @@ public class PistonActuationEvent implements Event {
 		this.pneumaticComponent = pneumaticComponent;
 	}
 	
+	/**
+	 * Activates or deactivates the pneumatic component depending on the state.
+	 */
 	public void run() {
 		switch (desiredState) {
 		case Component.ComponentState.COMPONENT_ON:
@@ -33,8 +38,10 @@ public class PistonActuationEvent implements Event {
 		}
 	}
 	
+	/**
+	 * Destroys the pneumatic component
+	 */
 	public void reset() {
 		pneumaticComponent.destroy();
 	}
-
 }

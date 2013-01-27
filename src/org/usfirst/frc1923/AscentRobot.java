@@ -1,56 +1,18 @@
 
 package org.usfirst.frc1923;
 
-import org.usfirst.frc1923.components.DriveComponent;
-import org.usfirst.frc1923.components.DriveGearbox;
-import org.usfirst.frc1923.components.MotorComponent;
-import org.usfirst.frc1923.components.ShooterComponent;
-import org.usfirst.frc1923.components.ShooterGearbox;
-import org.usfirst.frc1923.utils.MotorGroup;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Jaguar;
 
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
- * 
  * @author Aaron Weiss, Bhavish Yalamanchi
  * @version 1.0.1
  * @since 1/8/13
  */
 public class AscentRobot extends IterativeRobot {
 	
-	/**
-	 * Most of this should me moved to Components.java
-	 * Everything using Jaguars should stay here temporarily
-	 */
-
-	Components components = new Components();
-
-	MotorGroup driveGroupLeft = new MotorGroup(new Jaguar(1), new Jaguar(2));
-	MotorGroup driveGroupRight = new MotorGroup(new Jaguar(3), new Jaguar(4));
-	MotorGroup shooterGroupLeft = new MotorGroup(new Jaguar(5), new Jaguar(6));
-	MotorGroup shooterGroupRight = new MotorGroup(new Jaguar(7), new Jaguar(8));
-	
-	MotorComponent motorComponent = new MotorComponent(1,1);
-	ShooterGearbox shooterGearBox = new ShooterGearbox(0,100, 5, 0, 100, motorComponent);
-	ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
-	
-	DriveComponent drive = new DriveComponent(driveGroupLeft, driveGroupRight);
-	DriveGearbox driveGearBox = new DriveGearbox(0, 100, 5, drive);
-	
-	HumanDriver driver = new HumanDriver(components);
-	
 	public void robotInit() {
-		new Thread(new Runnable() {
-			public void run() {
-				while (true) {
-					try {
-						Thread.sleep(250);
-					} catch (InterruptedException e) {}
-				}
-			}
-		}).start();
+		// TODO: this
 	}
 
 	public void disabledInit() {
@@ -62,9 +24,7 @@ public class AscentRobot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		
-		System.out.println("Robot Enabled:: Tele-Operated Mode Initialized");
-		//Does some more stuff, other classes required
+		// TODO: this
 	}
 
 	public void disabledPeriodic() {
@@ -76,7 +36,7 @@ public class AscentRobot extends IterativeRobot {
 	}
 
 	public void teleopPeriodic() {
-		driver.handlePassiveOperating();
+		// TODO: this
 	}
 
 	public void disabledContinuous() {
@@ -88,8 +48,6 @@ public class AscentRobot extends IterativeRobot {
 	}
 
 	public void teleopContinuous() {
-		driver.handleActiveDriving();
-		driver.handleActiveOperating();
-		//must also run shooter, class needed
+		// TODO: this
 	}
 }
