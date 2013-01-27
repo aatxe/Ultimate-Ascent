@@ -1,4 +1,5 @@
 *.class
+merge-script.sh
 
 # Package Files #
 *.jar
