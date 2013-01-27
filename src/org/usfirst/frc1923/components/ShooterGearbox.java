@@ -1,9 +1,9 @@
 package org.usfirst.frc1923.components;
 /**
- * A class for controlling the Shooter Gearbox.
+ * A class to represent the shooter's gear box.
  * @author Pavan Hegde
  * @version 1.0
- * @since 1/21/13
+ * @since 1/27/13
  */
 public class ShooterGearbox {
 	
@@ -12,9 +12,7 @@ public class ShooterGearbox {
 	private MotorComponent motorComponent;
 	
 	/**
-	 *  One of two constructors that set the above gear sets and motor component
-	 * @param leftGearNum The gear number for the left gear
-	 * @param rightGearNum The gear number for the right gear
+	 * Creates this class by setting each array and the motor component.
 	 * @param leftGearSet the Left gear set
 	 * @param rightGearSet the right gear set
 	 * @param motorComponent the motor component
@@ -26,7 +24,7 @@ public class ShooterGearbox {
 	}
 	
 	/**
-	 *  The second of two constructors that set the gear sets
+	 * Creates this class by setting the motor component and the arrays based on the equation below. 
 	 * @param leftStart The start of the range for the left
 	 * @param leftEnd The end of the range for the left
 	 * @param increment The increment used to set the difference.
@@ -47,8 +45,9 @@ public class ShooterGearbox {
 		}
 		this.motorComponent = motorComponent;
 	}
+	
 	/**
-	 *  Sets the left gear number
+	 * Sets the left gear number
 	 * @param leftGearNum The gear number for the left
 	 */
 	public void setLeftGear(int leftGearNum) {
@@ -57,8 +56,9 @@ public class ShooterGearbox {
 			System.out.println("Shooter leftGear is changed to: " + this.leftGearNum);
 		}	
 	}
+	
 	/**
-	 *  Sets the right gear number
+	 * Sets the right gear number
 	 * @param rightGearNum The gear number for the right
 	 */
 	public void setRightGear(int rightGearNum) {
@@ -67,18 +67,23 @@ public class ShooterGearbox {
 			System.out.println("Shooter rightGear is changed to: " + this.rightGearNum);
 		}
 	}
+	
 	/**
+	 * Gets the number of the left gear
 	 * @return the left gear number
 	 */
 	public int getLeftGear() {
 		return leftGearNum;
 	}
+	
 	/**
+	 * Gets the number of the right gear
 	 * @return the right gear number
 	 */
 	public int getRightGear() {
 		return rightGearNum;
 	}
+	
 	/**
 	 * Lowers right gear speed by one
 	 * @return the new gear number for the right
@@ -93,6 +98,7 @@ public class ShooterGearbox {
 		}
 		return rightGearNum;
 	}
+	
 	/**
 	 * Lowers left gear speed by 1
 	 * @return the new left gear number.
@@ -107,6 +113,7 @@ public class ShooterGearbox {
 		}
 		return leftGearNum;
 	}
+	
 	/**
 	 * Raises he right gear number by 1
 	 * @return the new right gear number
@@ -122,6 +129,7 @@ public class ShooterGearbox {
 		}
 		return rightGearNum;
 	}
+	
 	/**
 	 * Raises the left gear number by 1
 	 * @return the new left gear number
@@ -137,13 +145,17 @@ public class ShooterGearbox {
 		}
 		return leftGearNum;
 	}
+	
 	/**
+	 * Gets the speed of the left gear
 	 * @return Left gear speed
 	 */
 	public double getLeftSpeed() {
 		return leftGearSet[leftGearNum];
 	}
+	
 	/**
+	 * Gets the speed of the right gear
 	 * @return Right gear speed
 	 */
 	public double getRightSpeed() {

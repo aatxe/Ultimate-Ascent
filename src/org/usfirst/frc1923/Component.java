@@ -7,7 +7,6 @@ package org.usfirst.frc1923;
  * @since 1/8/13
  */
 public interface Component {
-	
 	/**
 	 * Gets the component's current state.
 	 * @return the component's current state

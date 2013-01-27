@@ -5,10 +5,10 @@ import org.usfirst.frc1923.Component;
 import edu.wpi.first.wpilibj.Solenoid;
 
 /**
- * A basic pneumatic component with a single <code>Solenoid</code>.
+ * A class to represent the pneumatic component of the robot.
  * @author Aaron Weiss
- * @version 1.0
- * @since 1/9/13
+ * @version 1.1
+ * @since 1/27/13
  */
 public class PneumaticComponent implements Component {
 	private int currentState = Component.ComponentState.COMPONENT_OFF;
@@ -68,12 +68,19 @@ public class PneumaticComponent implements Component {
 		else 
 			this.deactivate();
 	}
-	
-	public void destroy() {
-		pneumaticSolenoid.free();
-	}
-	
+
+	/**
+	 * Gets the state of the component
+	 * @return the state of the component
+	 */
 	public int getState() {
 		return this.currentState;
+	}
+	
+	/**
+	 * Destroys/Frees the component.
+	 */
+	public void destroy() {
+		pneumaticSolenoid.free();
 	}
 }

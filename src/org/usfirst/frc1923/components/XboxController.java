@@ -3,9 +3,10 @@ package org.usfirst.frc1923.components;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
+ * A class to represent the Xbox Controller
  * @author Olu Olorode, Nihar Sidhu, Nabeel Rangwala, Pavan Hegde, Bhavish Yalamanchi
- * @version 1.0
- * @since 1/14/13
+ * @version 1.1
+ * @since 1/27/13
  */
 public class XboxController {
 
@@ -16,12 +17,9 @@ public class XboxController {
 	}
 
 	/**
-	 * Returns value of desired Axis input
-	 * 
-	 * @param stickNumber
-	 *            the desired Stick Number
-	 * @param axisNumber
-	 *            the desired Axis Number
+	 * Gets the value of desired Axis input depending on the distance the stick is from the origin.
+	 * @param stickNumber the desired Stick Number
+	 * @param axisNumber the desired Axis Number
 	 * @return the value of the Axis
 	 */
 	public double getAxis(int stickNumber, int axisNumber) {
@@ -44,10 +42,8 @@ public class XboxController {
 
 	/**
 	 * Gets the button based on the enumerated type.
-	 * 
-	 * @param inputButton
-	 *            Indicates type of button to read.
-	 * @return The state if the button
+	 * @param inputButton the desired button to read.
+	 * @return The state of the button
 	 */
 	public boolean getButton(XboxController.Button inputButton) {
 		return joystick.getRawButton(inputButton.value);
@@ -55,9 +51,8 @@ public class XboxController {
 	}
 
 	/**
-	 * Gets Joystick Object
-	 * 
-	 * @return the joystick object
+	 * Gets <code>Joystick</code> Object
+	 * @return the <code>Joystick</code> object
 	 */
 	public Joystick getJoystick() {
 		return this.joystick;
@@ -65,24 +60,21 @@ public class XboxController {
 	}
 
 	/**
-	 * Gets the TriggerAxis
-	 * 
-	 * @return TriggerAxis
+	 * Gets the raw axis of the trigger
+	 * @return the raw axis of the trigger
 	 */
 	public double getTriggerAxis() {
 		return joystick.getRawAxis(3);
-
 	}
 
 	/**
 	 * Gets DPad object
-	 * 
 	 * @return the DPad info
 	 */
 	public double getDPad() {
 		return this.getDPad();
 	}
-
+	
 	public static class Button {
 		public final static int kA_val = 1;
 		public final static int kB_val = 2;
@@ -109,10 +101,8 @@ public class XboxController {
 		public final int value;
 
 		/**
-		 * Constructor for Button class that sets value to value.
-		 * 
-		 * @param value
-		 *            Button Value
+		 * Creates the button with the value.
+		 * @param value Button Value
 		 */
 		private Button(int value) {
 			this.value = value;

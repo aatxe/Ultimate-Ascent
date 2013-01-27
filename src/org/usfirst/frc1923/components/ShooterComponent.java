@@ -1,53 +1,72 @@
 package org.usfirst.frc1923.components;
 
-import org.usfirst.frc1923.utils.MotorGroup;
+import org.usfirst.frc1923.Component;
+import edu.wpi.first.wpilibj.SpeedController;
+
 /**
- *  The shooter component
+ * A component representing the robot's shooter.
  * @author Pavan Hegde, Aaron Weiss
- * @version 1.1
+ * @version 1.4
  * @since 1/26/13
  */
-public class ShooterComponent {
-	private MotorGroup left;
-	private MotorGroup right;
-	private boolean shooterRunning = false;
+public class ShooterComponent implements Component {
+	private int currentState = Component.ComponentState.COMPONENT_OFF;
+	private final SpeedController leftController;
+	private final SpeedController rightController;
+	
 	/**
-	 * A constructor to set the MotorComponents and create the shooter component
-	 * @param left left MotorGroup
-	 * @param right right MotorGroup
+	 * Creates a <code>ShooterComponent</code> with a <code>SpeedController</code> for each wheel.
+	 * @param leftController the <code>SpeedController</code> for the left wheel.
+	 * @param rightController the <code>SpeedController</code> for the right wheel.
 	 */
-	public ShooterComponent(MotorGroup left, MotorGroup right) {
-		this.left = left;
-		this.right = right;
+	public ShooterComponent(SpeedController leftController, SpeedController rightController) {
+		this.leftController = leftController;
+		this.rightController = rightController;
 	}
+	
 	/**
-	 * Sets speed of left JaguarGroup
-	 * @param leftSpeed the desired left speed
+	 * Sets the speed of the left and right <code>SpeedControllers</code>.
+	 * @param leftValue the value for the left shooter controller
+	 * @param rightValue the value for the right shooter controller
 	 */
-	public void runLeft(double leftSpeed) {
-		left.set(-Math.abs(leftSpeed));
-		shooterRunning = true;
+	public void set(double leftValue, double rightValue) {
+		this.setLeftShooter(leftValue);
+		this.setRightShooter(rightValue);
+		this.currentState = Component.ComponentState.COMPONENT_ON;
 	}
+	
 	/**
-	 * Sets speed of right JaguarGroup
-	 * @param rightSpeed the desired right speed
+	 * Sets the speed for the left shooter controller.
+	 * @param value the desired value to run at
 	 */
-	public void runRight(double rightSpeed) {
-		right.set(-Math.abs(rightSpeed));
-		shooterRunning = true;
+	protected void setLeftShooter(double value) {
+		this.leftController.set(-Math.abs(value));
+		this.currentState = Component.ComponentState.COMPONENT_ON;
 	}
+	
 	/**
-	 * Stops shooter and disables both left and right Jaguars
+	 * Sets the speed for the right shooter controller.
+	 * @param value the desired value to run at
+	 */
+	protected void setRightShooter(double value) {
+		this.rightController.set(-Math.abs(value));
+		this.currentState = Component.ComponentState.COMPONENT_ON;
+	}
+	
+	/**
+	 * Disables the left and right <code>SpeedControllers</code>.
 	 */
 	public void stop() {
-		left.disable();
-		right.disable();
-		shooterRunning = false;
+		this.leftController.disable();
+		this.rightController.disable();
+		this.currentState = Component.ComponentState.COMPONENT_OFF;
 	}
-	/**
-	 * @return state of shooter (running vs. stopped)
-	 */
-	public boolean isShooterRunning() {
-		return shooterRunning;
+	
+	public int getState() {
+		return this.currentState;
+	}
+
+	public void destroy() {
+		this.stop();
 	}
 }

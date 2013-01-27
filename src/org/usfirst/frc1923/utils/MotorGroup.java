@@ -6,19 +6,21 @@ import edu.wpi.first.wpilibj.SpeedController;
  * A group of speed controllers treated as one motor
  * @author Pavan Hegde, Keshav Ramesh
  * @version 1.0
- * @since 1/26/13
+ * @since 1/27/13
  */
 public class MotorGroup implements SpeedController {
 	private final Vector vector = new Vector();
+	
 	/**
-	 *  A constructor to add elements to the vector
+	 * Creates the motor group using one speed controller
 	 * @param speedControllerOne The first speed controller
 	 */
 	public MotorGroup(SpeedController speedControllerOne) {
 		vector.addElement(speedControllerOne);
 	}
+	
 	/**
-	 * A constructor to add the elements to the vector
+	 * Creates the motor group using two speed controller
 	 * @param speedControllerOne The first speed controller
 	 * @param speedControllerTwo The second speed controller
 	 */
@@ -27,7 +29,7 @@ public class MotorGroup implements SpeedController {
 		vector.addElement(speedControllerTwo);
 	}
 	/**
-	 * A constructor to add elements to the vector
+	 * Creates the motor group using three speed controller
 	 * @param speedControllerOne the first speed controller
 	 * @param speedControllerTwo the second speed controller
 	 * @param speedControllerThree the third speed controller
@@ -38,12 +40,13 @@ public class MotorGroup implements SpeedController {
 		vector.addElement(speedControllerThree);
 	}
 	/**
-	 * Prints the vector element at 0 (which is a speed controller) on cmd
+	 * Prints the vector element at 0 (which is a speed controller) on command prompt
 	 */
 	public void pidWrite(double output) {
 		System.out.println(((SpeedController) (vector.elementAt(0))).get());
 	}
 	/**
+	 * Gets the <code>SpeedController</code> element at 0
 	 * @return the speed controller element at 0 in the vector
 	 */
 	public double get() {
