@@ -40,11 +40,15 @@ public class MotorGroup implements SpeedController {
 		vector.addElement(speedControllerThree);
 	}
 	/**
-	 * Prints the vector element at 0 (which is a speed controller) on command prompt
+	 * Sets the output to the value calculated by PIDController.
+	 * @param output the value calculated by the PIDController.
 	 */
 	public void pidWrite(double output) {
-		System.out.println(((SpeedController) (vector.elementAt(0))).get());
+		for (int i = 0; i < vector.size(); i++) {
+			((SpeedController) (vector.elementAt(i))).pidWrite(output);
+		}
 	}
+	
 	/**
 	 * Gets the <code>SpeedController</code> element at 0
 	 * @return the speed controller element at 0 in the vector
