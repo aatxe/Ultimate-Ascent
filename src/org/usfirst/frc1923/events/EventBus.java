@@ -3,11 +3,10 @@ package org.usfirst.frc1923.events;
 import java.util.Stack;
 
 /**
- * Events stored via stack.
- * 
+ * A class to store events via <code>Stack</code>
  * @author Aayush Sharma, Sid Senthilkumar, Olu Olorode, Nabeel Rangwala
  * @version 1.0
- * @since 1/12/13
+ * @since 1/27/13
  */
 public class EventBus {
 	Stack stack;
@@ -17,7 +16,7 @@ public class EventBus {
 	}
 
 	/**
-	 * This adds an event to the stack.
+	 * Adds an event to the stack.
 	 * @param event the event added into the stack
 	 */
 	public void addEvent(Event event) {

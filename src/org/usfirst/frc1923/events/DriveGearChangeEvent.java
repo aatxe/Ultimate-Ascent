@@ -7,14 +7,15 @@ import org.usfirst.frc1923.components.DriveGearbox;
  *  An event to handle the Drive Gear
  * @author Pavan Hegde
  * @version 1.0
- * @since 1/22/13
+ * @since 1/27/13
  */
 public class DriveGearChangeEvent implements Event {
 	private DriveComponent drive;
 	private DriveGearbox driveGear;
 	private int gear;
+	
 	/**
-	 *  A constructor to create the event
+	 * Creates the event by setting the <code>DriveComponent</code> and <code>DriveGearbox</code>
 	 * @param gear the gear
 	 * @param driveGear the Drive Gearbox
 	 */
@@ -22,6 +23,7 @@ public class DriveGearChangeEvent implements Event {
 		this.driveGear = driveGear;
 		this.gear = gear;
 	}
+	
 	/**
 	 * Sets the gear
 	 */
