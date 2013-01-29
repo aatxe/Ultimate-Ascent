@@ -1,7 +1,9 @@
 package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.components.DriveComponent;
+import org.usfirst.frc1923.components.Joyfulstick;
 import org.usfirst.frc1923.components.ShooterComponent;
+import org.usfirst.frc1923.utils.Configuration;
 import org.usfirst.frc1923.utils.MotorGroup;
 
 import edu.wpi.first.wpilibj.Jaguar;
@@ -24,4 +26,6 @@ public final class Components {
 	public static final MotorGroup shooterGroupLeft = new MotorGroup(shooterLeft);
 	public static final MotorGroup shooterGroupRight = new MotorGroup(shooterRight);
 	public static final ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
+	public static final Joyfulstick leftDriveStick = new Joyfulstick(1, Configuration.EPSILON);
+	public static final Joyfulstick rightDriveStick = new Joyfulstick(2, Configuration.EPSILON);
 }
