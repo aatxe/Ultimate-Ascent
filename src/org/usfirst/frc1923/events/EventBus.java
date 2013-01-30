@@ -5,14 +5,14 @@ import java.util.Stack;
 /**
  * A class to store events via <code>Stack</code>
  * @author Aayush Sharma, Sid Senthilkumar, Olu Olorode, Nabeel Rangwala
- * @version 1.0
+ * @version 1.1
  * @since 1/27/13
  */
 public class EventBus {
-	Stack stack;
+	private Stack stack;
 
 	public EventBus() {
-		stack = new Stack();
+		this.stack = new Stack();
 	}
 
 	/**
@@ -20,7 +20,7 @@ public class EventBus {
 	 * @param event the event added into the stack
 	 */
 	public void addEvent(Event event) {
-		stack.push(event);
+		this.stack.push(event);
 	}
 
 	/**

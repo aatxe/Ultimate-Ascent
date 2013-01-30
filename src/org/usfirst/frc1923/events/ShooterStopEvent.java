@@ -11,6 +11,9 @@ import org.usfirst.frc1923.components.ShooterComponent;
 public class ShooterStopEvent implements Event {
 	private ShooterComponent shooter;
 	
+	public ShooterStopEvent(ShooterComponent shooter) {
+		this.shooter = shooter;
+	}
 	/**
 	 * Stops the shooter
 	 */
