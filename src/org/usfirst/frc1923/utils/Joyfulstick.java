@@ -1,6 +1,5 @@
-package org.usfirst.frc1923.components;
+package org.usfirst.frc1923.utils;
 
-import org.usfirst.frc1923.utils.Coalescor;
 
 import edu.wpi.first.wpilibj.Joystick;
 
