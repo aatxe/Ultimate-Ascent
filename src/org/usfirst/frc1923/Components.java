@@ -2,6 +2,7 @@ package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.components.DriveComponent;
 import org.usfirst.frc1923.components.MotorComponent;
+import org.usfirst.frc1923.components.PneumaticComponent;
 import org.usfirst.frc1923.components.ShooterComponent;
 import org.usfirst.frc1923.components.ShooterGearbox;
 import org.usfirst.frc1923.utils.Configuration;
@@ -31,6 +32,7 @@ public final class Components {
 	public static final MotorGroup shooterGroupRight = new MotorGroup(shooterRightOne, shooterRightTwo);
 	public static final ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
 	public static final ShooterGearbox shooterGears = new ShooterGearbox(Configuration.SHOOTER_GEARS_LEFT, Configuration.SHOOTER_GEARS_RIGHT, new MotorComponent(1, 1));
+	public static final PneumaticComponent pistonShooterFeeder = new PneumaticComponent(3, 2); 
 	public static final Joyfulstick leftDriveStick = new Joyfulstick(1, Configuration.EPSILON);
 	public static final Joyfulstick rightDriveStick = new Joyfulstick(2, Configuration.EPSILON);
 	public static final XboxController controller = new XboxController(3);
