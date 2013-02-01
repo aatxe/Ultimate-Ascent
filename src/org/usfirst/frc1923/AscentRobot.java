@@ -2,6 +2,7 @@
 package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.events.EventBus;
+import org.usfirst.frc1923.events.PistonActuationEvent;
 import org.usfirst.frc1923.events.ShooterStartEvent;
 import org.usfirst.frc1923.events.ShooterStopEvent;
 import org.usfirst.frc1923.utils.Configuration;
@@ -85,6 +86,19 @@ public class AscentRobot extends IterativeRobot {
 			this.justPressed[XboxController.Button.RightClick.value] = true;
 		} else {
 			this.justPressed[XboxController.Button.RightClick.value] = false;
+		}
+		if (Components.controller.getButton(XboxController.Button.Start)) {
+			this.eventBus.addEvent(new PistonActuationEvent(Component.ComponentState.COMPONENT_ON, Components.pistonShooterFeeder));
+			this.eventBus.addEvent(new PistonActuationEvent(Component.ComponentState.COMPONENT_OFF, Components.pistonShooterFeeder));
+			this.justPressed[XboxController.Button.Start.value] = true;
+		} else {
+			this.justPressed[XboxController.Button.Start.value] = false;
+		}
+		if (Components.controller.getButton(XboxController.Button.Back)) {
+			
+			this.justPressed[XboxController.Button.Back.value] = true;
+		} else {
+			this.justPressed[XboxController.Button.Back.value] = false;
 		}
 	}
 
