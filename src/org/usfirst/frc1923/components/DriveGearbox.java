@@ -15,8 +15,9 @@ public class DriveGearbox {
 	 * Creates a gearbox with the desired set of gears.
 	 * @param gears an array of gear values
 	 */
-	public DriveGearbox(double[] gears) {
+	public DriveGearbox(double[] gears, DriveComponent driveComponent) {
 		this.gears = gears;
+		this.driveComponent = driveComponent;
 	}
 
 	/**

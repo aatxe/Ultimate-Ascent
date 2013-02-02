@@ -2,8 +2,8 @@ package org.usfirst.frc1923.components;
 
 import org.usfirst.frc1923.Component;
 
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Victor;
 
 /**
  * A basic motor component with a single <code>SpeedController</code>.
@@ -20,7 +20,7 @@ public class MotorComponent implements Component {
 	 * @param channel the desired digital channel
 	 */
 	public MotorComponent(int channel) {
-		speedController = new Victor(channel);
+		speedController = new Jaguar(channel);
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class MotorComponent implements Component {
 	 * @param channel the desired digital channel
 	 */
 	public MotorComponent(int moduleNumber, int channel) {
-		speedController = new Victor(moduleNumber, channel);
+		speedController = new Jaguar(moduleNumber, channel);
 	}
 
 	/**

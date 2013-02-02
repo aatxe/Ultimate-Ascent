@@ -40,6 +40,7 @@ public class DriveComponent implements Component {
 	 */
 	public void tankDrive(double leftMagnitude, double rightMagnitude) {
 		robotDrive.tankDrive(leftMagnitude, rightMagnitude);
+		System.out.println("left: " + leftMagnitude + " right:" + rightMagnitude);
 	}
 
 	/**
