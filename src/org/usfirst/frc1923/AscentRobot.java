@@ -2,8 +2,6 @@
 package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.events.EventBus;
-import org.usfirst.frc1923.events.ShooterStartEvent;
-import org.usfirst.frc1923.events.ShooterStopEvent;
 import org.usfirst.frc1923.utils.Configuration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -116,9 +114,9 @@ public class AscentRobot extends IterativeRobot {
 		if (Configuration.EXPERIMENTAL_DRIVE) {
 			double forwardMagnitude = Components.leftDriveStick.getCoalescedY();
 			double curvature = Components.rightDriveStick.getCoalescedX();
-			if ( curvature < 0.1) { //Turns left
+			if ( curvature > 0.1) { //Turns left
 				Components.driveSystem.tankDrive(forwardMagnitude, forwardMagnitude - curvature);
-			} else if (curvature > 0.1) { //Turns right
+			} else if (curvature < 0.1) { //Turns right
 				Components.driveSystem.tankDrive(forwardMagnitude + curvature, forwardMagnitude);
 			} else {
 				Components.driveSystem.tankDrive(forwardMagnitude, forwardMagnitude);
