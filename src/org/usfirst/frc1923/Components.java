@@ -35,6 +35,6 @@ public final class Components {
 	public static final ShooterComponent shooter = new ShooterComponent(shooterGroupLeft, shooterGroupRight);
 	public static final ShooterGearbox shooterGears = new ShooterGearbox(Configuration.SHOOTER_GEARS_LEFT, Configuration.SHOOTER_GEARS_RIGHT, new MotorComponent(9));
 	public static final Joyfulstick leftDriveStick = new Joyfulstick(1, Configuration.EPSILON);
-	public static final Joyfulstick rightDriveStick = new Joyfulstick(2, Configuration.EPSILON);
+	public static final Joyfulstick rightDriveStick = new Joyfulstick(2, (Configuration.EXPERIMENTAL_DRIVE) ? 0.001 : Configuration.EPSILON);
 	public static final XboxController controller = new XboxController(3);
 }

@@ -112,12 +112,12 @@ public class AscentRobot extends IterativeRobot {
 
 	public void teleopContinuous() {
 		if (Configuration.EXPERIMENTAL_DRIVE) {
-			double forwardMagnitude = Components.leftDriveStick.getCoalescedY();
+			double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 			double curvature = Components.rightDriveStick.getCoalescedX();
 			if ( curvature < 0.1) { //Turns left
-				Components.driveSystem.tankDrive(forwardMagnitude, forwardMagnitude - curvature);
+				Components.driveSystem.tankDrive(-(forwardMagnitude + curvature), -forwardMagnitude);
 			} else if (curvature > 0.1) { //Turns right
-				Components.driveSystem.tankDrive(forwardMagnitude + curvature, forwardMagnitude);
+				Components.driveSystem.tankDrive(-forwardMagnitude, -(forwardMagnitude - curvature));
 			} else {
 				Components.driveSystem.tankDrive(forwardMagnitude, forwardMagnitude);
 			}
