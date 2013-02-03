@@ -1,13 +1,6 @@
-MIDlet-Name: AscentRobot
+MIDlet-Name: AnInterativeJavaBot
 MIDlet-Version: 1.0.0
 MIDlet-Vendor: FIRST
-MIDlet-1: AscentRobot, , org.usfirst.frc1923.AscentRobot
+MIDlet-1: AnInterativeJavaBot, , org.usfirst.frc1923.AnInterativeJavaBot
 MicroEdition-Profile: IMP-1.0
 MicroEdition-Configuration: CLDC-1.1
-
-
-
-
-
-
-
