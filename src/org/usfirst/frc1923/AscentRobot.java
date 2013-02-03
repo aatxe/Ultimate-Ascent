@@ -1,8 +1,11 @@
 
 package org.usfirst.frc1923;
 
+import org.usfirst.frc1923.events.DriveGearChangeEvent;
 import org.usfirst.frc1923.events.EventBus;
 import org.usfirst.frc1923.events.PistonActuationEvent;
+import org.usfirst.frc1923.events.ShooterStartEvent;
+import org.usfirst.frc1923.events.ShooterStopEvent;
 import org.usfirst.frc1923.utils.Configuration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -16,7 +19,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  */
 public class AscentRobot extends IterativeRobot {
 	private final EventBus eventBus = new EventBus();
-	private boolean[] justPressed = new boolean[13];
+	private boolean[] justPressed = new boolean[14];
 	
 	public void robotInit() {
 		Components.driveGears.setGear(0);
@@ -68,14 +71,14 @@ public class AscentRobot extends IterativeRobot {
 			this.justPressed[XboxController.Button.Y.value] = false;
 		}
 		if (Components.controller.getButton(XboxController.Button.RB)) {
-			//this.eventBus.addEvent(new ShooterStartEvent(Components.shooter, Components.shooterGears));
+			this.eventBus.addEvent(new ShooterStartEvent(Components.shooter, Components.shooterGears));
 			Components.shooter.set(.50, .50);
 			this.justPressed[XboxController.Button.RB.value] = true;
 		} else {
 			this.justPressed[XboxController.Button.RB.value] = false;
 		}
 		if (Components.controller.getButton(XboxController.Button.LB)) {
-			//this.eventBus.addEvent(new ShooterStopEvent(Components.shooter));
+			this.eventBus.addEvent(new ShooterStopEvent(Components.shooter));
 			Components.shooter.stop();
 			this.justPressed[XboxController.Button.LB.value] = true;
 		} else {
@@ -88,8 +91,7 @@ public class AscentRobot extends IterativeRobot {
 			this.justPressed[XboxController.Button.RightClick.value] = false;
 		}
 		if (Components.controller.getButton(XboxController.Button.Start)) {
-			this.eventBus.addEvent(new PistonActuationEvent(Component.ComponentState.COMPONENT_ON, Components.pistonShooterFeeder));
-			this.eventBus.addEvent(new PistonActuationEvent(Component.ComponentState.COMPONENT_OFF, Components.pistonShooterFeeder));
+			
 			this.justPressed[XboxController.Button.Start.value] = true;
 		} else {
 			this.justPressed[XboxController.Button.Start.value] = false;
@@ -100,17 +102,24 @@ public class AscentRobot extends IterativeRobot {
 		} else {
 			this.justPressed[XboxController.Button.Back.value] = false;
 		if (Components.leftDriveStick.getTrigger() && !this.justPressed[11]) {
-			Components.driveGears.gearDown();
+			this.eventBus.addEvent(new DriveGearChangeEvent((Components.driveGears.getGear() - 1), Components.driveGears));
 			this.justPressed[11] = true;
 		} else if (!Components.leftDriveStick.getTrigger()) {
 			this.justPressed[11] = false;
 		}
 		
 		if (Components.rightDriveStick.getTrigger() && !this.justPressed[12]) {
-			Components.driveGears.gearUp();
+			this.eventBus.addEvent(new DriveGearChangeEvent((Components.driveGears.getGear() - 1), Components.driveGears));
 			this.justPressed[12] = true;
 		} else if (!Components.rightDriveStick.getTrigger()) {
 			this.justPressed[12] = false;
+		}
+		if (Components.controller.getTriggerAxis() > 0) {
+			this.eventBus.addEvent(new PistonActuationEvent(Component.ComponentState.COMPONENT_ON, Components.pistonShooterFeeder));
+			this.eventBus.addEvent(new PistonActuationEvent(Component.ComponentState.COMPONENT_OFF, Components.pistonShooterFeeder));
+			this.justPressed[13] = true;
+		} else {
+			this.justPressed[13] = false;
 		}
 		}
 	}
@@ -137,6 +146,11 @@ public class AscentRobot extends IterativeRobot {
 		} else {
 			Components.driveSystem.tankDrive(Components.leftDriveStick.getCoalescedY(), Components.rightDriveStick.getCoalescedY());
 		}
-		//this.eventBus.next();
+		if (Components.controller.getAxis(1, 2) != 0) {
+			Components.shooterAngleGroup.set(Components.controller.getAxis(1, 2));
+		} else {
+			Components.shooterAngleGroup.set(0);
+		}
+		this.eventBus.next();
 	}
 }
