@@ -31,6 +31,11 @@ public class DriveGearChangeEvent implements Event {
 		driveGear.setGear(gear);
 		drive.setMaxOutput(driveGear.getSpeed());
 	}
+	
+	
+	public double DriveTrainSpeed(){
+		return driveGear.getSpeed();
+	}
 
 	public void reset() {
 		// Quoting Aaron Weiss "Do shit"
