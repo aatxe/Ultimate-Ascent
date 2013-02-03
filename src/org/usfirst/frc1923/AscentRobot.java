@@ -3,8 +3,6 @@ package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.events.EventBus;
 import org.usfirst.frc1923.events.PistonActuationEvent;
-import org.usfirst.frc1923.events.ShooterStartEvent;
-import org.usfirst.frc1923.events.ShooterStopEvent;
 import org.usfirst.frc1923.utils.Configuration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -18,10 +16,10 @@ import edu.wpi.first.wpilibj.IterativeRobot;
  */
 public class AscentRobot extends IterativeRobot {
 	private final EventBus eventBus = new EventBus();
-	private boolean[] justPressed = new boolean[11];
+	private boolean[] justPressed = new boolean[13];
 	
 	public void robotInit() {
-		// TODO: this
+		Components.driveGears.setGear(0);
 	}
 
 	public void disabledInit() {
@@ -70,13 +68,15 @@ public class AscentRobot extends IterativeRobot {
 			this.justPressed[XboxController.Button.Y.value] = false;
 		}
 		if (Components.controller.getButton(XboxController.Button.RB)) {
-			this.eventBus.addEvent(new ShooterStartEvent(Components.shooter, Components.shooterGears));
+			//this.eventBus.addEvent(new ShooterStartEvent(Components.shooter, Components.shooterGears));
+			Components.shooter.set(.50, .50);
 			this.justPressed[XboxController.Button.RB.value] = true;
 		} else {
 			this.justPressed[XboxController.Button.RB.value] = false;
 		}
 		if (Components.controller.getButton(XboxController.Button.LB)) {
-			this.eventBus.addEvent(new ShooterStopEvent(Components.shooter));
+			//this.eventBus.addEvent(new ShooterStopEvent(Components.shooter));
+			Components.shooter.stop();
 			this.justPressed[XboxController.Button.LB.value] = true;
 		} else {
 			this.justPressed[XboxController.Button.LB.value] = false;
@@ -99,6 +99,19 @@ public class AscentRobot extends IterativeRobot {
 			this.justPressed[XboxController.Button.Back.value] = true;
 		} else {
 			this.justPressed[XboxController.Button.Back.value] = false;
+		if (Components.leftDriveStick.getTrigger() && !this.justPressed[11]) {
+			Components.driveGears.gearDown();
+			this.justPressed[11] = true;
+		} else if (!Components.leftDriveStick.getTrigger()) {
+			this.justPressed[11] = false;
+		}
+		
+		if (Components.rightDriveStick.getTrigger() && !this.justPressed[12]) {
+			Components.driveGears.gearUp();
+			this.justPressed[12] = true;
+		} else if (!Components.rightDriveStick.getTrigger()) {
+			this.justPressed[12] = false;
+		}
 		}
 	}
 
@@ -112,18 +125,18 @@ public class AscentRobot extends IterativeRobot {
 
 	public void teleopContinuous() {
 		if (Configuration.EXPERIMENTAL_DRIVE) {
-			double forwardMagnitude = Components.leftDriveStick.getCoalescedY();
+			double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 			double curvature = Components.rightDriveStick.getCoalescedX();
 			if ( curvature < 0.1) { //Turns left
-				Components.driveSystem.tankDrive(forwardMagnitude, forwardMagnitude - curvature);
+				Components.driveSystem.tankDrive(-(forwardMagnitude + curvature), -forwardMagnitude);
 			} else if (curvature > 0.1) { //Turns right
-				Components.driveSystem.tankDrive(forwardMagnitude + curvature, forwardMagnitude);
+				Components.driveSystem.tankDrive(-forwardMagnitude, -(forwardMagnitude - curvature));
 			} else {
 				Components.driveSystem.tankDrive(forwardMagnitude, forwardMagnitude);
 			}
 		} else {
 			Components.driveSystem.tankDrive(Components.leftDriveStick.getCoalescedY(), Components.rightDriveStick.getCoalescedY());
 		}
-		this.eventBus.next();
+		//this.eventBus.next();
 	}
 }
