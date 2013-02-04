@@ -14,6 +14,7 @@ public class ShooterStopEvent implements Event {
 	public ShooterStopEvent(ShooterComponent shooter) {
 		this.shooter = shooter;
 	}
+	
 	/**
 	 * Stops the shooter
 	 */
@@ -22,7 +23,6 @@ public class ShooterStopEvent implements Event {
 	}
 
 	public void reset() {
-		//Does shit
+		// Do shit.
 	}
-
 }
