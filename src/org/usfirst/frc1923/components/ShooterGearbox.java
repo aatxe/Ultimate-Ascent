@@ -9,7 +9,7 @@ public class ShooterGearbox {
 	
 	private double[] leftGearSet, rightGearSet;
 	private int leftGearNum, rightGearNum;
-	private MotorComponent motorComponent;
+	private ShooterComponent shooterComponent;
 	
 	/**
 	 * Creates this class by setting each array and the motor component.
@@ -17,10 +17,10 @@ public class ShooterGearbox {
 	 * @param rightGearSet the right gear set
 	 * @param motorComponent the motor component
 	 */
-	public ShooterGearbox(double[] leftGearSet, double[] rightGearSet, MotorComponent motorComponent) {
+	public ShooterGearbox(double[] leftGearSet, double[] rightGearSet, ShooterComponent shooterComponent) {
 		this.rightGearSet = rightGearSet;
 		this.leftGearSet = leftGearSet;
-		this.motorComponent = motorComponent;
+		this.shooterComponent = shooterComponent;
 	}
 	
 	/**
@@ -32,7 +32,7 @@ public class ShooterGearbox {
 	 * @param rightEnd The end of the range for the right
 	 * @param motorComponent the motor component
 	 */
-	public ShooterGearbox(int leftStart, int leftEnd, int increment, int rightStart, int rightEnd, MotorComponent motorComponent) {
+	public ShooterGearbox(int leftStart, int leftEnd, int increment, int rightStart, int rightEnd, ShooterComponent shooterComponent) {
 		int leftLength = ((leftEnd - leftStart) / increment) + 1;
 		this.leftGearSet = new double[leftLength];
 		for (int i = 0; i < leftLength; i++) {
@@ -43,7 +43,7 @@ public class ShooterGearbox {
 		for (int i = 0; i < rightLength; i++) {
 			rightGearSet[i] = (rightStart + (i * increment)) / 100;
 		}
-		this.motorComponent = motorComponent;
+		this.shooterComponent = shooterComponent;
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public class ShooterGearbox {
 	public int rightGearDown () {
 		if (rightGearNum < (rightGearSet.length)) {
 			--rightGearNum;
-			this.motorComponent.set(rightGearSet[rightGearNum]);
+			this.shooterComponent.setRightShooter(rightGearSet[rightGearNum]);
 		}
 		else {
 			System.out.println("Right Shooter can't slow down any lower.");
@@ -106,7 +106,7 @@ public class ShooterGearbox {
 	public int leftGearDown () {
 		if (leftGearNum < (leftGearSet.length)) {
 			--leftGearNum;
-			this.motorComponent.set(leftGearSet[leftGearNum]);
+			this.shooterComponent.setLeftShooter(leftGearSet[leftGearNum]);
 			System.out.println("Left Shooter geared down to: " + leftGearNum);
 		} else {
 			System.out.println("Left Shooter can't slow down any lower.");
@@ -121,7 +121,7 @@ public class ShooterGearbox {
 	public int rightGearUp() {
 		if (rightGearNum < (rightGearSet.length)) {
 			++rightGearNum;
-			this.motorComponent.set(rightGearSet[rightGearNum]);
+			this.shooterComponent.setRightShooter(rightGearSet[rightGearNum]);
 			System.out.println("Right Shooter geared up to: " + rightGearNum);
 		}
 		else {
@@ -137,7 +137,7 @@ public class ShooterGearbox {
 	public int leftGearUp() {
 		if (leftGearNum < (leftGearSet.length)) {
 			++leftGearNum;
-			this.motorComponent.set(leftGearSet[leftGearNum]);
+			this.shooterComponent.setLeftShooter(leftGearSet[leftGearNum]);
 			System.out.println("Left Shooter geared up to: " + leftGearNum);
 		}
 		else {
