@@ -22,13 +22,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * @since 2/9/13
  */
 public class Components {
-	/**
-	 * A static scope for preparing components when necessary.
-	 */
-	static {
-		NetworkTable.setTeam(1923);
-	}
-	
 	// Java Setup
 	public static final NetworkTable networkTable = NetworkTable.getTable("midknight"); 
 	public static final Preferences preferences = Preferences.getInstance();

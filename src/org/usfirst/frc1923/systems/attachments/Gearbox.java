@@ -41,7 +41,7 @@ public class Gearbox {
 	 */
 	public Gearbox(double start, double end, double increment, System system) {
 		int k = 0;
-		this.gears = new double[(int) ((start - end) / increment)];
+		this.gears = new double[(int) ((end - start) / increment)];
 		for (double i = start; i < end; i += increment) {
 			this.gears[k++] = i;
 		}
