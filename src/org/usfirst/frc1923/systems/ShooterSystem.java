@@ -47,8 +47,8 @@ public class ShooterSystem implements System {
 	 * 				the magnitude of the right side of the shooter
 	 */
 	public void set(double leftMagnitude, double rightMagnitude) {
-		this.leftController.set(leftMagnitude * this.maxOutput);
-		this.rightController.set(rightMagnitude * (this.maxOutput - this.diff()));
+		this.leftController.set(-leftMagnitude * this.maxOutput);
+		this.rightController.set(-rightMagnitude * (this.maxOutput - this.diff()));
 	}
 	
 	/**
