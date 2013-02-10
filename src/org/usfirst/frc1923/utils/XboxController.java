@@ -51,7 +51,7 @@ public class XboxController {
 	 * @return the double of the raw axis.
 	 */
 	public double getAxis(int stickNumber, int axisNumber) {
-		int axes[] = {2, 1, 5, 4};
+		int axes[] = {1, 2, 4, 5};
 		int fAxis = 0;
 		if (stickNumber == 1 && axisNumber == 1) {
 			fAxis = axes[0];
