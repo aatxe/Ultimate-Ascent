@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Timer;
  * @since 2/9/13
  */
 public class ShooterActuatorEvent extends Event {
-	private int disques;
+	private final int disques;
 	
 	/**
 	 * Creates the event.
