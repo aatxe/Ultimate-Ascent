@@ -29,7 +29,7 @@ public class DriveSystem implements System {
 	}
 	
 	/**
-	 * Drives the robot according to the set magnitudes.
+	 * Drives the robot according to the set magnitudes without correction.
 	 * 
 	 * @param leftMagnitude
 	 * 				the magnitude for the left side.
@@ -37,11 +37,25 @@ public class DriveSystem implements System {
 	 * 				the magnitude for the right side.
 	 */
 	public void drive(double leftMagnitude, double rightMagnitude) {
-		double correction = Components.preferences.getDouble("drive_correction", DefaultConfiguration.DRIVE_CORRECTION);
+		this.drive(leftMagnitude, rightMagnitude, false);
+	}
+	
+	/**
+	 * Drives the robot according to the set magnitudes.
+	 * 
+	 * @param leftMagnitude
+	 * 				the magnitude for the left side.
+	 * @param rightMagnitude
+	 * 				the magnitude for the right side.
+	 * @param correction
+	 * 				whether or not to include correction
+	 */
+	public void drive(double leftMagnitude, double rightMagnitude, boolean correction) {
+		double correctionValue = Components.preferences.getDouble("drive_correction", DefaultConfiguration.DRIVE_CORRECTION);
 		if (leftMagnitude > 0 && rightMagnitude > 0) 
-			this.robotDrive.tankDrive(leftMagnitude, rightMagnitude - correction);
+			this.robotDrive.tankDrive(leftMagnitude, (correction) ? rightMagnitude - correctionValue : rightMagnitude);
 		else if (leftMagnitude < 0 && rightMagnitude < 0)
-			this.robotDrive.tankDrive(leftMagnitude - correction, rightMagnitude);
+			this.robotDrive.tankDrive((correction) ? leftMagnitude - correctionValue : leftMagnitude, rightMagnitude);
 		else 
 			this.robotDrive.tankDrive(leftMagnitude, rightMagnitude);
 	}
