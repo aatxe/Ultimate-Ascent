@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * A grouping of managed system components.
@@ -23,7 +22,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  */
 public class Components {
 	// Java Setup
-	public static final NetworkTable networkTable = NetworkTable.getTable("midknight"); 
+	// public static final NetworkTable networkTable = NetworkTable.getTable("midknight"); 
 	public static final Preferences preferences = Preferences.getInstance();
 	public static final EventBus eventBus = EventBus.getInstance();
 	

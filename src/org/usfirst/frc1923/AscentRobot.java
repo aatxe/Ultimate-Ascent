@@ -28,7 +28,7 @@ public class AscentRobot extends IterativeRobot {
 	 * Initializes the robot.
 	 */
 	public void robotInit() {
-		Components.networkTable.putBoolean("~S A V E~", true);
+		// Components.networkTable.putBoolean("~S A V E~", true);
 	}
 	
 	/**
