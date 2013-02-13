@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.Relay;
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
  * 
  * @author Aaron Weiss
- * @version 2.0
+ * @version 2.1
  * @since 2/9/13
  */
 public class AscentRobot extends IterativeRobot {
@@ -49,7 +49,10 @@ public class AscentRobot extends IterativeRobot {
 			if (Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE)) {
 				double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 				double curvature = Components.rightDriveStick.getCoalescedX();
-				if (curvature < 0.1) { // Turning left
+				double attachment = Components.rightDriveStick.getCoalescedZ();
+				if (Math.abs(attachment) > 0.1 && Components.preferences.getBoolean("experimental_drive_attachment", DefaultConfiguration.EXPERIMENTAL_DRIVE_ATTACHMENT)) {
+					Components.driveSystem.drive(-attachment, attachment, false);
+				} else if (curvature < 0.1) { // Turning left
 					Components.driveSystem.drive(-(forwardMagnitude + curvature), -forwardMagnitude, false);
 				} else if (curvature > 0.1) { // Turning right
 					Components.driveSystem.drive(-forwardMagnitude, -(forwardMagnitude - curvature), false);
