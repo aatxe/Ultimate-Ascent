@@ -1,5 +1,7 @@
 package org.usfirst.frc1923;
 
+import org.usfirst.frc1923.event.DriveGearDownEvent;
+import org.usfirst.frc1923.event.DriveGearUpEvent;
 import org.usfirst.frc1923.event.RingLightActivateEvent;
 import org.usfirst.frc1923.event.RingLightDeactivateEvent;
 import org.usfirst.frc1923.event.ShooterActuatorEvent;
@@ -22,6 +24,7 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class AscentRobot extends IterativeRobot {
 	private boolean[] justPressed = new boolean[14];
+	private boolean[] triggers = new boolean[2];
 
 	/**
 	 * Initializes the robot.
@@ -55,6 +58,22 @@ public class AscentRobot extends IterativeRobot {
 				}
 			} else {
 				Components.driveSystem.drive(Components.leftDriveStick.getCoalescedY(), Components.rightDriveStick.getCoalescedY());
+			}
+
+			// Left Stick Trigger -- Driving gear down
+			if (Components.leftDriveStick.getTrigger() && !this.triggers[0]) {
+				Components.eventBus.push(new DriveGearDownEvent());
+				this.triggers[0] = true;
+			} else if (!Components.leftDriveStick.getTrigger()) {
+				this.triggers[0] = false;
+			}
+
+			// Right Stick Trigger -- Driving gear up
+			if (Components.rightDriveStick.getTrigger() && !this.triggers[1]) {
+				Components.eventBus.push(new DriveGearUpEvent());
+				this.triggers[1] = true;
+			} else if (!Components.rightDriveStick.getTrigger()) {
+				this.triggers[1] = false;
 			}
 		} // End Driving Scope
 
