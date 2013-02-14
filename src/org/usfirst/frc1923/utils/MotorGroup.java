@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.SpeedController;
  */
 public class MotorGroup implements SpeedController {
 	private Vector motors = new Vector();
-	
+
 	/**
 	 * Creates a group with one <code>SpeedController</code>.
 	 * @param controllerOne
@@ -22,7 +22,7 @@ public class MotorGroup implements SpeedController {
 	public MotorGroup(SpeedController controllerOne) {
 		this(controllerOne, null);
 	}
-	
+
 	/**
 	 * Creates a group with two <code>SpeedController</code>.
 	 * @param controllerOne
@@ -73,7 +73,7 @@ public class MotorGroup implements SpeedController {
 			((SpeedController) this.motors.elementAt(i)).set(speed);
 		}
 	}
-	
+
 	public void disable() {
 		for (int i = 0; i < this.motors.size(); i++) {
 			((SpeedController) this.motors.elementAt(i)).disable();

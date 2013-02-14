@@ -14,14 +14,14 @@ import edu.wpi.first.wpilibj.Timer;
  */
 public class ShooterActuatorEvent extends Event {
 	private final int disques;
-	
+
 	/**
 	 * Creates the event.
 	 */
 	public ShooterActuatorEvent() {
 		this(1);
 	}
-	
+
 	/**
 	 * Creates the event.
 	 * @param disques

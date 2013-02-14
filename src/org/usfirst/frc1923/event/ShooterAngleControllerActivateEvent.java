@@ -9,7 +9,7 @@ public class ShooterAngleControllerActivateEvent extends Event {
 	public ShooterAngleControllerActivateEvent() {
 		super(true);
 	}
-	
+
 	/**
 	 * Performs the event's contents.
 	 */

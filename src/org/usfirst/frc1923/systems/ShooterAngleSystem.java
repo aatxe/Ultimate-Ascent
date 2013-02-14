@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class ShooterAngleSystem implements System {
 	private Solenoid angleControllerOne, angleControllerTwo;
 	private boolean state = false;
-	
+
 	/**
 	 * Creates a <code>ShooterAngleSystem</code>.
 	 * 
@@ -39,7 +39,7 @@ public class ShooterAngleSystem implements System {
 			this.angleControllerTwo.set(on);
 		}
 	}
-	
+
 	/**
 	 * Toggles the state of the angle controller.
 	 */
@@ -49,7 +49,7 @@ public class ShooterAngleSystem implements System {
 		else
 			this.set(true);
 	}
-	
+
 	/**
 	 * Completely stops the robot system.
 	 */

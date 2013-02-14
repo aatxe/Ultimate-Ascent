@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  */
 public class DriveSystem implements MotorizedSystem {
 	private RobotDrive robotDrive;
-	
+
 	/**
 	 * Creates a new drive system.
 	 * 
@@ -27,7 +27,7 @@ public class DriveSystem implements MotorizedSystem {
 	public DriveSystem(MotorGroup leftSide, MotorGroup rightSide) {
 		this.robotDrive = new RobotDrive(leftSide, rightSide);
 	}
-	
+
 	/**
 	 * Drives the robot according to the set magnitudes without correction.
 	 * 
@@ -39,7 +39,7 @@ public class DriveSystem implements MotorizedSystem {
 	public void drive(double leftMagnitude, double rightMagnitude) {
 		this.drive(leftMagnitude, rightMagnitude, false);
 	}
-	
+
 	/**
 	 * Drives the robot according to the set magnitudes.
 	 * 
@@ -52,14 +52,14 @@ public class DriveSystem implements MotorizedSystem {
 	 */
 	public void drive(double leftMagnitude, double rightMagnitude, boolean correction) {
 		double correctionValue = Components.preferences.getDouble("drive_correction", DefaultConfiguration.DRIVE_CORRECTION);
-		if (leftMagnitude > 0 && rightMagnitude > 0) 
+		if (leftMagnitude > 0 && rightMagnitude > 0)
 			this.robotDrive.tankDrive(leftMagnitude, (correction) ? rightMagnitude - correctionValue : rightMagnitude);
 		else if (leftMagnitude < 0 && rightMagnitude < 0)
 			this.robotDrive.tankDrive((correction) ? leftMagnitude - correctionValue : leftMagnitude, rightMagnitude);
-		else 
+		else
 			this.robotDrive.tankDrive(leftMagnitude, rightMagnitude);
 	}
-	
+
 	/**
 	 * Sets whether or not to use the proper safety channels with the drivetrain.
 	 * 
@@ -69,7 +69,7 @@ public class DriveSystem implements MotorizedSystem {
 	public void setSafety(boolean enabled) {
 		this.robotDrive.setSafetyEnabled(enabled);
 	}
-	
+
 	/**
 	 * Sets the max motor output for the robot system.
 	 * 

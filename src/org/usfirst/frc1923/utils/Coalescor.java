@@ -12,14 +12,14 @@ import org.usfirst.frc1923.Components;
 public class Coalescor {
 	private double startingValue;
 	private double epsilon;
-	
+
 	/**
 	 * Creates a <code>Coalescor</code> with a starting value of zero.
 	 */
 	public Coalescor() {
 		this(0);
 	}
-	
+
 	/**
 	 * Creates a <code>Coalescor</code> with the specified starting value.
 	 * 
@@ -30,7 +30,6 @@ public class Coalescor {
 		this(startingValue, Components.preferences.getDouble("epsilon", DefaultConfiguration.EPSILON));
 	}
 
-	
 	/**
 	 * Creates a <code>Coalescor</code> with the specified starting value, and epsilon value.
 	 * 
@@ -43,7 +42,7 @@ public class Coalescor {
 		this.startingValue = startingValue;
 		this.epsilon = epsilon;
 	}
-	
+
 	/**
 	 * Coalesces the current value towards <code>n</code>.
 	 * 
@@ -67,7 +66,7 @@ public class Coalescor {
 		}
 		return (Math.floor(this.startingValue * 1000) / 1000);
 	}
-	
+
 	/**
 	 * Gets the current rate of change, or epsilon, of the coalescor.
 	 * @return the current rate of change
@@ -75,7 +74,7 @@ public class Coalescor {
 	public double getEpsilon() {
 		return this.epsilon;
 	}
-	
+
 	/**
 	 * Sets the rate of change, or epsilon, of the coalescor.
 	 * @param epsilon

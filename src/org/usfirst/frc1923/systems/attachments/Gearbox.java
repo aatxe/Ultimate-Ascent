@@ -13,7 +13,7 @@ public class Gearbox {
 	private final MotorizedSystem system;
 	private final double[] gears;
 	private int gearIndex = 0;
-	
+
 	/**
 	 * Creates a gearbox attached to a system with the desired set of gears.
 	 * 
@@ -26,7 +26,7 @@ public class Gearbox {
 		this.gears = gears;
 		this.system = system;
 	}
-	
+
 	/**
 	 * Creates a gearbox attached to a system with an incremental gear set.
 	 * 
@@ -47,7 +47,7 @@ public class Gearbox {
 		}
 		this.system = system;
 	}
-	
+
 	/**
 	 * Gears up the system by one.
 	 */
@@ -55,7 +55,7 @@ public class Gearbox {
 		if (this.gearIndex + 1 <= this.gears.length)
 			this.system.setMaxOutput(this.gears[++gearIndex]);
 	}
-	
+
 	/**
 	 * Gears down the system by one.
 	 */
@@ -63,7 +63,7 @@ public class Gearbox {
 		if (this.gearIndex - 1 >= 0)
 			this.system.setMaxOutput(this.gears[--gearIndex]);
 	}
-	
+
 	/**
 	 * Gets the system's current gear index.
 	 * 
@@ -72,7 +72,7 @@ public class Gearbox {
 	public int getGear() {
 		return this.gearIndex;
 	}
-	
+
 	/**
 	 * Sets the system's current gear index.
 	 * 
@@ -83,7 +83,7 @@ public class Gearbox {
 		this.gearIndex = gearIndex;
 		this.system.setMaxOutput(this.gears[this.gearIndex]);
 	}
-	
+
 	/**
 	 * Gets the current speed of the shooter.
 	 * 
@@ -92,7 +92,7 @@ public class Gearbox {
 	public double getSpeed() {
 		return this.getSpeed(this.gearIndex);
 	}
-	
+
 	/**
 	 * Gets the speed of the specified shooter index.
 	 * 

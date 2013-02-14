@@ -55,7 +55,7 @@ public class EventBus {
 	public void clear() {
 		this.events.removeAllElements();
 	}
-	
+
 	/**
 	 * Gets the robot's instance of the event bus.
 	 * @return the robot's event bus
