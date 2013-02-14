@@ -9,6 +9,7 @@ import org.usfirst.frc1923.utils.MotorGroup;
 import org.usfirst.frc1923.utils.XboxController;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -44,6 +45,10 @@ public class Components {
 	// Digital Inputs
 	public static final DigitalInput compressorSafety = new DigitalInput(1);
 
+	// Geartooth Encoders
+	public static final Encoder driveEncoderLeft = new Encoder(1, 2);
+	public static final Encoder driveEncoderRight = new Encoder(3, 4);
+	
 	// Pneumatic Solenoids
 	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(2);
 	public static final Solenoid shooterAngleControllerOne = new Solenoid(3), shooterAngleControllerTwo = new Solenoid(4);

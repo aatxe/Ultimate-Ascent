@@ -16,4 +16,13 @@ public class DefaultConfiguration {
 	public static final boolean EXPERIMENTAL_DRIVE_ATTACHMENT = false;
 	public static final boolean SHOOTER_ALWAYS_ON = true;
 	public static final boolean COMPRESSOR_ON = false;
+	public static final double WHEEL_CIRCUMFERENCE = 4.2 * Math.PI;
+	public static final int PULSE_RATE = 256;
+	public static final double GEAR_RATIO = 22.0 / 32.0;
+	public static final byte AUTON_PROGRAM = 1;
+	public static final int AUTON_DISQUE_COUNT = 3;
+	public static final int AUTON_SHOOTER_GEAR = 0;
+	public static final double AUTON_DRIVE_DISTANCE = 12;
+	public static final double AUTON_DRIVE_SPEED = 0.35;
+	public static final long AUTON_WAIT_TIME = 5000; 
 }

@@ -11,6 +11,9 @@ import org.usfirst.frc1923.event.ShooterGearDownEvent;
 import org.usfirst.frc1923.event.ShooterGearUpEvent;
 import org.usfirst.frc1923.event.ShooterStartEvent;
 import org.usfirst.frc1923.event.ShooterStopEvent;
+import org.usfirst.frc1923.routines.AlphaRoutine;
+import org.usfirst.frc1923.routines.AutonomousRoutine;
+import org.usfirst.frc1923.routines.BetaRoutine;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -25,6 +28,7 @@ import edu.wpi.first.wpilibj.Relay;
  * @since 2/9/13
  */
 public class AscentRobot extends IterativeRobot {
+	private AutonomousRoutine autonomousRoutine;
 	private boolean[] justPressed = new boolean[14];
 	private boolean[] triggers = new boolean[3];
 	private boolean attachment = false;
@@ -34,6 +38,12 @@ public class AscentRobot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		// Components.networkTable.putBoolean("~S A V E~", true);
+		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
+		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
+		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
+		Components.driveEncoderRight.setDistancePerPulse(pulseRate * gearRatio);
+		Components.driveEncoderLeft.reset();
+		Components.driveEncoderRight.reset();
 	}
 	
 	/**
@@ -45,6 +55,8 @@ public class AscentRobot extends IterativeRobot {
 		Components.shooterGearbox.setGear(0);
 		Components.driveSystem.stop();
 		Components.shooterSystem.stop();
+		Components.driveEncoderLeft.reset();
+		Components.driveEncoderRight.reset();
 	}
 
 	/**
@@ -52,6 +64,29 @@ public class AscentRobot extends IterativeRobot {
 	 */
 	public void disabledPeriodic() {
 		// Nothing to see here.
+	}
+	
+	/**
+	 * Launches the desired autonomous routine.
+	 */
+	public void autonomousInit() {
+		switch (Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM)) {
+			case 1:
+				autonomousRoutine = new AlphaRoutine();
+			case 2:
+				autonomousRoutine = new BetaRoutine();
+			default:
+				autonomousRoutine = null;
+		}
+		if (autonomousRoutine != null)
+			autonomousRoutine.start();
+	}
+	
+	/**
+	 * Provides periodic autonomous functionality.
+	 */
+	public void autonomousPeriodic() {
+		Components.eventBus.next();
 	}
 	
 	/**
