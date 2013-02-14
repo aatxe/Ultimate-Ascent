@@ -176,7 +176,7 @@ public class AscentRobot extends IterativeRobot {
 			if (xbc.getTriggerAxis() > 0.1 && !this.triggers[3]) {
 				Components.eventBus.push(new ShooterAngleControllerActivateEvent());
 				this.triggers[3] = true;
-			} else if (xbc.getTriggerAxis() < 0.1 && !this.triggers[3]) {
+			} else if (xbc.getTriggerAxis() < -0.1 && !this.triggers[3]) {
 				Components.eventBus.push(new ShooterAngleControllerDeactivateEvent());
 				this.triggers[3] = true;
 			} else {
