@@ -57,10 +57,14 @@ public class AscentRobot extends IterativeRobot {
 				double attachment = Components.rightDriveStick.getCoalescedZ();
 				if (this.attachment && Math.abs(attachment) > 0.1) {
 					Components.driveSystem.drive(-attachment, attachment, false);
-				} else if (curvature < 0.1) { // Turning left
+				} else if (curvature < -0.1 && forwardMagnitude > 0) { // Turning left and going forward
 					Components.driveSystem.drive(-(forwardMagnitude + curvature), -forwardMagnitude, false);
-				} else if (curvature > 0.1) { // Turning right
+				} else if (curvature > 0.1 && forwardMagnitude > 0) { // Turning right and going forward
 					Components.driveSystem.drive(-forwardMagnitude, -(forwardMagnitude - curvature), false);
+				} else if (curvature < -0.1 && forwardMagnitude < 0) { // Turning left and going backward
+					Components.driveSystem.drive(-forwardMagnitude, -(forwardMagnitude - curvature), false);
+				} else if (curvature > 0.1 && forwardMagnitude < 0) {  // Turning right and going backward
+					Components.driveSystem.drive(-(forwardMagnitude + curvature), -forwardMagnitude, false);
 				} else { // Going straight
 					Components.driveSystem.drive(forwardMagnitude, forwardMagnitude, true);
 				}
