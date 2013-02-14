@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
  * @version 1.5
  * @since 2/9/13
  */
-public class DriveSystem implements System {
+public class DriveSystem implements MotorizedSystem {
 	private RobotDrive robotDrive;
 	
 	/**

@@ -1,6 +1,6 @@
 package org.usfirst.frc1923.systems.attachments;
 
-import org.usfirst.frc1923.systems.System;
+import org.usfirst.frc1923.systems.MotorizedSystem;
 
 /**
  * A simple gearbox as a <code>System</code> attachment.
@@ -10,7 +10,7 @@ import org.usfirst.frc1923.systems.System;
  * @since 2/9/15
  */
 public class Gearbox {
-	private final System system;
+	private final MotorizedSystem system;
 	private final double[] gears;
 	private int gearIndex = 0;
 	
@@ -22,7 +22,7 @@ public class Gearbox {
 	 * @param system
 	 * 				the system to attach to
 	 */
-	public Gearbox(double[] gears, System system) {
+	public Gearbox(double[] gears, MotorizedSystem system) {
 		this.gears = gears;
 		this.system = system;
 	}
@@ -39,7 +39,7 @@ public class Gearbox {
 	 * @param system
 	 * 				the system to attach to
 	 */
-	public Gearbox(double start, double end, double increment, System system) {
+	public Gearbox(double start, double end, double increment, MotorizedSystem system) {
 		int k = 0;
 		this.gears = new double[(int) ((end - start) / increment)];
 		for (double i = start; i < end; i += increment) {

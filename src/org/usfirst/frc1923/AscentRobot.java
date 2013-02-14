@@ -5,6 +5,8 @@ import org.usfirst.frc1923.event.DriveGearUpEvent;
 import org.usfirst.frc1923.event.RingLightActivateEvent;
 import org.usfirst.frc1923.event.RingLightDeactivateEvent;
 import org.usfirst.frc1923.event.ShooterActuatorEvent;
+import org.usfirst.frc1923.event.ShooterAngleControllerActivateEvent;
+import org.usfirst.frc1923.event.ShooterAngleControllerDeactivateEvent;
 import org.usfirst.frc1923.event.ShooterGearDownEvent;
 import org.usfirst.frc1923.event.ShooterGearUpEvent;
 import org.usfirst.frc1923.event.ShooterStartEvent;
@@ -24,7 +26,7 @@ import edu.wpi.first.wpilibj.Relay;
  */
 public class AscentRobot extends IterativeRobot {
 	private boolean[] justPressed = new boolean[14];
-	private boolean[] triggers = new boolean[2];
+	private boolean[] triggers = new boolean[3];
 	private boolean attachment = false;
 
 	/**
@@ -48,6 +50,7 @@ public class AscentRobot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		{ // Driving Scope
+			// Direct Driving Controls
 			if (Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE)) {
 				double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 				double curvature = Components.rightDriveStick.getCoalescedX();
@@ -165,7 +168,16 @@ public class AscentRobot extends IterativeRobot {
 		} // End Shooter Scope
 
 		{ // Shooter Angle Scope
-			Components.shooterAngleSystem.set(Components.operatorController.getAxis(1, 2));
+			XboxController xbc = Components.operatorController;
+			if (xbc.getTriggerAxis() > 0.1 && !this.triggers[3]) {
+				Components.eventBus.push(new ShooterAngleControllerActivateEvent());
+				this.triggers[3] = true;
+			} else if (xbc.getTriggerAxis() < 0.1 && !this.triggers[3]) {
+				Components.eventBus.push(new ShooterAngleControllerDeactivateEvent());
+				this.triggers[3] = true;
+			} else {
+				this.triggers[3] = false;
+			}
 		} // End Shooter Angle Scope
 
 		{ // Event Bus Scope

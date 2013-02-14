@@ -11,7 +11,7 @@ import org.usfirst.frc1923.utils.MotorGroup;
  * @version 1.5
  * @since 2/9/13
  */
-public class ShooterSystem implements System {
+public class ShooterSystem implements MotorizedSystem {
 	private final MotorGroup leftController, rightController;
 	private double maxOutput = 1.0;
 	

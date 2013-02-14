@@ -22,6 +22,11 @@ public class ShooterActuatorEvent extends Event {
 		this(1);
 	}
 	
+	/**
+	 * Creates the event.
+	 * @param disques
+	 * 				the number of disques to fire.
+	 */
 	public ShooterActuatorEvent(int disques) {
 		super(true);
 		this.disques = disques;
@@ -32,9 +37,11 @@ public class ShooterActuatorEvent extends Event {
 	 */
 	protected void event() {
 		for (int i = 0; i < disques; i++) {
-			Components.pneumaticActuator.set(true);
+			Components.pneumaticActuatorTwo.set(false);
+			Components.pneumaticActuatorOne.set(true);
 			Timer.delay(Components.preferences.getDouble("shooter_pneumatic_time", DefaultConfiguration.SHOOTER_PNEUMATIC_TIME));
-			Components.pneumaticActuator.set(false);
+			Components.pneumaticActuatorOne.set(false);
+			Components.pneumaticActuatorTwo.set(true);
 			Timer.delay(Components.preferences.getDouble("shooter_pneumatic_time", DefaultConfiguration.SHOOTER_PNEUMATIC_TIME));
 		}
 	}

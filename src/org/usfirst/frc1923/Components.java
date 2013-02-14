@@ -36,7 +36,6 @@ public class Components {
 	public static final Victor rightDriveOne = new Victor(1), rightDriveTwo = new Victor(2);
 	public static final Victor leftShooterOne = new Victor(5), leftShooterTwo = new Victor(6);
 	public static final Victor rightShooterOne = new Victor(7), rightShooterTwo = new Victor(8);
-	public static final Victor shooterAngleOne = new Victor(9);
 	
 	// Relays (Spikes)
 	public static final Relay compressor = new Relay(7);
@@ -46,19 +45,19 @@ public class Components {
 	public static final DigitalInput compressorSafety = new DigitalInput(1);
 	
 	// Pneumatic Solenoids
-	public static final Solenoid pneumaticActuator = new Solenoid(1);
+	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(2);
+	public static final Solenoid shooterAngleControllerOne = new Solenoid(3), shooterAngleControllerTwo = new Solenoid(4);
 	
 	// Motor Groups
 	public static final MotorGroup leftDriveGroup = new MotorGroup(leftDriveOne, leftDriveTwo);
 	public static final MotorGroup rightDriveGroup = new MotorGroup(rightDriveOne, rightDriveTwo);
 	public static final MotorGroup leftShooterGroup = new MotorGroup(leftShooterOne, leftShooterTwo);
 	public static final MotorGroup rightShooterGroup = new MotorGroup(rightShooterOne, rightShooterTwo);
-	public static final MotorGroup shooterAngleGroup = new MotorGroup(shooterAngleOne);
 	
 	// Systems
 	public static final DriveSystem driveSystem = new DriveSystem(leftDriveGroup, rightDriveGroup);
 	public static final ShooterSystem shooterSystem = new ShooterSystem(leftShooterGroup, rightShooterGroup);
-	public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleGroup);
+	public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleControllerOne, shooterAngleControllerTwo);
 
 	// System Attachments
 	public static final Gearbox driveGearbox = new Gearbox(new double[]{0.65, 0.85, 1.0}, driveSystem);
