@@ -10,10 +10,12 @@ import org.usfirst.frc1923.utils.XboxController;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
 
 /**
  * A grouping of managed system components.
@@ -26,6 +28,7 @@ public class Components {
 	// public static final NetworkTable networkTable = NetworkTable.getTable("midknight"); 
 	public static final Preferences preferences = Preferences.getInstance();
 	public static final EventBus eventBus = EventBus.getInstance();
+	public static final AxisCamera camera = AxisCamera.getInstance();
 
 	// Controllers
 	public static final EnjoyStick leftDriveStick = new EnjoyStick(1);
@@ -42,6 +45,9 @@ public class Components {
 	public static final Relay compressor = new Relay(7);
 	public static final Relay ringLight = new Relay(8);
 
+	// Analog Inputs
+	public static final Gyro gyro = new Gyro(1);
+	
 	// Digital Inputs
 	public static final DigitalInput compressorSafety = new DigitalInput(1);
 

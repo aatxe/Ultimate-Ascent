@@ -44,6 +44,8 @@ public class AscentRobot extends IterativeRobot {
 		Components.driveEncoderRight.setDistancePerPulse(pulseRate * gearRatio);
 		Components.driveEncoderLeft.reset();
 		Components.driveEncoderRight.reset();
+		Components.gyro.setSensitivity(Components.preferences.getDouble("gyro_sensitivity", DefaultConfiguration.GYRO_SENSITIVITY));
+		Components.gyro.reset();
 	}
 	
 	/**
@@ -57,6 +59,7 @@ public class AscentRobot extends IterativeRobot {
 		Components.shooterSystem.stop();
 		Components.driveEncoderLeft.reset();
 		Components.driveEncoderRight.reset();
+		Components.gyro.reset();
 	}
 
 	/**
