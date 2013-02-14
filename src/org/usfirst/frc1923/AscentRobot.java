@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.Relay;
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
  * 
  * @author Aaron Weiss
- * @version 2.1
+ * @version 2.0
  * @since 2/9/13
  */
 public class AscentRobot extends IterativeRobot {
@@ -49,10 +49,14 @@ public class AscentRobot extends IterativeRobot {
 			if (Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE)) {
 				double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 				double curvature = Components.rightDriveStick.getCoalescedX();
+<<<<<<< HEAD
 				double attachment = Components.rightDriveStick.getCoalescedZ();
 				if (Math.abs(attachment) > 0.1 && Components.preferences.getBoolean("experimental_drive_attachment", DefaultConfiguration.EXPERIMENTAL_DRIVE_ATTACHMENT)) {
 					Components.driveSystem.drive(-attachment, attachment, false);
 				} else if (curvature < 0.1 && -forwardMagnitude > 0) { // Turning left and going forward
+=======
+				if (curvature < 0.1) { // Turning left
+>>>>>>> parent of 9422179... Added an attachment to experimental drive that allows using the joystick's Z-axis to spin in place.
 					Components.driveSystem.drive(-(forwardMagnitude + curvature), -forwardMagnitude, false);
 				} else if (curvature > 0.1 && -forwardMagnitude > 0) { // Turning right and going forward
 					Components.driveSystem.drive(-forwardMagnitude, -(forwardMagnitude - curvature), false);
