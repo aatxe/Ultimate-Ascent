@@ -35,18 +35,36 @@ public class AscentRobot extends IterativeRobot {
 	public void robotInit() {
 		// Components.networkTable.putBoolean("~S A V E~", true);
 	}
+	
+	/**
+	 * Initializes the robot for disabled.
+	 * Safely stops everything to prevent it from running upon restart.
+	 */
+	public void disabledInit() {
+		Components.driveGearbox.setGear(0);
+		Components.shooterGearbox.setGear(0);
+		Components.driveSystem.stop();
+		Components.shooterSystem.stop();
+	}
 
+	/**
+	 * Provides periodic functionality while disabled.
+	 */
+	public void disabledPeriodic() {
+		// Nothing to see here.
+	}
+	
 	/**
 	 * Initializes the robot for teleop.
 	 */
 	public void teleopInit() {
+		attachment = Components.preferences.getBoolean("experimental_drive_attachment", DefaultConfiguration.EXPERIMENTAL_DRIVE_ATTACHMENT);
 		Components.driveGearbox.setGear(0);
 		Components.shooterGearbox.setGear(0);
-		attachment = Components.preferences.getBoolean("experimental_drive_attachment", DefaultConfiguration.EXPERIMENTAL_DRIVE_ATTACHMENT);
 	}
 
 	/**
-	 * Provides tele-operated functionality.
+	 * Provides periodic tele-operated functionality.
 	 */
 	public void teleopPeriodic() {
 		{ // Driving Scope
