@@ -11,7 +11,7 @@ import org.usfirst.frc1923.event.ShooterGearDownEvent;
 import org.usfirst.frc1923.event.ShooterGearUpEvent;
 import org.usfirst.frc1923.event.ShooterStartEvent;
 import org.usfirst.frc1923.event.ShooterStopEvent;
-import org.usfirst.frc1923.event.TargetEvent;
+import org.usfirst.frc1923.event.TargetingEvent;
 import org.usfirst.frc1923.routines.AlphaRoutine;
 import org.usfirst.frc1923.routines.AutonomousRoutine;
 import org.usfirst.frc1923.routines.BetaRoutine;
@@ -20,6 +20,9 @@ import org.usfirst.frc1923.utils.XboxController;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.camera.AxisCamera;
+import edu.wpi.first.wpilibj.camera.AxisCameraException;
+import edu.wpi.first.wpilibj.image.NIVisionException;
 
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
@@ -39,6 +42,7 @@ public class AscentRobot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		// Components.networkTable.putBoolean("~S A V E~", true);
+		Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
 		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
 		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
 		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
@@ -206,15 +210,20 @@ public class AscentRobot extends IterativeRobot {
 				justPressed[XboxController.Button.RightClick.value] = false;
 			}
 			
-			// Left Thumb Click -- Targeting
-						if (xbc.getButton(XboxController.Button.LeftClick) && !justPressed[XboxController.Button.LeftClick.value]) {
-							Components.eventBus.push(new TargetEvent());
-							justPressed[XboxController.Button.RightClick.value] = true;
-						} else if (!xbc.getButton(XboxController.Button.LeftClick)) {
-							Components.eventBus.push(new TargetEvent());
-							justPressed[XboxController.Button.LeftClick.value] = false;
-						}
-
+			// Left Thumb Click -- Ring Light
+			if (xbc.getButton(XboxController.Button.LeftClick) && !justPressed[XboxController.Button.LeftClick.value]) {
+				try {
+					Components.eventBus.push(new TargetingEvent());
+				} catch (AxisCameraException e) {
+					e.printStackTrace();
+				} catch (NIVisionException e) {
+					e.printStackTrace();
+				}
+				justPressed[XboxController.Button.LeftClick.value] = true;
+			} else if (!xbc.getButton(XboxController.Button.LeftClick)) {
+				justPressed[XboxController.Button.LeftClick.value] = false;
+			}
+			
 			// Shooter state control options
 			if (!Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON)) {
 				// Back -- Stop shooter
