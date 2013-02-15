@@ -11,6 +11,7 @@ import org.usfirst.frc1923.event.ShooterGearDownEvent;
 import org.usfirst.frc1923.event.ShooterGearUpEvent;
 import org.usfirst.frc1923.event.ShooterStartEvent;
 import org.usfirst.frc1923.event.ShooterStopEvent;
+import org.usfirst.frc1923.event.TargetEvent;
 import org.usfirst.frc1923.routines.AlphaRoutine;
 import org.usfirst.frc1923.routines.AutonomousRoutine;
 import org.usfirst.frc1923.routines.BetaRoutine;
@@ -204,6 +205,15 @@ public class AscentRobot extends IterativeRobot {
 				Components.eventBus.push(new RingLightDeactivateEvent());
 				justPressed[XboxController.Button.RightClick.value] = false;
 			}
+			
+			// Left Thumb Click -- Targeting
+						if (xbc.getButton(XboxController.Button.LeftClick) && !justPressed[XboxController.Button.LeftClick.value]) {
+							Components.eventBus.push(new TargetEvent());
+							justPressed[XboxController.Button.RightClick.value] = true;
+						} else if (!xbc.getButton(XboxController.Button.LeftClick)) {
+							Components.eventBus.push(new TargetEvent());
+							justPressed[XboxController.Button.LeftClick.value] = false;
+						}
 
 			// Shooter state control options
 			if (!Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON)) {
