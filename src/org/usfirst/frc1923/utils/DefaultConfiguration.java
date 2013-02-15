@@ -27,4 +27,5 @@ public class DefaultConfiguration {
 	public static final long AUTON_WAIT_TIME = 5000; 
 	public static final double GYRO_SENSITIVITY = 0.007;
 	public static final double SHOOTER_AIMING_MARGIN = 0.05;
+	public static final String CAMERA_RESOLUTION = "480p";
 }
