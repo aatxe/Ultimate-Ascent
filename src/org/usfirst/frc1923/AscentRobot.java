@@ -16,6 +16,10 @@ import org.usfirst.frc1923.routines.AutonomousRoutine;
 import org.usfirst.frc1923.routines.BetaRoutine;
 import org.usfirst.frc1923.routines.CharlieRoutine;
 import org.usfirst.frc1923.routines.DeltaRoutine;
+import org.usfirst.frc1923.routines.EchoRoutine;
+import org.usfirst.frc1923.routines.FoxtrotRoutine;
+import org.usfirst.frc1923.routines.GammaRoutine;
+import org.usfirst.frc1923.routines.HotelRoutine;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -28,7 +32,7 @@ import edu.wpi.first.wpilibj.image.NIVisionException;
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
  * 
- * @author Aaron Weiss
+ * @author Aaron Weiss, Pavan Hegde 
  * @version 2.0
  * @since 2/9/13
  */
@@ -93,14 +97,31 @@ public class AscentRobot extends IterativeRobot {
 		switch (Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM)) {
 			case 1:
 				autonomousRoutine = new AlphaRoutine();
+				break;
 			case 2:
 				autonomousRoutine = new BetaRoutine();
+				break;
 			case 3:
 				autonomousRoutine = new CharlieRoutine();
+				break;
 			case 4:
 				autonomousRoutine = new DeltaRoutine();
+				break;
+			case 5:
+				autonomousRoutine = new EchoRoutine();
+				break;
+			case 6:
+				autonomousRoutine = new FoxtrotRoutine();
+				break;
+			case 7:
+				autonomousRoutine = new GammaRoutine();
+				break;
+			case 8:
+				autonomousRoutine = new HotelRoutine();
+				break;
 			default:
 				autonomousRoutine = null;
+				break;
 		}
 		if (autonomousRoutine != null)
 			autonomousRoutine.start();
