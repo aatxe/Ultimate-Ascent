@@ -9,7 +9,7 @@ import org.usfirst.frc1923.event.TargetingEvent;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 
 /**
- * An Autonomous Period- Shooting with Target
+ * An autonomous routine - automatic aiming and shots.
  * 
  * @author Nihar Sidhu, Aaron Weiss
  * @version 1.0

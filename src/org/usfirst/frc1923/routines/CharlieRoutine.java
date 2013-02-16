@@ -8,7 +8,7 @@ import org.usfirst.frc1923.event.ShooterStopEvent;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 
 /**
- * An Autonomous Period- Shooting and then Driving Backwards
+ * A basic autonomous routine - shoot and then drive backwards.
  * 
  * @author Nihar Sidhu
  * @version 1.0

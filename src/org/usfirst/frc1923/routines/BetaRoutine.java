@@ -10,11 +10,11 @@ import org.usfirst.frc1923.utils.DefaultConfiguration;
 
 
 /**
- * An Autonomous Period- Driving and Shooting  
+ * A basic autonomous routine - drive and then shoot.
  * 
  * @author  Aaron Weiss and Nihar Sidhu 
  * @version 1.0
- * @since //13
+ * @since 2/14/13
  */
 
 public class BetaRoutine extends AutonomousRoutine {

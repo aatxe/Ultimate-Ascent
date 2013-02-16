@@ -9,11 +9,11 @@ import org.usfirst.frc1923.utils.DefaultConfiguration;
 
 
 /**
- * An Autonomous Period- Shooting Only 
+ * A basic autonomous routine - simply shoots frisbees.
  * 
- * @author  Aaron Weiss and Nihar Sidhu 
+ * @author  Aaron Weiss, Nihar Sidhu 
  * @version 1.0
- * @since 2/15/13
+ * @since 2/14/13
  */
 
 public class AlphaRoutine extends AutonomousRoutine {
