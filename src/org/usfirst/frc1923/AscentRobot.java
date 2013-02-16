@@ -20,6 +20,7 @@ import org.usfirst.frc1923.routines.EchoRoutine;
 import org.usfirst.frc1923.routines.FoxtrotRoutine;
 import org.usfirst.frc1923.routines.GammaRoutine;
 import org.usfirst.frc1923.routines.HotelRoutine;
+import org.usfirst.frc1923.routines.TestRoutine;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -120,7 +121,7 @@ public class AscentRobot extends IterativeRobot {
 				autonomousRoutine = new HotelRoutine();
 				break;
 			default:
-				autonomousRoutine = null;
+				autonomousRoutine = new TestRoutine();
 				break;
 		}
 		if (autonomousRoutine != null)

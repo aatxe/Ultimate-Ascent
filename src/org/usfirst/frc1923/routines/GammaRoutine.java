@@ -16,7 +16,9 @@ import org.usfirst.frc1923.utils.DefaultConfiguration;
  */
 public class GammaRoutine extends AutonomousRoutine{
 	protected void routine() throws InterruptedException {
-		Components.eventBus.push(new AutonomousDriveEvent(Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED), Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE)));
+		double speed = Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED);
+		double distance = Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE);
+		Components.eventBus.push(new AutonomousDriveEvent(speed, distance));
 		try {
 			Components.eventBus.push(new TargetingEvent());
 		} catch (Exception e) {
@@ -27,8 +29,6 @@ public class GammaRoutine extends AutonomousRoutine{
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
 		Thread.sleep((Components.preferences.getLong("shooter_pneumatic_time", (long) DefaultConfiguration.SHOOTER_PNEUMATIC_TIME) * Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT) * 2));
 		Components.eventBus.push(new ShooterStopEvent());
-		double speed = Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED);
-		double distance = Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE);
 		Components.eventBus.push(new AutonomousDriveEvent(-speed, -Math.min(distance, 108)));
 	}
 }
