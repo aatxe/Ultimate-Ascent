@@ -14,7 +14,7 @@ import org.usfirst.frc1923.utils.DefaultConfiguration;
  * @version 1.0
  * @since 2/16/13
  */
-public class GammaRoutine {
+public class GammaRoutine extends AutonomousRoutine{
 	protected void routine() throws InterruptedException {
 		Components.eventBus.push(new AutonomousDriveEvent(Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED), Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE)));
 		try {
@@ -29,6 +29,6 @@ public class GammaRoutine {
 		Components.eventBus.push(new ShooterStopEvent());
 		double speed = Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED);
 		double distance = Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE);
-		Components.eventBus.push(new AutonomousDriveEvent(-speed, -Math.min(distance, 13.5 * 12)));
+		Components.eventBus.push(new AutonomousDriveEvent(-speed, -Math.min(distance, 108)));
 	}
 }

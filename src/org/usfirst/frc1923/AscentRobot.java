@@ -17,6 +17,9 @@ import org.usfirst.frc1923.routines.BetaRoutine;
 import org.usfirst.frc1923.routines.CharlieRoutine;
 import org.usfirst.frc1923.routines.DeltaRoutine;
 import org.usfirst.frc1923.routines.EchoRoutine;
+import org.usfirst.frc1923.routines.FoxtrotRoutine;
+import org.usfirst.frc1923.routines.GammaRoutine;
+import org.usfirst.frc1923.routines.HotelRoutine;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -29,7 +32,7 @@ import edu.wpi.first.wpilibj.image.NIVisionException;
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
  * 
- * @author Aaron Weiss
+ * @author Aaron Weiss, Pavan Hegde 
  * @version 2.0
  * @since 2/9/13
  */
@@ -106,6 +109,15 @@ public class AscentRobot extends IterativeRobot {
 				break;
 			case 5:
 				autonomousRoutine = new EchoRoutine();
+				break;
+			case 6:
+				autonomousRoutine = new FoxtrotRoutine();
+				break;
+			case 7:
+				autonomousRoutine = new GammaRoutine();
+				break;
+			case 8:
+				autonomousRoutine = new HotelRoutine();
 				break;
 			default:
 				autonomousRoutine = null;
