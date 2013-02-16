@@ -1,5 +1,7 @@
 package org.usfirst.frc1923.routines;
 
+import org.usfirst.frc1923.Components;
+
 /**
  * A basic autonomous routine for the robot to perform using events.
  * 
@@ -52,5 +54,6 @@ public abstract class AutonomousRoutine implements Runnable {
 	 */
 	public void stop() {
 		thread.interrupt();
+		Components.eventBus.clear();
 	}
 }

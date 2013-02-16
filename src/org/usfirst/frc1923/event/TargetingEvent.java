@@ -18,6 +18,7 @@ public class TargetingEvent extends Event {
 		g = Components.gyro;
 		g.reset();
 		angle = MidknightTargetingComputer.getTurnAngle();
+		System.out.println("Turn Angle: " + angle);
 		speed = Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED);
 	}
 

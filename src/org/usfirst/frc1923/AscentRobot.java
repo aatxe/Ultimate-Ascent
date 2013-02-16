@@ -212,16 +212,8 @@ public class AscentRobot extends IterativeRobot {
 			} else if (!xbc.getButton(XboxController.Button.X)) {
 				justPressed[XboxController.Button.X.value] = false;
 			}
-
-			// Right Thumb Click -- Ring Light
-			if (xbc.getButton(XboxController.Button.RightClick) && !justPressed[XboxController.Button.RightClick.value]) {
-				Components.eventBus.push(new RingLightToggleEvent());
-				justPressed[XboxController.Button.RightClick.value] = true;
-			} else if (!xbc.getButton(XboxController.Button.RightClick)) {
-				justPressed[XboxController.Button.RightClick.value] = false;
-			}
 			
-			// Left Thumb Click -- Ring Light
+			// Left Thumb Click -- Auto-aiming
 			if (xbc.getButton(XboxController.Button.LeftClick) && !justPressed[XboxController.Button.LeftClick.value]) {
 				try {
 					Components.eventBus.push(new TargetingEvent());
@@ -233,6 +225,14 @@ public class AscentRobot extends IterativeRobot {
 				justPressed[XboxController.Button.LeftClick.value] = true;
 			} else if (!xbc.getButton(XboxController.Button.LeftClick)) {
 				justPressed[XboxController.Button.LeftClick.value] = false;
+			}
+
+			// Right Thumb Click -- Ring Light
+			if (xbc.getButton(XboxController.Button.RightClick) && !justPressed[XboxController.Button.RightClick.value]) {
+				Components.eventBus.push(new RingLightToggleEvent());
+				justPressed[XboxController.Button.RightClick.value] = true;
+			} else if (!xbc.getButton(XboxController.Button.RightClick)) {
+				justPressed[XboxController.Button.RightClick.value] = false;
 			}
 			
 			// Shooter state control options
