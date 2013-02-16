@@ -2,8 +2,7 @@ package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.event.DriveGearDownEvent;
 import org.usfirst.frc1923.event.DriveGearUpEvent;
-import org.usfirst.frc1923.event.RingLightActivateEvent;
-import org.usfirst.frc1923.event.RingLightDeactivateEvent;
+import org.usfirst.frc1923.event.RingLightToggleEvent;
 import org.usfirst.frc1923.event.ShooterActuatorEvent;
 import org.usfirst.frc1923.event.ShooterAngleControllerActivateEvent;
 import org.usfirst.frc1923.event.ShooterAngleControllerDeactivateEvent;
@@ -203,10 +202,9 @@ public class AscentRobot extends IterativeRobot {
 
 			// Right Thumb Click -- Ring Light
 			if (xbc.getButton(XboxController.Button.RightClick) && !justPressed[XboxController.Button.RightClick.value]) {
-				Components.eventBus.push(new RingLightActivateEvent());
+				Components.eventBus.push(new RingLightToggleEvent());
 				justPressed[XboxController.Button.RightClick.value] = true;
 			} else if (!xbc.getButton(XboxController.Button.RightClick)) {
-				Components.eventBus.push(new RingLightDeactivateEvent());
 				justPressed[XboxController.Button.RightClick.value] = false;
 			}
 			
@@ -254,7 +252,7 @@ public class AscentRobot extends IterativeRobot {
 			} else if (xbc.getTriggerAxis() < -0.1 && !this.triggers[3]) {
 				Components.eventBus.push(new ShooterAngleControllerDeactivateEvent());
 				this.triggers[3] = true;
-			} else {
+			} else if (xbc.getTriggerAxis() < 0.1 && xbc.getTriggerAxis() > -0.1) {
 				this.triggers[3] = false;
 			}
 		} // End Shooter Angle Scope

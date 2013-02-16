@@ -50,10 +50,8 @@ public class Components {
 	
 	// Digital Inputs
 	public static final DigitalInput compressorSafety = new DigitalInput(1);
-
-	// Geartooth Encoders
-	public static final Encoder driveEncoderLeft = new Encoder(1, 2);
-	public static final Encoder driveEncoderRight = new Encoder(3, 4);
+	public static final Encoder driveEncoderLeft = new Encoder(2, 3);
+	public static final Encoder driveEncoderRight = new Encoder(4, 5);
 	
 	// Pneumatic Solenoids
 	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(2);
