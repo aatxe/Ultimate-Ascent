@@ -50,8 +50,8 @@ public class Components {
 	
 	// Digital Inputs
 	public static final DigitalInput compressorSafety = new DigitalInput(1);
-	public static final Encoder driveEncoderLeft = new Encoder(2, 3);
-	public static final Encoder driveEncoderRight = new Encoder(4, 5);
+	public static final Encoder driveEncoderLeft = new Encoder(4, 5);
+	public static final Encoder driveEncoderRight = new Encoder(2, 3);
 	
 	// Pneumatic Solenoids
 	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(2);
