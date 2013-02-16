@@ -16,6 +16,7 @@ import org.usfirst.frc1923.routines.AutonomousRoutine;
 import org.usfirst.frc1923.routines.BetaRoutine;
 import org.usfirst.frc1923.routines.CharlieRoutine;
 import org.usfirst.frc1923.routines.DeltaRoutine;
+import org.usfirst.frc1923.routines.EchoRoutine;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -93,14 +94,22 @@ public class AscentRobot extends IterativeRobot {
 		switch (Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM)) {
 			case 1:
 				autonomousRoutine = new AlphaRoutine();
+				break;
 			case 2:
 				autonomousRoutine = new BetaRoutine();
+				break;
 			case 3:
 				autonomousRoutine = new CharlieRoutine();
+				break;
 			case 4:
 				autonomousRoutine = new DeltaRoutine();
+				break;
+			case 5:
+				autonomousRoutine = new EchoRoutine();
+				break;
 			default:
 				autonomousRoutine = null;
+				break;
 		}
 		if (autonomousRoutine != null)
 			autonomousRoutine.start();
