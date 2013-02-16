@@ -14,6 +14,8 @@ import org.usfirst.frc1923.event.TargetingEvent;
 import org.usfirst.frc1923.routines.AlphaRoutine;
 import org.usfirst.frc1923.routines.AutonomousRoutine;
 import org.usfirst.frc1923.routines.BetaRoutine;
+import org.usfirst.frc1923.routines.CharlieRoutine;
+import org.usfirst.frc1923.routines.DeltaRoutine;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -41,7 +43,18 @@ public class AscentRobot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		// Components.networkTable.putBoolean("~S A V E~", true);
-		Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
+		String resolution = Components.preferences.getString("camera_resolution", DefaultConfiguration.CAMERA_RESOLUTION);
+		if (resolution.equalsIgnoreCase("480p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
+		} else if (resolution.equalsIgnoreCase("360p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x360);
+		} else if (resolution.equalsIgnoreCase("240p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k320x240);
+		} else if (resolution.equalsIgnoreCase("120p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k160x120);
+		} else {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
+		}
 		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
 		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
 		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
@@ -82,6 +95,10 @@ public class AscentRobot extends IterativeRobot {
 				autonomousRoutine = new AlphaRoutine();
 			case 2:
 				autonomousRoutine = new BetaRoutine();
+			case 3:
+				autonomousRoutine = new CharlieRoutine();
+			case 4:
+				autonomousRoutine = new DeltaRoutine();
 			default:
 				autonomousRoutine = null;
 		}
