@@ -15,6 +15,8 @@ import org.usfirst.frc1923.event.TargetingEvent;
 import org.usfirst.frc1923.routines.AlphaRoutine;
 import org.usfirst.frc1923.routines.AutonomousRoutine;
 import org.usfirst.frc1923.routines.BetaRoutine;
+import org.usfirst.frc1923.routines.CharlieRoutine;
+import org.usfirst.frc1923.routines.DeltaRoutine;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
@@ -83,6 +85,10 @@ public class AscentRobot extends IterativeRobot {
 				autonomousRoutine = new AlphaRoutine();
 			case 2:
 				autonomousRoutine = new BetaRoutine();
+			case 3:
+				autonomousRoutine = new CharlieRoutine();
+			case 4:
+				autonomousRoutine = new DeltaRoutine();
 			default:
 				autonomousRoutine = null;
 		}
