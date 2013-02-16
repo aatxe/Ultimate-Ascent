@@ -14,9 +14,7 @@ import org.usfirst.frc1923.utils.DefaultConfiguration;
  * @version 1.0
  * @since 2/15/13
  */
-
-public class CharlieRoutine extends AutonomousRoutine
-{
+public class CharlieRoutine extends AutonomousRoutine {
 	protected void routine() throws InterruptedException {
 		Components.shooterGearbox.setGear(Components.preferences.getInt("auton_shooter_gear", DefaultConfiguration.AUTON_SHOOTER_GEAR));
 		Components.eventBus.push(new ShooterAngleControllerActivateEvent());
@@ -29,6 +27,4 @@ public class CharlieRoutine extends AutonomousRoutine
 		double distance = Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE);
 		Components.eventBus.push(new AutonomousDriveEvent(-speed, -Math.min(distance, 13.5 * 12)));
 	}
-
-
 }
