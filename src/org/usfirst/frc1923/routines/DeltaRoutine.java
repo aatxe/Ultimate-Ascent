@@ -20,9 +20,7 @@ public class DeltaRoutine extends AutonomousRoutine {
 	protected void routine() throws InterruptedException{
 		try {
 			Components.eventBus.push(new TargetingEvent());
-		} catch (Exception e) {
-			return;
-		}
+		} catch (Exception e) {}
 		Components.shooterGearbox.setGear(Components.preferences.getInt("auton_shooter_gear", DefaultConfiguration.AUTON_SHOOTER_GEAR));
 		Components.eventBus.push(new ShooterAngleControllerActivateEvent());
 		Components.eventBus.push(new ShooterStartEvent());
@@ -30,7 +28,5 @@ public class DeltaRoutine extends AutonomousRoutine {
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME) / 2);
 		Components.eventBus.push(new ShooterStopEvent());
-		
-		
 	}
 }

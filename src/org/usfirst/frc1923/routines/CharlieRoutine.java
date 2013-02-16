@@ -28,15 +28,6 @@ public class CharlieRoutine extends AutonomousRoutine
 		double speed = Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED);
 		double distance = Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE);
 		Components.eventBus.push(new AutonomousDriveEvent(-speed, -Math.min(distance, 13.5 * 12)));
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 
 
