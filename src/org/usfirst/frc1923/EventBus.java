@@ -35,9 +35,13 @@ public class EventBus {
 	 * Runs the next event from the event bus.
 	 */
 	public void next() {
-		if (this.hasNext()) {
-			((Event) this.events.elementAt(0)).start();
-			this.events.removeElementAt(0);
+		try {
+			if (this.hasNext()) {
+				((Event) this.events.elementAt(0)).start();
+				this.events.removeElementAt(0);
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return;
 		}
 	}
 	

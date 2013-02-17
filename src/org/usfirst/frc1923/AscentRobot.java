@@ -151,7 +151,7 @@ public class AscentRobot extends IterativeRobot {
 				} else if (curvature > 0.1) { // Turning right
 					Components.driveSystem.drive(-forwardMagnitude, -(forwardMagnitude - curvature), false);
 				} else { // Going straight
-					Components.driveSystem.drive(forwardMagnitude, forwardMagnitude, true);
+					Components.driveSystem.drive(-forwardMagnitude, -forwardMagnitude, true);
 				}
 			} else {
 				Components.driveSystem.drive(Components.leftDriveStick.getCoalescedY(), Components.rightDriveStick.getCoalescedY());
