@@ -35,8 +35,8 @@ public class ShooterAngleSystem implements System {
 			this.angleControllerTwo.set(!on);
 			this.angleControllerOne.set(on);
 		} else {
-			this.angleControllerOne.set(!on);
-			this.angleControllerTwo.set(on);
+			this.angleControllerOne.set(on);
+			this.angleControllerTwo.set(!on);
 		}
 	}
 
