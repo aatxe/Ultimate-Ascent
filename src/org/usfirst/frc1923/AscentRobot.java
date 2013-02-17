@@ -281,14 +281,14 @@ public class AscentRobot extends IterativeRobot {
 
 		{ // Shooter Angle Scope
 			XboxController xbc = Components.operatorController;
-			if (xbc.getTriggerAxis() > 0.1 && !this.triggers[3]) {
+			if (xbc.getTriggerAxis() > 0.1 && !this.triggers[2]) {
 				Components.eventBus.push(new ShooterAngleControllerActivateEvent());
-				this.triggers[3] = true;
-			} else if (xbc.getTriggerAxis() < -0.1 && !this.triggers[3]) {
+				this.triggers[2] = true;
+			} else if (xbc.getTriggerAxis() < -0.1 && !this.triggers[2]) {
 				Components.eventBus.push(new ShooterAngleControllerDeactivateEvent());
-				this.triggers[3] = true;
+				this.triggers[2] = true;
 			} else if (xbc.getTriggerAxis() < 0.1 && xbc.getTriggerAxis() > -0.1) {
-				this.triggers[3] = false;
+				this.triggers[2] = false;
 			}
 		} // End Shooter Angle Scope
 
