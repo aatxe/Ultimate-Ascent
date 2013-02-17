@@ -48,18 +48,7 @@ public class AscentRobot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		// Components.networkTable.putBoolean("~S A V E~", true);
-		String resolution = Components.preferences.getString("camera_resolution", DefaultConfiguration.CAMERA_RESOLUTION);
-		if (resolution.equalsIgnoreCase("480p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
-		} else if (resolution.equalsIgnoreCase("360p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x360);
-		} else if (resolution.equalsIgnoreCase("240p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k320x240);
-		} else if (resolution.equalsIgnoreCase("120p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k160x120);
-		} else {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
-		}
+		resolution();
 		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
 		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
 		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
@@ -75,6 +64,7 @@ public class AscentRobot extends IterativeRobot {
 	 * Safely stops everything to prevent it from running upon restart.
 	 */
 	public void disabledInit() {
+		resolution();
 		Components.driveGearbox.setGear(0);
 		Components.shooterGearbox.setGear(0);
 		Components.driveSystem.stop();
@@ -305,5 +295,20 @@ public class AscentRobot extends IterativeRobot {
 				}
 			}
 		} // End Compressor Support Scope
+	}
+	
+	private void resolution() {
+		String resolution = Components.preferences.getString("camera_resolution", DefaultConfiguration.CAMERA_RESOLUTION);
+		if (resolution.equalsIgnoreCase("480p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
+		} else if (resolution.equalsIgnoreCase("360p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x360);
+		} else if (resolution.equalsIgnoreCase("240p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k320x240);
+		} else if (resolution.equalsIgnoreCase("120p")) {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k160x120);
+		} else {
+			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
+		}
 	}
 }
