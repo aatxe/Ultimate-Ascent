@@ -2,6 +2,8 @@ package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.event.DriveGearDownEvent;
 import org.usfirst.frc1923.event.DriveGearUpEvent;
+import org.usfirst.frc1923.event.HangingActivateEvent;
+import org.usfirst.frc1923.event.HangingDeactivateEvent;
 import org.usfirst.frc1923.event.RingLightToggleEvent;
 import org.usfirst.frc1923.event.ShooterActuatorEvent;
 import org.usfirst.frc1923.event.ShooterAngleControllerActivateEvent;
@@ -40,7 +42,7 @@ import edu.wpi.first.wpilibj.image.NIVisionException;
 public class AscentRobot extends IterativeRobot {
 	private AutonomousRoutine autonomousRoutine;
 	private boolean[] justPressed = new boolean[14];
-	private boolean[] triggers = new boolean[3];
+	private boolean[] triggers = new boolean[4];
 	private boolean attachment = false;
 
 	/**
@@ -58,7 +60,7 @@ public class AscentRobot extends IterativeRobot {
 		Components.gyro.setSensitivity(Components.preferences.getDouble("gyro_sensitivity", DefaultConfiguration.GYRO_SENSITIVITY));
 		Components.gyro.reset();
 	}
-	
+
 	/**
 	 * Initializes the robot for disabled.
 	 * Safely stops everything to prevent it from running upon restart.
@@ -80,51 +82,51 @@ public class AscentRobot extends IterativeRobot {
 	public void disabledPeriodic() {
 		// Nothing to see here.
 	}
-	
+
 	/**
 	 * Launches the desired autonomous routine.
 	 */
 	public void autonomousInit() {
 		switch (Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM)) {
-			case 1:
-				autonomousRoutine = new AlphaRoutine();
-				break;
-			case 2:
-				autonomousRoutine = new BetaRoutine();
-				break;
-			case 3:
-				autonomousRoutine = new CharlieRoutine();
-				break;
-			case 4:
-				autonomousRoutine = new DeltaRoutine();
-				break;
-			case 5:
-				autonomousRoutine = new EchoRoutine();
-				break;
-			case 6:
-				autonomousRoutine = new FoxtrotRoutine();
-				break;
-			case 7:
-				autonomousRoutine = new GammaRoutine();
-				break;
-			case 8:
-				autonomousRoutine = new HotelRoutine();
-				break;
-			default:
-				autonomousRoutine = new TestRoutine();
-				break;
+		case 1:
+			autonomousRoutine = new AlphaRoutine();
+			break;
+		case 2:
+			autonomousRoutine = new BetaRoutine();
+			break;
+		case 3:
+			autonomousRoutine = new CharlieRoutine();
+			break;
+		case 4:
+			autonomousRoutine = new DeltaRoutine();
+			break;
+		case 5:
+			autonomousRoutine = new EchoRoutine();
+			break;
+		case 6:
+			autonomousRoutine = new FoxtrotRoutine();
+			break;
+		case 7:
+			autonomousRoutine = new GammaRoutine();
+			break;
+		case 8:
+			autonomousRoutine = new HotelRoutine();
+			break;
+		default:
+			autonomousRoutine = new TestRoutine();
+			break;
 		}
 		if (autonomousRoutine != null)
 			autonomousRoutine.start();
 	}
-	
+
 	/**
 	 * Provides periodic autonomous functionality.
 	 */
 	public void autonomousPeriodic() {
 		Components.eventBus.next();
 	}
-	
+
 	/**
 	 * Initializes the robot for teleop.
 	 */
@@ -224,7 +226,7 @@ public class AscentRobot extends IterativeRobot {
 			} else if (!xbc.getButton(XboxController.Button.X)) {
 				justPressed[XboxController.Button.X.value] = false;
 			}
-			
+
 			// Left Thumb Click -- Auto-aiming
 			if (xbc.getButton(XboxController.Button.LeftClick) && !justPressed[XboxController.Button.LeftClick.value]) {
 				try {
@@ -246,7 +248,7 @@ public class AscentRobot extends IterativeRobot {
 			} else if (!xbc.getButton(XboxController.Button.RightClick)) {
 				justPressed[XboxController.Button.RightClick.value] = false;
 			}
-			
+
 			// Shooter state control options
 			if (!Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON)) {
 				// Back -- Stop shooter
@@ -281,6 +283,19 @@ public class AscentRobot extends IterativeRobot {
 				this.triggers[2] = false;
 			}
 		} // End Shooter Angle Scope
+		
+		{ // Hanging Scope
+			XboxController xbc = Components.operatorController;
+			if (xbc.getDPad() > 0.1 && !this.triggers[3]) {
+				Components.eventBus.push(new HangingDeactivateEvent());
+				this.triggers[3] = true;
+			} else if (xbc.getDPad() < -0.1 && !this.triggers[3]) {
+				Components.eventBus.push(new HangingActivateEvent());
+				this.triggers[3] = true;
+			} else if (xbc.getDPad() < 0.1 && xbc.getDPad() > -0.1) {
+				this.triggers[3] = false;
+			}
+		} // End Hanging Scope
 
 		{ // Event Bus Scope
 			Components.eventBus.next();
@@ -296,7 +311,7 @@ public class AscentRobot extends IterativeRobot {
 			}
 		} // End Compressor Support Scope
 	}
-	
+
 	private void resolution() {
 		String resolution = Components.preferences.getString("camera_resolution", DefaultConfiguration.CAMERA_RESOLUTION);
 		if (resolution.equalsIgnoreCase("480p")) {

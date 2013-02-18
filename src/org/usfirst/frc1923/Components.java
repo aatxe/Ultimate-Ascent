@@ -1,6 +1,7 @@
 package org.usfirst.frc1923;
 
 import org.usfirst.frc1923.systems.DriveSystem;
+import org.usfirst.frc1923.systems.HangingSystem;
 import org.usfirst.frc1923.systems.ShooterAngleSystem;
 import org.usfirst.frc1923.systems.ShooterSystem;
 import org.usfirst.frc1923.systems.attachments.Gearbox;
@@ -56,7 +57,8 @@ public class Components {
 	// Pneumatic Solenoids
 	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(2);
 	public static final Solenoid shooterAngleControllerOne = new Solenoid(3), shooterAngleControllerTwo = new Solenoid(4);
-
+	public static final Solenoid hangingControllerOne = new Solenoid(5), hangingControllerTwo = new Solenoid(6);
+	
 	// Motor Groups
 	public static final MotorGroup leftDriveGroup = new MotorGroup(leftDriveOne, leftDriveTwo);
 	public static final MotorGroup rightDriveGroup = new MotorGroup(rightDriveOne, rightDriveTwo);
@@ -67,7 +69,8 @@ public class Components {
 	public static final DriveSystem driveSystem = new DriveSystem(leftDriveGroup, rightDriveGroup);
 	public static final ShooterSystem shooterSystem = new ShooterSystem(leftShooterGroup, rightShooterGroup);
 	public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleControllerOne, shooterAngleControllerTwo);
-
+	public static final HangingSystem hangingSystem = new HangingSystem(hangingControllerOne, hangingControllerTwo);
+	
 	// System Attachments
 	public static final Gearbox driveGearbox = new Gearbox(new double[] { 0.65, 0.85, 1.0 }, driveSystem);
 	public static final Gearbox shooterGearbox = new Gearbox(0.6, 1.0, 0.05, shooterSystem);
