@@ -23,7 +23,7 @@ public class BetaRoutine extends AutonomousRoutine {
 		double distance = Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE);
 		Components.eventBus.push(new AutonomousDriveEvent(speed, distance));
 		Components.eventBus.push(new ShooterAngleControllerActivateEvent());
-		Components.shooterGearbox.setGear(Components.preferences.getInt("auton_shooter_gear", DefaultConfiguration.AUTON_SHOOTER_GEAR));
+		Components.shooterModbox.update(Components.preferences.getDouble("auton_shooter_speed", DefaultConfiguration.AUTON_SHOOTER_SPEED));
 		Components.eventBus.push(new ShooterStartEvent());
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));

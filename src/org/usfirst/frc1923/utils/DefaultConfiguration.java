@@ -21,7 +21,7 @@ public class DefaultConfiguration {
 	public static final double GEAR_RATIO = 22.0 / 32.0;
 	public static final byte AUTON_PROGRAM = 1;
 	public static final int AUTON_DISQUE_COUNT = 3;
-	public static final int AUTON_SHOOTER_GEAR = 0;
+	public static final double AUTON_SHOOTER_SPEED = 0.6;
 	public static final double AUTON_DRIVE_DISTANCE = 12;
 	public static final double AUTON_DRIVE_SPEED = 0.35;
 	public static final long AUTON_WAIT_TIME = 5000; 

@@ -18,7 +18,7 @@ import org.usfirst.frc1923.utils.DefaultConfiguration;
 
 public class AlphaRoutine extends AutonomousRoutine {
 	protected void routine() throws InterruptedException {
-		Components.shooterGearbox.setGear(Components.preferences.getInt("auton_shooter_gear", DefaultConfiguration.AUTON_SHOOTER_GEAR));
+		Components.shooterModbox.update(Components.preferences.getDouble("auton_shooter_speed", DefaultConfiguration.AUTON_SHOOTER_SPEED));
 		Components.eventBus.push (new ShooterAngleControllerActivateEvent());
 		Components.eventBus.push(new ShooterStartEvent());
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));

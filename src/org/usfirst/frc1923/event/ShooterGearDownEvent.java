@@ -21,6 +21,6 @@ public class ShooterGearDownEvent extends Event {
 	 * Performs the event's contents.
 	 */
 	protected void event() {
-		Components.shooterGearbox.gearDown();
+		Components.shooterModbox.modDown();
 	}
 }

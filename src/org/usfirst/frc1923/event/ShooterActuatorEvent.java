@@ -41,17 +41,17 @@ public class ShooterActuatorEvent extends Event {
 			Components.pneumaticActuatorOne.set(true);
 			Timer.delay(Components.preferences.getDouble("shooter_pneumatic_time", DefaultConfiguration.SHOOTER_PNEUMATIC_TIME));
 			if (i == 3) {
-				Components.shooterGearbox.gearUp();
+				Components.shooterModbox.modUp();
 			}
-			Components.shooterGearbox.gearUp();
+			Components.shooterModbox.modUp();
 			Components.pneumaticActuatorOne.set(false);
 			Components.pneumaticActuatorTwo.set(true);
 			Timer.delay(Components.preferences.getDouble("shooter_pneumatic_time", DefaultConfiguration.SHOOTER_PNEUMATIC_TIME));
 		}
 		for (int i = 0; i < disques; i++) {
 			if (i == 3)
-				Components.shooterGearbox.gearDown();
-			Components.shooterGearbox.gearDown();
+				Components.shooterModbox.modDown();
+			Components.shooterModbox.modDown();
 		}
 	}
 }

@@ -22,7 +22,7 @@ public class EchoRoutine extends AutonomousRoutine {
 		}catch (Exception e) {
 			return;
 		}
-		Components.shooterGearbox.setGear(Components.preferences.getInt("auton_shooter_gear", DefaultConfiguration.AUTON_SHOOTER_GEAR));
+		Components.shooterModbox.update(Components.preferences.getDouble("auton_shooter_speed", DefaultConfiguration.AUTON_SHOOTER_SPEED));
 		Components.eventBus.push(new ShooterStartEvent());
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_diques_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
