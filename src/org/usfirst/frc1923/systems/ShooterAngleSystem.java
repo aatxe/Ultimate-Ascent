@@ -6,12 +6,11 @@ import edu.wpi.first.wpilibj.Solenoid;
  * A system for controlling the angle of the shooter.
  * 
  * @author Aaron Weiss
- * @version 1.3
+ * @version 2.0
  * @since 2/9/13
  */
-public class ShooterAngleSystem implements System {
+public class ShooterAngleSystem extends PneumaticSystem {
 	private Solenoid angleControllerOne, angleControllerTwo;
-	private boolean state = false;
 
 	/**
 	 * Creates a <code>ShooterAngleSystem</code>.
@@ -25,34 +24,19 @@ public class ShooterAngleSystem implements System {
 	}
 
 	/**
-	 * Sets the state of the angle controller.
-	 * @param on
-	 * 				the state of the angle controller
+	 * Activates the pneumatic system.
 	 */
-	public void set(boolean on) {
-		this.state = on;
-		if (on) {
-			this.angleControllerTwo.set(!on);
-			this.angleControllerOne.set(on);
-		} else {
-			this.angleControllerOne.set(on);
-			this.angleControllerTwo.set(!on);
-		}
+	public void activate() {
+		this.angleControllerTwo.set(false);
+		this.angleControllerOne.set(true);
 	}
 
 	/**
-	 * Toggles the state of the angle controller.
+	 * Deactivates the pneumatic system.
 	 */
-	public void toggle() {
-		if (this.state)
-			this.set(false);
-		else
-			this.set(true);
+	public void deactivate() {
+		this.angleControllerOne.set(false);
+		this.angleControllerTwo.set(true);
 	}
 
-	/**
-	 * Completely stops the robot system.
-	 */
-	public void stop() {
-	}
 }
