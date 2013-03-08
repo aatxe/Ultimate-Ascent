@@ -1,53 +1,42 @@
 package org.usfirst.frc1923.systems;
 
-import org.usfirst.frc1923.utils.MotorGroup;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * A system for controlling the angle of the shooter.
  * 
  * @author Aaron Weiss
- * @version 1.3
+ * @version 2.0
  * @since 2/9/13
  */
-public class ShooterAngleSystem implements System {
-	private MotorGroup angleController;
-	private double maxOutput = 1.0;
-	
+public class ShooterAngleSystem extends PneumaticSystem {
+	private Solenoid angleControllerOne, angleControllerTwo;
+
 	/**
 	 * Creates a <code>ShooterAngleSystem</code>.
 	 * 
 	 * @param angleController
-	 * 				the <code>MotorGroup</code> to control the angle
+	 * 				the <code>Solenoid</code> to control the angle
 	 */
-	public ShooterAngleSystem(MotorGroup angleController) {
-		this.angleController = angleController;
+	public ShooterAngleSystem(Solenoid angleControllerOne, Solenoid angleControllerTwo) {
+		this.angleControllerOne = angleControllerOne;
+		this.angleControllerTwo = angleControllerTwo;
 	}
-	
+
 	/**
-	 * Sets the speed and direction of angle controller.
-	 * 
-	 * @param speed
-	 * 				the desired speed and direction to move at
+	 * Activates the pneumatic system.
 	 */
-	public void set(double speed) {
-		this.angleController.set(speed * this.maxOutput);
+	public void activate() {
+		this.angleControllerTwo.set(false);
+		this.angleControllerOne.set(true);
 	}
-	
+
 	/**
-	 * Sets the max motor output for the robot system.
-	 * 
-	 * @param maxOutput
-	 *				the systems' new max output.
+	 * Deactivates the pneumatic system.
 	 */
-	public void setMaxOutput(double maxOutput) {
-		this.maxOutput = maxOutput;
+	public void deactivate() {
+		this.angleControllerOne.set(false);
+		this.angleControllerTwo.set(true);
 	}
-	
-	/**
-	 * Completely stops the robot system.
-	 */
-	public void stop() {
-		this.angleController.set(0);
-		this.angleController.disable();
-	}
+
 }

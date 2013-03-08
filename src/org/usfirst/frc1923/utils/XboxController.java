@@ -1,6 +1,7 @@
 package org.usfirst.frc1923.utils;
 
 import edu.wpi.first.wpilibj.Joystick;
+
 /**
  * A representation of the XboxController wrapping <code>Joystick</code>.
  * 
@@ -31,7 +32,7 @@ public class XboxController {
 	public boolean getButton(XboxController.Button inputButton) {
 		return xboxController.getRawButton(inputButton.value);
 	}
-	
+
 	/**
 	 * Gets the current Joystick
 	 * 
@@ -51,7 +52,7 @@ public class XboxController {
 	 * @return the double of the raw axis.
 	 */
 	public double getAxis(int stickNumber, int axisNumber) {
-		int axes[] = {2, 1, 5, 4};
+		int axes[] = { 1, 2, 4, 5 };
 		int fAxis = 0;
 		if (stickNumber == 1 && axisNumber == 1) {
 			fAxis = axes[0];
@@ -84,7 +85,7 @@ public class XboxController {
 	public double getDPad() {
 		return xboxController.getRawAxis(6);
 	}
-	
+
 	/**
 	 * A representation of the buttons on the XboxController.
 	 * 

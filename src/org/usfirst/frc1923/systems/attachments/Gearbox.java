@@ -1,6 +1,6 @@
 package org.usfirst.frc1923.systems.attachments;
 
-import org.usfirst.frc1923.systems.System;
+import org.usfirst.frc1923.systems.MotorizedSystem;
 
 /**
  * A simple gearbox as a <code>System</code> attachment.
@@ -10,10 +10,10 @@ import org.usfirst.frc1923.systems.System;
  * @since 2/9/15
  */
 public class Gearbox {
-	private final System system;
+	private final MotorizedSystem system;
 	private final double[] gears;
 	private int gearIndex = 0;
-	
+
 	/**
 	 * Creates a gearbox attached to a system with the desired set of gears.
 	 * 
@@ -22,11 +22,11 @@ public class Gearbox {
 	 * @param system
 	 * 				the system to attach to
 	 */
-	public Gearbox(double[] gears, System system) {
+	public Gearbox(double[] gears, MotorizedSystem system) {
 		this.gears = gears;
 		this.system = system;
 	}
-	
+
 	/**
 	 * Creates a gearbox attached to a system with an incremental gear set.
 	 * 
@@ -39,23 +39,23 @@ public class Gearbox {
 	 * @param system
 	 * 				the system to attach to
 	 */
-	public Gearbox(double start, double end, double increment, System system) {
+	public Gearbox(double start, double end, double increment, MotorizedSystem system) {
 		int k = 0;
-		this.gears = new double[(int) ((start - end) / increment)];
+		this.gears = new double[(int) ((end - start) / increment)];
 		for (double i = start; i < end; i += increment) {
 			this.gears[k++] = i;
 		}
 		this.system = system;
 	}
-	
+
 	/**
 	 * Gears up the system by one.
 	 */
 	public void gearUp() {
-		if (this.gearIndex + 1 <= this.gears.length)
+		if (this.gearIndex + 1 < this.gears.length)
 			this.system.setMaxOutput(this.gears[++gearIndex]);
 	}
-	
+
 	/**
 	 * Gears down the system by one.
 	 */
@@ -63,7 +63,7 @@ public class Gearbox {
 		if (this.gearIndex - 1 >= 0)
 			this.system.setMaxOutput(this.gears[--gearIndex]);
 	}
-	
+
 	/**
 	 * Gets the system's current gear index.
 	 * 
@@ -72,7 +72,7 @@ public class Gearbox {
 	public int getGear() {
 		return this.gearIndex;
 	}
-	
+
 	/**
 	 * Sets the system's current gear index.
 	 * 
@@ -83,7 +83,7 @@ public class Gearbox {
 		this.gearIndex = gearIndex;
 		this.system.setMaxOutput(this.gears[this.gearIndex]);
 	}
-	
+
 	/**
 	 * Gets the current speed of the shooter.
 	 * 
@@ -92,7 +92,7 @@ public class Gearbox {
 	public double getSpeed() {
 		return this.getSpeed(this.gearIndex);
 	}
-	
+
 	/**
 	 * Gets the speed of the specified shooter index.
 	 * 

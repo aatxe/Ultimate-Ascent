@@ -40,7 +40,7 @@ public class EnjoyStick extends Joystick {
 		this.yCoalescor = new Coalescor(this.getY(), epsilon);
 		this.zCoalescor = new Coalescor(this.getZ(), epsilon);
 	}
-	
+
 	/**
 	 * Gets the coalescor-controlled x-axis value.
 	 * 
@@ -76,7 +76,7 @@ public class EnjoyStick extends Joystick {
 	 * @return the value of the axis
 	 */
 	public double getAxis(Joystick.AxisType axis) {
-		if (axis.value == Joystick.AxisType.kX.value) 
+		if (axis.value == Joystick.AxisType.kX.value)
 			return this.xCoalescor.coalesce(super.getAxis(axis));
 		else if (axis.value == Joystick.AxisType.kY.value)
 			return this.yCoalescor.coalesce(super.getAxis(axis));

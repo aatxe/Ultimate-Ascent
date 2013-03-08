@@ -11,10 +11,10 @@ import org.usfirst.frc1923.utils.MotorGroup;
  * @version 1.5
  * @since 2/9/13
  */
-public class ShooterSystem implements System {
+public class ShooterSystem implements MotorizedSystem {
 	private final MotorGroup leftController, rightController;
 	private double maxOutput = 1.0;
-	
+
 	/**
 	 * Creates the shooter system.
 	 * 
@@ -35,9 +35,9 @@ public class ShooterSystem implements System {
 	 * 				the magnitude of the shooter
 	 */
 	public void set(double magnitude) {
-		this.set(magnitude, magnitude);
+		this.set(-magnitude, -magnitude);
 	}
-	
+
 	/**
 	 * Sets the speed of the shooter.
 	 * 
@@ -47,10 +47,10 @@ public class ShooterSystem implements System {
 	 * 				the magnitude of the right side of the shooter
 	 */
 	public void set(double leftMagnitude, double rightMagnitude) {
-		this.leftController.set(leftMagnitude * this.maxOutput);
-		this.rightController.set(rightMagnitude * (this.maxOutput - this.diff()));
+		this.leftController.set(-leftMagnitude * this.maxOutput);
+		this.rightController.set(-rightMagnitude * (this.maxOutput - this.diff()));
 	}
-	
+
 	/**
 	 * Gets the shooter speed diff from the preferences.
 	 * 

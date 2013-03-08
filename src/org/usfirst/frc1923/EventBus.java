@@ -14,7 +14,8 @@ import org.usfirst.frc1923.event.Event;
 public class EventBus {
 	private static EventBus instance;
 	private final Vector events = new Vector();
-	
+	private final Vector running = new Vector();
+        
 	/**
 	 * Creates an <code>EventBus</code>.
 	 */
@@ -30,14 +31,27 @@ public class EventBus {
 	public void push(Event e) {
 		this.events.addElement(e);
 	}
+        
+        public void clean() {
+            for (int i = 0; i < running.size(); i++) {
+                Event e = (Event) this.running.elementAt(i);
+                if (!e.alive())
+                    this.running.removeElementAt(i);
+            }
+        }
 	
 	/**
 	 * Runs the next event from the event bus.
 	 */
 	public void next() {
-		if (this.hasNext()) {
-			((Event) this.events.elementAt(0)).start();
-			this.events.removeElementAt(0);
+		try {
+			if (this.hasNext()) {
+				((Event) this.events.elementAt(0)).start();
+				running.addElement(this.events.elementAt(0));
+                                this.events.removeElementAt(0);
+			}
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return;
 		}
 	}
 	
@@ -53,9 +67,14 @@ public class EventBus {
 	 * Clears the event bus completely.
 	 */
 	public void clear() {
+                clean();
+                for (int i = 0; i < this.running.size(); i++) {
+                    ((Event) this.running.elementAt(i)).stop();
+                }
+                this.running.removeAllElements();
 		this.events.removeAllElements();
 	}
-	
+
 	/**
 	 * Gets the robot's instance of the event bus.
 	 * @return the robot's event bus
