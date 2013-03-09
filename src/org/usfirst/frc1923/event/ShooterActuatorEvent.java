@@ -37,13 +37,13 @@ public class ShooterActuatorEvent extends Event {
 	 */
 	protected void event() {
 		for (int i = 0; i < disques; i++) {
-                        Components.shooterActuatorSystem.activate();
-                        Timer.delay(Components.preferences.getDouble("shooter_pneumatic_time", DefaultConfiguration.SHOOTER_PNEUMATIC_TIME));
-                        if (i == 3) {
+			Components.shooterActuatorSystem.activate();
+			Timer.delay(Components.preferences.getDouble("shooter_pneumatic_time", DefaultConfiguration.SHOOTER_PNEUMATIC_TIME));
+			if (i == 3) {
 				Components.shooterGearbox.gearUp();
 			}
 			Components.shooterGearbox.gearUp();
-                        Components.shooterActuatorSystem.deactivate();
+			Components.shooterActuatorSystem.deactivate();
 			Timer.delay(Components.preferences.getDouble("shooter_pneumatic_time", DefaultConfiguration.SHOOTER_PNEUMATIC_TIME));
 		}
 		for (int i = 0; i < disques; i++) {

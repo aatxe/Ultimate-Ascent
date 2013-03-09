@@ -42,13 +42,13 @@ public class Components {
 	public static final Victor rightDriveOne = new Victor(1), rightDriveTwo = new Victor(2);
 	public static final Victor leftShooter = new Victor(6);
 	public static final Victor rightShooter = new Victor(7);
-
+	
 	// Relays (Spikes)
 	public static final Relay compressor = new Relay(7);
 	public static final Relay ringLight = new Relay(8);
-        public static final Relay redAllianceUnderglow = new Relay(1);
-        public static final Relay blueAllianceUnderglow = new Relay(2);
-        
+    public static final Relay redAllianceUnderglow = new Relay(1);
+    public static final Relay blueAllianceUnderglow = new Relay(2);
+
 	// Analog Inputs
 	public static final Gyro gyro = new Gyro(1);
 	
@@ -58,6 +58,7 @@ public class Components {
 	public static final Encoder driveEncoderRight = new Encoder(2, 3);
 	
 	// Pneumatic Solenoids
+
 	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(7);
 	public static final Solenoid shooterAngleControllerOne = new Solenoid(3), shooterAngleControllerTwo = new Solenoid(4);
 	public static final Solenoid hangingControllerOne = new Solenoid(5), hangingControllerTwo = new Solenoid(6);
@@ -71,8 +72,8 @@ public class Components {
 	// Systems
 	public static final DriveSystem driveSystem = new DriveSystem(leftDriveGroup, rightDriveGroup);
 	public static final ShooterSystem shooterSystem = new ShooterSystem(leftShooterGroup, rightShooterGroup);
-        public static final ShooterActuatorSystem shooterActuatorSystem = new ShooterActuatorSystem(pneumaticActuatorOne, pneumaticActuatorTwo);
-        public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleControllerOne, shooterAngleControllerTwo);
+	public static final ShooterActuatorSystem shooterActuatorSystem = new ShooterActuatorSystem(pneumaticActuatorOne, pneumaticActuatorTwo);
+	public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleControllerOne, shooterAngleControllerTwo);
 	public static final HangingSystem hangingSystem = new HangingSystem(hangingControllerOne, hangingControllerTwo);
 	
 	// System Attachments

@@ -45,12 +45,11 @@ public class AscentRobot extends IterativeRobot {
 	private boolean[] justPressed = new boolean[14];
 	private boolean[] triggers = new boolean[4];
 	private boolean attachment = false;
-        
-        private int autonShooterGear;
-        private boolean snakeDrive;
-        private boolean shooterAlwaysOn;
-        private boolean compressorOn;
-        
+
+	private boolean snakeDrive;
+	private boolean shooterAlwaysOn;
+	private boolean compressorOn;
+
 	/**
 	 * Initializes the robot.
 	 */
@@ -60,20 +59,20 @@ public class AscentRobot extends IterativeRobot {
 		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
 		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
 		String alliance = Components.preferences.getString("alliance_color", DefaultConfiguration.ALLIANCE_COLOR);
-                Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
+		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
 		Components.driveEncoderRight.setDistancePerPulse(pulseRate * gearRatio);
 		Components.driveEncoderLeft.reset();
 		Components.driveEncoderRight.reset();
 		Components.gyro.setSensitivity(Components.preferences.getDouble("gyro_sensitivity", DefaultConfiguration.GYRO_SENSITIVITY));
 		Components.gyro.reset();
-                this.compressorOn = Components.preferences.getBoolean("compressor_on", DefaultConfiguration.COMPRESSOR_ON);
-                if (alliance.equals("red")) {
-                    Components.redAllianceUnderglow.set(Relay.Value.kOn);
-                    Components.blueAllianceUnderglow.set(Relay.Value.kOff);
-                } else {
-                    Components.redAllianceUnderglow.set(Relay.Value.kOff);
-                    Components.blueAllianceUnderglow.set(Relay.Value.kOn);
-                }
+		this.compressorOn = Components.preferences.getBoolean("compressor_on", DefaultConfiguration.COMPRESSOR_ON);
+		if (alliance.equals("red")) {
+			Components.redAllianceUnderglow.set(Relay.Value.kOn);
+			Components.blueAllianceUnderglow.set(Relay.Value.kOff);
+		} else {
+			Components.redAllianceUnderglow.set(Relay.Value.kOff);
+			Components.blueAllianceUnderglow.set(Relay.Value.kOn);
+		}
 	}
 
 	/**
@@ -102,15 +101,14 @@ public class AscentRobot extends IterativeRobot {
 	 * Launches the desired autonomous routine.
 	 */
 	public void autonomousInit() {
-	this.autonShooterGear = Components.preferences.getInt("auton_shooter_gear", DefaultConfiguration.AUTON_SHOOTER_GEAR);
-        this.snakeDrive = Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE);
-        this.shooterAlwaysOn = Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON);
-        int autonProgram = Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM);
-            
-            switch (autonProgram) {
+		this.snakeDrive = Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE);
+		this.shooterAlwaysOn = Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON);
+		int autonProgram = Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM);
+
+		switch (autonProgram) {
 		case 1:
-	
-                    autonomousRoutine = new AlphaRoutine();
+
+			autonomousRoutine = new AlphaRoutine();
 			break;
 		case 2:
 			autonomousRoutine = new BetaRoutine();
@@ -138,7 +136,7 @@ public class AscentRobot extends IterativeRobot {
 			break;
 		}
 		if (autonomousRoutine != null)
-                    autonomousRoutine.start();
+			autonomousRoutine.start();
 	}
 
 	/**
@@ -219,7 +217,7 @@ public class AscentRobot extends IterativeRobot {
 			// A Button -- Fire shooter (1 disque)
 			if (xbc.getButton(XboxController.Button.A) && !justPressed[XboxController.Button.A.value]) {
 				Components.eventBus.push(new ShooterActuatorEvent());
-                                justPressed[XboxController.Button.A.value] = true;
+				justPressed[XboxController.Button.A.value] = true;
 			} else if (!xbc.getButton(XboxController.Button.A)) {
 				justPressed[XboxController.Button.A.value] = false;
 			}
@@ -304,7 +302,7 @@ public class AscentRobot extends IterativeRobot {
 				this.triggers[2] = false;
 			}
 		} // End Shooter Angle Scope
-		
+
 		{ // Hanging Scope
 			XboxController xbc = Components.operatorController;
 			if (xbc.getDPad() > 0.1 && !this.triggers[3]) {
@@ -320,7 +318,7 @@ public class AscentRobot extends IterativeRobot {
 
 		{ // Event Bus Scope
 			Components.eventBus.next();
-                        Dashboard.update();
+			Dashboard.update();
 		} // End Event Bus Scope
 
 		{ // Compressor Support Scope
@@ -347,7 +345,7 @@ public class AscentRobot extends IterativeRobot {
 		} else {
 			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
 		}
-                Components.camera.writeCompression(Components.preferences.getInt("camera_compression", DefaultConfiguration.CAMERA_COMPRESSION));
-                Components.camera.writeMaxFPS(Components.preferences.getInt("camera_framerate", DefaultConfiguration.CAMERA_FRAMERATE));
-        }
+		Components.camera.writeCompression(Components.preferences.getInt("camera_compression", DefaultConfiguration.CAMERA_COMPRESSION));
+		Components.camera.writeMaxFPS(Components.preferences.getInt("camera_framerate", DefaultConfiguration.CAMERA_FRAMERATE));
+	}
 }

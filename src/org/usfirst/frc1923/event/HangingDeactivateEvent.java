@@ -10,5 +10,4 @@ public class HangingDeactivateEvent extends Event{
 	protected void event() {
 		Components.hangingSystem.deactivate();
 	}
-
 }

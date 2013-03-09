@@ -47,6 +47,7 @@ public class EventBus {
 		try {
 			if (this.hasNext()) {
 				((Event) this.events.elementAt(0)).start();
+
 				running.addElement(this.events.elementAt(0));
                                 this.events.removeElementAt(0);
 			}

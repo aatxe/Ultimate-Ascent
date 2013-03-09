@@ -8,3 +8,7 @@ MicroEdition-Configuration: CLDC-1.1
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> aaronweiss74/new

@@ -20,6 +20,7 @@ public class DefaultConfiguration {
 	public static final int PULSE_RATE = 256;
 	public static final double GEAR_RATIO = 22.0 / 32.0;
 	public static final byte AUTON_PROGRAM = 1;
+
 	public static final int AUTON_DISQUE_COUNT = 2;
 	public static final int AUTON_SHOOTER_GEAR = 6;
 	public static final double AUTON_DRIVE_DISTANCE = 12;
@@ -28,11 +29,10 @@ public class DefaultConfiguration {
 	public static final double GYRO_SENSITIVITY = 0.007;
 	public static final double SHOOTER_AIMING_MARGIN = 0.05;
 	public static final String CAMERA_RESOLUTION = "240p";
-        public static final int CAMERA_COMPRESSION = 30;
-        public static final int CAMERA_FRAMERATE = 30;
-        public static final double AUTON_HOTEL_DISTANCE1 = 60;
+    public static final int CAMERA_COMPRESSION = 30;
+    public static final int CAMERA_FRAMERATE = 30;
+    public static final double AUTON_HOTEL_DISTANCE1 = 60;
 	public static final double AUTON_HOTEL_DISTANCE2 = 84;
 	public static final double AUTON_HOTEL_DISTANCE3 = 109;
-        public static final String ALLIANCE_COLOR = "red";
-	
+    public static final String ALLIANCE_COLOR = "red";
 }
