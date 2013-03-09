@@ -22,6 +22,8 @@ public abstract class AutonomousRoutine implements Runnable {
 				try {
 					Thread.sleep(14300);
 					stop();
+					stop();
+					stop();
 				} catch (InterruptedException e) {
 					return;
 				}
@@ -38,6 +40,7 @@ public abstract class AutonomousRoutine implements Runnable {
 		try {
 			routine();
 		} catch (InterruptedException e) {
+			Components.eventBus.clear();
 			return;
 		}
 	}

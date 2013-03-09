@@ -31,6 +31,7 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.image.NIVisionException;
+import org.usfirst.frc1923.utils.Dashboard;
 
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
@@ -45,6 +46,10 @@ public class AscentRobot extends IterativeRobot {
 	private boolean[] triggers = new boolean[4];
 	private boolean attachment = false;
 
+	private boolean snakeDrive;
+	private boolean shooterAlwaysOn;
+	private boolean compressorOn;
+
 	/**
 	 * Initializes the robot.
 	 */
@@ -53,12 +58,21 @@ public class AscentRobot extends IterativeRobot {
 		resolution();
 		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
 		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
+		String alliance = Components.preferences.getString("alliance_color", DefaultConfiguration.ALLIANCE_COLOR);
 		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
 		Components.driveEncoderRight.setDistancePerPulse(pulseRate * gearRatio);
 		Components.driveEncoderLeft.reset();
 		Components.driveEncoderRight.reset();
 		Components.gyro.setSensitivity(Components.preferences.getDouble("gyro_sensitivity", DefaultConfiguration.GYRO_SENSITIVITY));
 		Components.gyro.reset();
+		this.compressorOn = Components.preferences.getBoolean("compressor_on", DefaultConfiguration.COMPRESSOR_ON);
+		if (alliance.equals("red")) {
+			Components.redAllianceUnderglow.set(Relay.Value.kOn);
+			Components.blueAllianceUnderglow.set(Relay.Value.kOff);
+		} else {
+			Components.redAllianceUnderglow.set(Relay.Value.kOff);
+			Components.blueAllianceUnderglow.set(Relay.Value.kOn);
+		}
 	}
 
 	/**
@@ -87,8 +101,13 @@ public class AscentRobot extends IterativeRobot {
 	 * Launches the desired autonomous routine.
 	 */
 	public void autonomousInit() {
-		switch (Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM)) {
+		this.snakeDrive = Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE);
+		this.shooterAlwaysOn = Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON);
+		int autonProgram = Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM);
+
+		switch (autonProgram) {
 		case 1:
+
 			autonomousRoutine = new AlphaRoutine();
 			break;
 		case 2:
@@ -142,7 +161,7 @@ public class AscentRobot extends IterativeRobot {
 	public void teleopPeriodic() {
 		{ // Driving Scope
 			// Direct Driving Controls
-			if (Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE)) {
+			if (this.snakeDrive) {
 				double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 				double curvature = Components.rightDriveStick.getCoalescedX();
 				double attachment = Components.rightDriveStick.getCoalescedZ();
@@ -250,7 +269,7 @@ public class AscentRobot extends IterativeRobot {
 			}
 
 			// Shooter state control options
-			if (!Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON)) {
+			if (!this.shooterAlwaysOn) {
 				// Back -- Stop shooter
 				if (xbc.getButton(XboxController.Button.Back) && !justPressed[XboxController.Button.Back.value]) {
 					Components.eventBus.push(new ShooterStopEvent());
@@ -267,7 +286,7 @@ public class AscentRobot extends IterativeRobot {
 					justPressed[XboxController.Button.Start.value] = false;
 				}
 			} else {
-				Components.shooterSystem.set(1);
+				Components.shooterSystem.set(-1);
 			}
 		} // End Shooter Scope
 
@@ -283,7 +302,7 @@ public class AscentRobot extends IterativeRobot {
 				this.triggers[2] = false;
 			}
 		} // End Shooter Angle Scope
-		
+
 		{ // Hanging Scope
 			XboxController xbc = Components.operatorController;
 			if (xbc.getDPad() > 0.1 && !this.triggers[3]) {
@@ -299,10 +318,11 @@ public class AscentRobot extends IterativeRobot {
 
 		{ // Event Bus Scope
 			Components.eventBus.next();
+			Dashboard.update();
 		} // End Event Bus Scope
 
 		{ // Compressor Support Scope
-			if (Components.preferences.getBoolean("compressor_on", DefaultConfiguration.COMPRESSOR_ON)) {
+			if (this.compressorOn) {
 				if (!Components.compressorSafety.get()) {
 					Components.compressor.set(Relay.Value.kOn);
 				} else {
@@ -325,5 +345,7 @@ public class AscentRobot extends IterativeRobot {
 		} else {
 			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
 		}
+		Components.camera.writeCompression(Components.preferences.getInt("camera_compression", DefaultConfiguration.CAMERA_COMPRESSION));
+		Components.camera.writeMaxFPS(Components.preferences.getInt("camera_framerate", DefaultConfiguration.CAMERA_FRAMERATE));
 	}
 }
