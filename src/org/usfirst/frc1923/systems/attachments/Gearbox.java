@@ -52,7 +52,7 @@ public class Gearbox {
 	 * Gears up the system by one.
 	 */
 	public void gearUp() {
-		if (this.gearIndex + 1 <= this.gears.length)
+		if (this.gearIndex + 1 < this.gears.length)
 			this.system.setMaxOutput(this.gears[++gearIndex]);
 	}
 
