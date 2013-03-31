@@ -35,7 +35,7 @@ public class ShooterSystem implements MotorizedSystem {
 	 * 				the magnitude of the shooter
 	 */
 	public void set(double magnitude) {
-		this.set(magnitude, magnitude);
+		this.set(-magnitude, -magnitude);
 	}
 
 	/**

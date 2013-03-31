@@ -49,6 +49,10 @@ public abstract class Event implements Runnable {
 		}
 	}
 	
+        public boolean alive() {
+            return !this.run || this.ran;
+        }
+        
 	/**
 	 * Performs the event's contents.
 	 */

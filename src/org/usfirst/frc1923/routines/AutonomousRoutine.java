@@ -22,6 +22,13 @@ public abstract class AutonomousRoutine implements Runnable {
 				try {
 					Thread.sleep(14300);
 					stop();
+<<<<<<< HEAD
+					stop();
+					stop();
+=======
+                                        stop();
+                                        stop();
+>>>>>>> Changes from Lenape.
 				} catch (InterruptedException e) {
 					return;
 				}
@@ -38,6 +45,12 @@ public abstract class AutonomousRoutine implements Runnable {
 		try {
 			routine();
 		} catch (InterruptedException e) {
+<<<<<<< HEAD
+			Components.eventBus.clear();
+=======
+                    //made auton not work
+                        //Components.eventBus.clear();
+>>>>>>> Changes from Lenape.
 			return;
 		}
 	}

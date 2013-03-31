@@ -66,7 +66,12 @@ public class MidknightTargetingComputer {
 	 * @return the angle to turn
 	 */
 	public static double getTurnAngle() {
+<<<<<<< HEAD
 		int width = Components.camera.getResolution().width;
+=======
+		//int width = Components.camera.getResolution().width;
+                int width = 0;
+>>>>>>> Changes from Lenape.
 		double alpha = 47; // alpha - camera viewing angle
 		Target[] targets = MidknightTargetingComputer.getTargets();
 		int closestIndex = 0;

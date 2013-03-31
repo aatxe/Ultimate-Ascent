@@ -25,8 +25,13 @@ public class GammaRoutine extends AutonomousRoutine{
 			return;
 		}
 		Components.eventBus.push(new ShooterStartEvent());
+<<<<<<< HEAD
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
+=======
+		Thread.sleep(Components.preferences.getLong("auton_run_time", DefaultConfiguration.AUTON_RUN_TIME));
+                Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
+>>>>>>> Changes from Lenape.
 		Thread.sleep((Components.preferences.getLong("shooter_pneumatic_time", (long) DefaultConfiguration.SHOOTER_PNEUMATIC_TIME) * Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT) * 2));
 		Components.eventBus.push(new ShooterStopEvent());
 		Components.eventBus.push(new AutonomousDriveEvent(-speed, -Math.min(distance, 108)));

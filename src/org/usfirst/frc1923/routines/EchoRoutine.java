@@ -26,8 +26,13 @@ public class EchoRoutine extends AutonomousRoutine {
 		Components.eventBus.push(new ShooterStartEvent());
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_diques_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
+<<<<<<< HEAD
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterStopEvent());
+=======
+		Thread.sleep(Components.preferences.getLong("auton_run_time", DefaultConfiguration.AUTON_RUN_TIME));
+                Components.eventBus.push(new ShooterStopEvent());
+>>>>>>> Changes from Lenape.
 		double speed = Components.preferences.getDouble("auton_drive_speed", DefaultConfiguration.AUTON_DRIVE_SPEED);
 		double distance = Components.preferences.getDouble("auton_drive_distance", DefaultConfiguration.AUTON_DRIVE_DISTANCE);
 		Components.eventBus.push(new AutonomousDriveEvent(-speed, -Math.min(distance, 108)));

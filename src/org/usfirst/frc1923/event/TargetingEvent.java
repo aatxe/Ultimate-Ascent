@@ -14,7 +14,11 @@ public class TargetingEvent extends Event {
 	
 	public TargetingEvent() throws AxisCameraException, NIVisionException {
 		super();
+<<<<<<< HEAD
 		MidknightTargetingComputer.update(Components.camera.getImage());
+=======
+		//MidknightTargetingComputer.update(Components.camera.getImage());
+>>>>>>> Changes from Lenape.
 		g = Components.gyro;
 		g.reset();
 		angle = MidknightTargetingComputer.getTurnAngle();

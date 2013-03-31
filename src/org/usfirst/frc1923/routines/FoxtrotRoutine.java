@@ -25,7 +25,12 @@ public class FoxtrotRoutine extends AutonomousRoutine{
 		Components.eventBus.push(new ShooterStartEvent());
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
+<<<<<<< HEAD
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterStopEvent());
+=======
+		Thread.sleep(Components.preferences.getLong("auton_run_time", DefaultConfiguration.AUTON_RUN_TIME));
+                Components.eventBus.push(new ShooterStopEvent());
+>>>>>>> Changes from Lenape.
 	}
 }

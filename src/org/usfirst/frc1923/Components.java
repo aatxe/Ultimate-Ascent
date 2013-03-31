@@ -8,15 +8,20 @@ import org.usfirst.frc1923.systems.attachments.Gearbox;
 import org.usfirst.frc1923.utils.EnjoyStick;
 import org.usfirst.frc1923.utils.MotorGroup;
 import org.usfirst.frc1923.utils.XboxController;
+import org.usfirst.frc1923.utils.Preferences;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.Preferences;
+=======
+>>>>>>> Changes from Lenape.
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
+import org.usfirst.frc1923.systems.ShooterActuatorSystem;
 
 /**
  * A grouping of managed system components.
@@ -27,9 +32,15 @@ import edu.wpi.first.wpilibj.camera.AxisCamera;
 public class Components {
 	// Java Setup
 	// public static final NetworkTable networkTable = NetworkTable.getTable("midknight"); 
+<<<<<<< HEAD
 	public static final Preferences preferences = Preferences.getInstance();
 	public static final EventBus eventBus = EventBus.getInstance();
 	public static final AxisCamera camera = AxisCamera.getInstance();
+=======
+	public static final Preferences preferences = new Preferences();
+	public static final EventBus eventBus = EventBus.getInstance();
+//	public static final AxisCamera camera = AxisCamera.getInstance();
+>>>>>>> Changes from Lenape.
 
 	// Controllers
 	public static final EnjoyStick leftDriveStick = new EnjoyStick(1);
@@ -39,13 +50,27 @@ public class Components {
 	// Victors (Speed Controllers)
 	public static final Victor leftDriveOne = new Victor(3), leftDriveTwo = new Victor(4);
 	public static final Victor rightDriveOne = new Victor(1), rightDriveTwo = new Victor(2);
-	public static final Victor leftShooterOne = new Victor(5), leftShooterTwo = new Victor(6);
-	public static final Victor rightShooterOne = new Victor(7), rightShooterTwo = new Victor(8);
+<<<<<<< HEAD
+	public static final Victor leftShooter = new Victor(6);
+	public static final Victor rightShooter = new Victor(7);
+	
+	// Relays (Spikes)
+	public static final Relay compressor = new Relay(7);
+	public static final Relay ringLight = new Relay(8);
+    public static final Relay redAllianceUnderglow = new Relay(1);
+    public static final Relay blueAllianceUnderglow = new Relay(2);
+
+=======
+	public static final Victor leftShooter = new Victor(5);
+	public static final Victor rightShooter = new Victor(6);
 
 	// Relays (Spikes)
 	public static final Relay compressor = new Relay(7);
 	public static final Relay ringLight = new Relay(8);
-
+        public static final Relay redAllianceUnderglow = new Relay(1);
+        public static final Relay blueAllianceUnderglow = new Relay(2);
+        
+>>>>>>> Changes from Lenape.
 	// Analog Inputs
 	public static final Gyro gyro = new Gyro(1);
 	
@@ -55,23 +80,33 @@ public class Components {
 	public static final Encoder driveEncoderRight = new Encoder(2, 3);
 	
 	// Pneumatic Solenoids
-	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(2);
+<<<<<<< HEAD
+
+=======
+>>>>>>> Changes from Lenape.
+	public static final Solenoid pneumaticActuatorOne = new Solenoid(1), pneumaticActuatorTwo = new Solenoid(7);
 	public static final Solenoid shooterAngleControllerOne = new Solenoid(3), shooterAngleControllerTwo = new Solenoid(4);
 	public static final Solenoid hangingControllerOne = new Solenoid(5), hangingControllerTwo = new Solenoid(6);
 	
 	// Motor Groups
 	public static final MotorGroup leftDriveGroup = new MotorGroup(leftDriveOne, leftDriveTwo);
 	public static final MotorGroup rightDriveGroup = new MotorGroup(rightDriveOne, rightDriveTwo);
-	public static final MotorGroup leftShooterGroup = new MotorGroup(leftShooterOne, leftShooterTwo);
-	public static final MotorGroup rightShooterGroup = new MotorGroup(rightShooterOne, rightShooterTwo);
+	public static final MotorGroup leftShooterGroup = new MotorGroup(leftShooter);
+	public static final MotorGroup rightShooterGroup = new MotorGroup(rightShooter);
 
 	// Systems
 	public static final DriveSystem driveSystem = new DriveSystem(leftDriveGroup, rightDriveGroup);
 	public static final ShooterSystem shooterSystem = new ShooterSystem(leftShooterGroup, rightShooterGroup);
+<<<<<<< HEAD
+	public static final ShooterActuatorSystem shooterActuatorSystem = new ShooterActuatorSystem(pneumaticActuatorOne, pneumaticActuatorTwo);
 	public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleControllerOne, shooterAngleControllerTwo);
+=======
+        public static final ShooterActuatorSystem shooterActuatorSystem = new ShooterActuatorSystem(pneumaticActuatorOne, pneumaticActuatorTwo);
+        public static final ShooterAngleSystem shooterAngleSystem = new ShooterAngleSystem(shooterAngleControllerOne, shooterAngleControllerTwo);
+>>>>>>> Changes from Lenape.
 	public static final HangingSystem hangingSystem = new HangingSystem(hangingControllerOne, hangingControllerTwo);
 	
 	// System Attachments
-	public static final Gearbox driveGearbox = new Gearbox(new double[] { 0.65, 0.85, 1.0 }, driveSystem);
+	public static final Gearbox driveGearbox = new Gearbox(new double[] { 0.85, 1.0 }, driveSystem);
 	public static final Gearbox shooterGearbox = new Gearbox(0.6, 1.0, 0.05, shooterSystem);
 }

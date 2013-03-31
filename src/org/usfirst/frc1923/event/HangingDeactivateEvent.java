@@ -2,18 +2,23 @@ package org.usfirst.frc1923.event;
 
 import org.usfirst.frc1923.Components;
 
-public class HangingDeactivateEvent extends Event {
-	/**
-	 * Creates the event.
-	 */
+public class HangingDeactivateEvent extends Event{
+<<<<<<< HEAD
 	public HangingDeactivateEvent() {
 		super(true);
 	}
 
-	/**
-	 * Performs the event's contents.
-	 */
 	protected void event() {
-		Components.hangingSystem.set(false);
+		Components.hangingSystem.deactivate();
 	}
+=======
+
+	public HangingDeactivateEvent() {
+		super(true);
+	}
+	protected void event() {
+		Components.hangingSystem.deactivate();
+	}
+
+>>>>>>> Changes from Lenape.
 }
