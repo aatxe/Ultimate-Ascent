@@ -27,11 +27,7 @@ public class BetaRoutine extends AutonomousRoutine {
 		Components.eventBus.push(new ShooterStartEvent());
 		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME));
 		Components.eventBus.push(new ShooterActuatorEvent(Components.preferences.getInt("auton_disque_count", DefaultConfiguration.AUTON_DISQUE_COUNT)));
-<<<<<<< HEAD
-		Thread.sleep(Components.preferences.getLong("auton_wait_time", DefaultConfiguration.AUTON_WAIT_TIME) / 2);
-=======
 		Thread.sleep(Components.preferences.getLong("auton_run_time", DefaultConfiguration.AUTON_RUN_TIME));
->>>>>>> Changes from Lenape.
 		Components.eventBus.push(new ShooterStopEvent());
 	}
 }

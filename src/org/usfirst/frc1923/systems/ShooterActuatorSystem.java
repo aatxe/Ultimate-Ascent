@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.usfirst.frc1923.systems;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -14,8 +10,8 @@ import edu.wpi.first.wpilibj.Solenoid;
  * @since 3/2/13
  */
 public class ShooterActuatorSystem extends PneumaticSystem {
-   	private Solenoid actuatorControllerOne, actuatorControllerTwo;
-	
+	private Solenoid actuatorControllerOne, actuatorControllerTwo;
+
 	/**
 	 * Creates a pneumatic shooter actuator.
 	 *
@@ -43,5 +39,5 @@ public class ShooterActuatorSystem extends PneumaticSystem {
 	public void deactivate() {
 		this.actuatorControllerTwo.set(false);
 		this.actuatorControllerOne.set(true);
-	} 
+	}
 }

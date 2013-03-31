@@ -11,14 +11,10 @@ import edu.wpi.first.wpilibj.image.NIVisionException;
 public class TargetingEvent extends Event {
 	private final double angle, speed;
 	private final Gyro g;
-	
+
 	public TargetingEvent() throws AxisCameraException, NIVisionException {
 		super();
-<<<<<<< HEAD
-		MidknightTargetingComputer.update(Components.camera.getImage());
-=======
-		//MidknightTargetingComputer.update(Components.camera.getImage());
->>>>>>> Changes from Lenape.
+		// MidknightTargetingComputer.update(Components.camera.getImage());
 		g = Components.gyro;
 		g.reset();
 		angle = MidknightTargetingComputer.getTurnAngle();
@@ -34,7 +30,7 @@ public class TargetingEvent extends Event {
 				Components.driveSystem.drive(-speed, speed);
 		}
 	}
-	
+
 	private boolean closeness(double a, double b, double margin) {
 		return (a > b - margin) && (a < b + margin);
 	}

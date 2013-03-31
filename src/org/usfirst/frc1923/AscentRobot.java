@@ -23,19 +23,14 @@ import org.usfirst.frc1923.routines.FoxtrotRoutine;
 import org.usfirst.frc1923.routines.GammaRoutine;
 import org.usfirst.frc1923.routines.HotelRoutine;
 import org.usfirst.frc1923.routines.TestRoutine;
+import org.usfirst.frc1923.utils.DashboardUpdater;
 import org.usfirst.frc1923.utils.DefaultConfiguration;
 import org.usfirst.frc1923.utils.XboxController;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.image.NIVisionException;
-import org.usfirst.frc1923.utils.Dashboard;
-<<<<<<< HEAD
-=======
-import org.usfirst.frc1923.utils.DashboardUpdater;
->>>>>>> Changes from Lenape.
 
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
@@ -45,57 +40,33 @@ import org.usfirst.frc1923.utils.DashboardUpdater;
  * @since 2/9/13
  */
 public class AscentRobot extends IterativeRobot {
+	private XboxController xbc;
 	private AutonomousRoutine autonomousRoutine;
-<<<<<<< HEAD
+	private DashboardUpdater updater;
 	private boolean[] justPressed = new boolean[14];
 	private boolean[] triggers = new boolean[4];
 	private boolean attachment = false;
-
 	private boolean snakeDrive;
 	private boolean shooterAlwaysOn;
 	private boolean compressorOn;
 
-=======
-        private DashboardUpdater updater;
-	private boolean[] justPressed = new boolean[14];
-	private boolean[] triggers = new boolean[4];
-	private boolean attachment = false;
-        
-        public XboxController xbc;
-        
-        private int autonShooterGear;
-        private boolean snakeDrive;
-        private boolean shooterAlwaysOn;
-        private boolean compressorOn;
-        
->>>>>>> Changes from Lenape.
 	/**
 	 * Initializes the robot.
 	 */
 	public void robotInit() {
-<<<<<<< HEAD
+		updater = new DashboardUpdater();
+		xbc = Components.operatorController;
 		// Components.networkTable.putBoolean("~S A V E~", true);
-		resolution();
-		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
-		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
-		String alliance = Components.preferences.getString("alliance_color", DefaultConfiguration.ALLIANCE_COLOR);
-		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
-=======
-            updater = new DashboardUpdater();
-            xbc = Components.operatorController;
-            // Components.networkTable.putBoolean("~S A V E~", true);
 		//resolution();
 		int pulseRate = Components.preferences.getInt("pulse_rate", DefaultConfiguration.PULSE_RATE);
 		double gearRatio = Components.preferences.getDouble("gear_ratio", DefaultConfiguration.GEAR_RATIO);
 		String alliance = Components.preferences.getString("alliance_color", DefaultConfiguration.ALLIANCE_COLOR);
-                Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
->>>>>>> Changes from Lenape.
+		Components.driveEncoderLeft.setDistancePerPulse(pulseRate * gearRatio);
 		Components.driveEncoderRight.setDistancePerPulse(pulseRate * gearRatio);
 		Components.driveEncoderLeft.reset();
 		Components.driveEncoderRight.reset();
 		Components.gyro.setSensitivity(Components.preferences.getDouble("gyro_sensitivity", DefaultConfiguration.GYRO_SENSITIVITY));
 		Components.gyro.reset();
-<<<<<<< HEAD
 		this.compressorOn = Components.preferences.getBoolean("compressor_on", DefaultConfiguration.COMPRESSOR_ON);
 		if (alliance.equals("red")) {
 			Components.redAllianceUnderglow.set(Relay.Value.kOn);
@@ -111,33 +82,6 @@ public class AscentRobot extends IterativeRobot {
 	 * Safely stops everything to prevent it from running upon restart.
 	 */
 	public void disabledInit() {
-		resolution();
-		Components.driveGearbox.setGear(0);
-		Components.shooterGearbox.setGear(0);
-		Components.driveSystem.stop();
-		Components.shooterSystem.stop();
-		Components.driveEncoderLeft.reset();
-		Components.driveEncoderRight.reset();
-		Components.gyro.reset();
-	}
-
-	/**
-=======
-                this.compressorOn = Components.preferences.getBoolean("compressor_on", DefaultConfiguration.COMPRESSOR_ON);
-                if (alliance.equals("red")) {
-                    Components.redAllianceUnderglow.set(Relay.Value.kOn);
-                    Components.blueAllianceUnderglow.set(Relay.Value.kOff);
-                } else {
-                    Components.redAllianceUnderglow.set(Relay.Value.kOff);
-                    Components.blueAllianceUnderglow.set(Relay.Value.kOn);
-                }
-	}
-
-	/**
-	 * Initializes the robot for disabled.
-	 * Safely stops everything to prevent it from running upon restart.
-	 */
-	public void disabledInit() {
 		//resolution();
 		Components.driveGearbox.setGear(1);
 		Components.shooterGearbox.setGear(Components.preferences.getInt("shooter_starting_gear", DefaultConfiguration.SHOOTER_STARTING_GEAR));
@@ -146,11 +90,10 @@ public class AscentRobot extends IterativeRobot {
 		Components.driveEncoderLeft.reset();
 		Components.driveEncoderRight.reset();
 		Components.gyro.reset();
-                updater.stop();
+		updater.stop();
 	}
 
 	/**
->>>>>>> Changes from Lenape.
 	 * Provides periodic functionality while disabled.
 	 */
 	public void disabledPeriodic() {
@@ -161,7 +104,6 @@ public class AscentRobot extends IterativeRobot {
 	 * Launches the desired autonomous routine.
 	 */
 	public void autonomousInit() {
-<<<<<<< HEAD
 		this.snakeDrive = Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE);
 		this.shooterAlwaysOn = Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON);
 		int autonProgram = Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM);
@@ -170,17 +112,6 @@ public class AscentRobot extends IterativeRobot {
 		case 1:
 
 			autonomousRoutine = new AlphaRoutine();
-=======
-	this.autonShooterGear = Components.preferences.getInt("auton_shooter_gear", DefaultConfiguration.AUTON_SHOOTER_GEAR);
-        this.snakeDrive = Components.preferences.getBoolean("experimental_drive", DefaultConfiguration.EXPERIMENTAL_DRIVE);
-        this.shooterAlwaysOn = Components.preferences.getBoolean("shooter_always_on", DefaultConfiguration.SHOOTER_ALWAYS_ON);
-        int autonProgram = Components.preferences.getInt("auton_program", DefaultConfiguration.AUTON_PROGRAM);
-            
-            switch (autonProgram) {
-		case 1:
-	
-                    autonomousRoutine = new AlphaRoutine();
->>>>>>> Changes from Lenape.
 			break;
 		case 2:
 			autonomousRoutine = new BetaRoutine();
@@ -208,21 +139,13 @@ public class AscentRobot extends IterativeRobot {
 			break;
 		}
 		if (autonomousRoutine != null)
-<<<<<<< HEAD
 			autonomousRoutine.start();
-=======
-                    autonomousRoutine.start();
->>>>>>> Changes from Lenape.
 	}
 
 	/**
 	 * Provides periodic autonomous functionality.
 	 */
 	public void autonomousPeriodic() {
-<<<<<<< HEAD
-=======
-//            dog.feed();
->>>>>>> Changes from Lenape.
 		Components.eventBus.next();
 	}
 
@@ -232,34 +155,21 @@ public class AscentRobot extends IterativeRobot {
 	public void teleopInit() {
 		attachment = Components.preferences.getBoolean("experimental_drive_attachment", DefaultConfiguration.EXPERIMENTAL_DRIVE_ATTACHMENT);
 		Components.driveGearbox.setGear(0);
-<<<<<<< HEAD
-		Components.shooterGearbox.setGear(0);
-	}
-=======
+
 		Components.shooterGearbox.setGear(Components.preferences.getInt("shooter_starting_gear", DefaultConfiguration.SHOOTER_STARTING_GEAR));
-                new Thread(updater).start();
-        }
->>>>>>> Changes from Lenape.
+		new Thread(updater).start();
+	}
 
 	/**
 	 * Provides periodic tele-operated functionality.
 	 */
-        double forwardMagnitude;
-        double curvature;
 	public void teleopPeriodic() {
-<<<<<<< HEAD
 		{ // Driving Scope
 			// Direct Driving Controls
 			if (this.snakeDrive) {
 				double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 				double curvature = Components.rightDriveStick.getCoalescedX();
-=======
-            { // Driving Scope
-			// Direct Driving Controls
-			if (this.snakeDrive) {
-				forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
-				curvature = Components.rightDriveStick.getCoalescedX();
->>>>>>> Changes from Lenape.
+
 				double attachment = Components.rightDriveStick.getCoalescedZ();
 				if (this.attachment && Math.abs(attachment) > 0.1) {
 					Components.driveSystem.drive(-attachment, attachment, false);
@@ -292,10 +202,6 @@ public class AscentRobot extends IterativeRobot {
 		} // End Driving Scope
 
 		{ // Shooter Scope
-<<<<<<< HEAD
-			XboxController xbc = Components.operatorController;
-=======
->>>>>>> Changes from Lenape.
 
 			// Right Bumper (RB) -- Gear up
 			if (xbc.getButton(XboxController.Button.RB) && !justPressed[XboxController.Button.RB.value]) {
@@ -316,7 +222,7 @@ public class AscentRobot extends IterativeRobot {
 			// A Button -- Fire shooter (1 disque)
 			if (xbc.getButton(XboxController.Button.A) && !justPressed[XboxController.Button.A.value]) {
 				Components.eventBus.push(new ShooterActuatorEvent());
-                                justPressed[XboxController.Button.A.value] = true;
+				justPressed[XboxController.Button.A.value] = true;
 			} else if (!xbc.getButton(XboxController.Button.A)) {
 				justPressed[XboxController.Button.A.value] = false;
 			}
@@ -331,11 +237,9 @@ public class AscentRobot extends IterativeRobot {
 
 			// Y Button -- Fire shooter (3 disques)
 			if (xbc.getButton(XboxController.Button.Y) && !justPressed[XboxController.Button.Y.value]) {
-<<<<<<< HEAD
-				Components.eventBus.push(new ShooterActuatorEvent(3));
-=======
+
 				Components.eventBus.push(new ShooterActuatorEvent(8));
->>>>>>> Changes from Lenape.
+
 				justPressed[XboxController.Button.Y.value] = true;
 			} else if (!xbc.getButton(XboxController.Button.Y)) {
 				justPressed[XboxController.Button.Y.value] = false;
@@ -394,10 +298,6 @@ public class AscentRobot extends IterativeRobot {
 		} // End Shooter Scope
 
 		{ // Shooter Angle Scope
-<<<<<<< HEAD
-			XboxController xbc = Components.operatorController;
-=======
->>>>>>> Changes from Lenape.
 			if (xbc.getTriggerAxis() > 0.1 && !this.triggers[2]) {
 				Components.eventBus.push(new ShooterAngleControllerActivateEvent());
 				this.triggers[2] = true;
@@ -408,14 +308,8 @@ public class AscentRobot extends IterativeRobot {
 				this.triggers[2] = false;
 			}
 		} // End Shooter Angle Scope
-<<<<<<< HEAD
 
 		{ // Hanging Scope
-			XboxController xbc = Components.operatorController;
-=======
-		
-		{ // Hanging Scope
->>>>>>> Changes from Lenape.
 			if (xbc.getDPad() > 0.1 && !this.triggers[3]) {
 				Components.eventBus.push(new HangingDeactivateEvent());
 				this.triggers[3] = true;
@@ -429,12 +323,9 @@ public class AscentRobot extends IterativeRobot {
 
 		{ // Event Bus Scope
 			Components.eventBus.next();
-<<<<<<< HEAD
-			Dashboard.update();
-=======
-                        Components.eventBus.clean();
-                        System.gc(); // garbage collect now, please?
->>>>>>> Changes from Lenape.
+
+			Components.eventBus.clean();
+			System.gc(); // garbage collect now, please?
 		} // End Event Bus Scope
 
 		{ // Compressor Support Scope
@@ -447,32 +338,4 @@ public class AscentRobot extends IterativeRobot {
 			}
 		} // End Compressor Support Scope
 	}
-
-	private void resolution() {
-<<<<<<< HEAD
-		String resolution = Components.preferences.getString("camera_resolution", DefaultConfiguration.CAMERA_RESOLUTION);
-=======
-		/*String resolution = Components.preferences.getString("camera_resolution", DefaultConfiguration.CAMERA_RESOLUTION);
->>>>>>> Changes from Lenape.
-		if (resolution.equalsIgnoreCase("480p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
-		} else if (resolution.equalsIgnoreCase("360p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x360);
-		} else if (resolution.equalsIgnoreCase("240p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k320x240);
-		} else if (resolution.equalsIgnoreCase("120p")) {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k160x120);
-		} else {
-			Components.camera.writeResolution(AxisCamera.ResolutionT.k640x480);
-		}
-<<<<<<< HEAD
-		Components.camera.writeCompression(Components.preferences.getInt("camera_compression", DefaultConfiguration.CAMERA_COMPRESSION));
-		Components.camera.writeMaxFPS(Components.preferences.getInt("camera_framerate", DefaultConfiguration.CAMERA_FRAMERATE));
-	}
-=======
-                Components.camera.writeCompression(Components.preferences.getInt("camera_compression", DefaultConfiguration.CAMERA_COMPRESSION));
-                Components.camera.writeMaxFPS(Components.preferences.getInt("camera_framerate", DefaultConfiguration.CAMERA_FRAMERATE));
-                */
-        }
->>>>>>> Changes from Lenape.
 }

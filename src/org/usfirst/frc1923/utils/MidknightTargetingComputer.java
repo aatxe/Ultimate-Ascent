@@ -2,8 +2,6 @@ package org.usfirst.frc1923.utils;
 
 import java.util.Vector;
 
-import org.usfirst.frc1923.Components;
-
 import edu.wpi.first.wpilibj.image.BinaryImage;
 import edu.wpi.first.wpilibj.image.ColorImage;
 import edu.wpi.first.wpilibj.image.NIVisionException;
@@ -59,19 +57,15 @@ public class MidknightTargetingComputer {
 		}
 		System.out.println("Found " + targets.size() + " targets.");
 	}
-	
+
 	/**
 	 * Calculates the angle needed to turn for aiming.
 	 * 
 	 * @return the angle to turn
 	 */
 	public static double getTurnAngle() {
-<<<<<<< HEAD
-		int width = Components.camera.getResolution().width;
-=======
-		//int width = Components.camera.getResolution().width;
-                int width = 0;
->>>>>>> Changes from Lenape.
+		// int width = Components.camera.getResolution().width;
+		int width = 0;
 		double alpha = 47; // alpha - camera viewing angle
 		Target[] targets = MidknightTargetingComputer.getTargets();
 		int closestIndex = 0;
@@ -122,7 +116,7 @@ public class MidknightTargetingComputer {
 		}
 		return aspectRatioScore;
 	}
-	
+
 	/**
 	 * Gets an array of all the calculated targets.
 	 * @return all the targets
@@ -133,7 +127,7 @@ public class MidknightTargetingComputer {
 			ret[i] = (Target) targets.elementAt(i);
 		return ret;
 	}
-	
+
 	/**
 	 * Gets the target at the desired index.
 	 * @param index
