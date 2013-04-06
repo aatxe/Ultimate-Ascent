@@ -32,6 +32,9 @@ public class EventBus {
 		this.events.addElement(e);
 	}
 
+	/**
+	 * Cleans up the running vector.
+	 */
 	public void clean() {
 		for (int i = 0; i < running.size(); i++) {
 			Event e = (Event) this.running.elementAt(i);
@@ -44,14 +47,10 @@ public class EventBus {
 	 * Runs the next event from the event bus.
 	 */
 	public void next() {
-		try {
-			if (this.hasNext()) {
-				((Event) this.events.elementAt(0)).start();
-				running.addElement(this.events.elementAt(0));
-				this.events.removeElementAt(0);
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			return;
+		if (this.hasNext()) {
+			((Event) this.events.elementAt(0)).start();
+			running.addElement(this.events.elementAt(0));
+			this.events.removeElementAt(0);
 		}
 	}
 
@@ -60,7 +59,7 @@ public class EventBus {
 	 * @return whether or not the event bus has events
 	 */
 	public boolean hasNext() {
-		return (this.events.capacity() > 0);
+		return (this.events.size() > 0);
 	}
 
 	/**

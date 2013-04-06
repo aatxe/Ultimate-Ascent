@@ -12,7 +12,6 @@ import org.usfirst.frc1923.event.ShooterGearDownEvent;
 import org.usfirst.frc1923.event.ShooterGearUpEvent;
 import org.usfirst.frc1923.event.ShooterStartEvent;
 import org.usfirst.frc1923.event.ShooterStopEvent;
-import org.usfirst.frc1923.event.TargetingEvent;
 import org.usfirst.frc1923.routines.AlphaRoutine;
 import org.usfirst.frc1923.routines.AutonomousRoutine;
 import org.usfirst.frc1923.routines.BetaRoutine;
@@ -29,8 +28,6 @@ import org.usfirst.frc1923.utils.XboxController;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Relay;
-import edu.wpi.first.wpilibj.camera.AxisCameraException;
-import edu.wpi.first.wpilibj.image.NIVisionException;
 
 /**
  * The core <code>IterativeRobot</code> for the Ultimate Ascent robot.
@@ -157,7 +154,8 @@ public class AscentRobot extends IterativeRobot {
 		Components.driveGearbox.setGear(0);
 
 		Components.shooterGearbox.setGear(Components.preferences.getInt("shooter_starting_gear", DefaultConfiguration.SHOOTER_STARTING_GEAR));
-		new Thread(updater).start();
+		// Re-enable if adding back dashboard support.
+		// new Thread(updater).start();
 	}
 
 	/**
@@ -169,7 +167,6 @@ public class AscentRobot extends IterativeRobot {
 			if (this.snakeDrive) {
 				double forwardMagnitude = -Components.leftDriveStick.getCoalescedY();
 				double curvature = Components.rightDriveStick.getCoalescedX();
-
 				double attachment = Components.rightDriveStick.getCoalescedZ();
 				if (this.attachment && Math.abs(attachment) > 0.1) {
 					Components.driveSystem.drive(-attachment, attachment, false);
@@ -237,9 +234,7 @@ public class AscentRobot extends IterativeRobot {
 
 			// Y Button -- Fire shooter (3 disques)
 			if (xbc.getButton(XboxController.Button.Y) && !justPressed[XboxController.Button.Y.value]) {
-
 				Components.eventBus.push(new ShooterActuatorEvent(8));
-
 				justPressed[XboxController.Button.Y.value] = true;
 			} else if (!xbc.getButton(XboxController.Button.Y)) {
 				justPressed[XboxController.Button.Y.value] = false;
@@ -254,6 +249,7 @@ public class AscentRobot extends IterativeRobot {
 			}
 
 			// Left Thumb Click -- Auto-aiming
+			/*
 			if (xbc.getButton(XboxController.Button.LeftClick) && !justPressed[XboxController.Button.LeftClick.value]) {
 				try {
 					Components.eventBus.push(new TargetingEvent());
@@ -266,6 +262,7 @@ public class AscentRobot extends IterativeRobot {
 			} else if (!xbc.getButton(XboxController.Button.LeftClick)) {
 				justPressed[XboxController.Button.LeftClick.value] = false;
 			}
+			*/
 
 			// Right Thumb Click -- Ring Light
 			if (xbc.getButton(XboxController.Button.RightClick) && !justPressed[XboxController.Button.RightClick.value]) {
@@ -323,9 +320,7 @@ public class AscentRobot extends IterativeRobot {
 
 		{ // Event Bus Scope
 			Components.eventBus.next();
-
 			Components.eventBus.clean();
-			System.gc(); // garbage collect now, please?
 		} // End Event Bus Scope
 
 		{ // Compressor Support Scope

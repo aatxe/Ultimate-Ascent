@@ -26,8 +26,6 @@ import edu.wpi.first.wpilibj.Victor;
  */
 public class Components {
 	// Java Setup
-	// public static final NetworkTable networkTable = NetworkTable.getTable("midknight");
-
 	public static final Preferences preferences = new Preferences();
 	public static final EventBus eventBus = EventBus.getInstance();
 	//	public static final AxisCamera camera = AxisCamera.getInstance();
