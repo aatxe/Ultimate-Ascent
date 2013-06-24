@@ -56,3 +56,8 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+<<<<<<< HEAD
+=======
+
+build/
+>>>>>>> new

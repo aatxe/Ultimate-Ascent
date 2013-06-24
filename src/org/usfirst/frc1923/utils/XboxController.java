@@ -1,8 +1,10 @@
 package org.usfirst.frc1923.utils;
 
 import edu.wpi.first.wpilibj.Joystick;
+
 /**
- * A representation of the Xbox Controller
+ * A representation of the XboxController wrapping <code>Joystick</code>.
+ * 
  * @author Aaron Weiss
  * @version 1.0
  * @since 1/29/13
@@ -11,24 +13,29 @@ public class XboxController {
 	private Joystick xboxController;
 
 	/**
-	 * Creates the Xbox Controller with the desired port
-	 * @param port the port the controller is inputed port
+	 * Creates the Xbox Controller with the desired port.
+	 * 
+	 * @param port
+	 * 				the port the controller is inputed port
 	 */
 	public XboxController(int port) {
 		xboxController = new Joystick(port);
 	}
 
 	/**
-	 * Gets the state of the desired button
-	 * @param inputButton the desired button
+	 * Gets the state of the desired button.
+	 * 
+	 * @param inputButton 
+	 * 				the desired button
 	 * @return the state of the button (true = pressed, false = not pressed)
 	 */
 	public boolean getButton(XboxController.Button inputButton) {
 		return xboxController.getRawButton(inputButton.value);
 	}
-	
+
 	/**
 	 * Gets the current Joystick
+	 * 
 	 * @return the Joystick object
 	 */
 	public Joystick getJoystick() {
@@ -36,13 +43,16 @@ public class XboxController {
 	}
 
 	/**
-	 * Gets the axis of the sticks on the xbox controller
-	 * @param stickNumber the desired stick number
-	 * @param axisNumber the x or y axis
+	 * Gets the axis of the sticks on the xbox controller.
+	 * 
+	 * @param stickNumber
+	 * 				the desired stick number
+	 * @param axisNumber
+	 * 				the x or y axis
 	 * @return the double of the raw axis.
 	 */
 	public double getAxis(int stickNumber, int axisNumber) {
-		int axes[] = {2, 1, 5, 4};
+		int axes[] = { 1, 2, 4, 5 };
 		int fAxis = 0;
 		if (stickNumber == 1 && axisNumber == 1) {
 			fAxis = axes[0];
@@ -59,7 +69,8 @@ public class XboxController {
 	}
 
 	/**
-	 * Gets the axis of the trigger
+	 * Gets the axis of the trigger.
+	 * 
 	 * @return the trigger's axis
 	 */
 	public double getTriggerAxis() {
@@ -67,15 +78,17 @@ public class XboxController {
 	}
 
 	/**
-	 * Gets the input of the DPad
-	 * @return the input of the DPad
+	 * Gets the input of the directional pad.
+	 * 
+	 * @return the input from the DPad
 	 */
 	public double getDPad() {
 		return xboxController.getRawAxis(6);
 	}
-	
+
 	/**
-	 * A representation of the buttons on the Xbox Controller
+	 * A representation of the buttons on the XboxController.
+	 * 
 	 * @author Aaron Weiss
 	 * @version 1.0
 	 * @since 1/29/13
@@ -103,6 +116,12 @@ public class XboxController {
 		public static final Button LeftClick = new Button(kLeftClick_val);
 		public static final Button RightClick = new Button(kRightClick_val);
 
+		/**
+		 * Creates a new Button.
+		 * 
+		 * @param value
+		 * 				the value of the button
+		 */
 		private Button(int value) {
 			this.value = value;
 		}

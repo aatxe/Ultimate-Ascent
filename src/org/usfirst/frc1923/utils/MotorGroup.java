@@ -1,87 +1,82 @@
 package org.usfirst.frc1923.utils;
 
 import java.util.Vector;
+
 import edu.wpi.first.wpilibj.SpeedController;
+
 /**
- * A group of speed controllers treated as one motor
- * @author Pavan Hegde, Keshav Ramesh
- * @version 1.0
- * @since 1/27/13
+ * A <code>SpeedController</code> that combines multiple motors.
+ * 
+ * @author Aaron Weiss
+ * @verson 2.0
+ * @since 2/9/13
  */
 public class MotorGroup implements SpeedController {
-	private final Vector vector = new Vector();
-	
+	private Vector motors = new Vector();
+
 	/**
-	 * Creates the motor group using one speed controller
-	 * @param speedControllerOne The first speed controller
+	 * Creates a group with one <code>SpeedController</code>.
+	 * @param controllerOne
+	 * 				the first <code>SpeedController</code>
 	 */
-	public MotorGroup(SpeedController speedControllerOne) {
-		vector.addElement(speedControllerOne);
+	public MotorGroup(SpeedController controllerOne) {
+		this(controllerOne, null);
 	}
-	
+
 	/**
-	 * Creates the motor group using two speed controller
-	 * @param speedControllerOne The first speed controller
-	 * @param speedControllerTwo The second speed controller
+	 * Creates a group with two <code>SpeedController</code>.
+	 * @param controllerOne
+	 * 				the first <code>SpeedController</code>
+	 * @param controllerTwo
+	 * 				the second <code>SpeedController</code>
 	 */
-	public MotorGroup(SpeedController speedControllerOne, SpeedController speedControllerTwo) {
-		vector.addElement(speedControllerOne);
-		vector.addElement(speedControllerTwo);
+	public MotorGroup(SpeedController controllerOne, SpeedController controllerTwo) {
+		this(controllerOne, controllerTwo, null);
 	}
+
 	/**
-	 * Creates the motor group using three speed controller
-	 * @param speedControllerOne the first speed controller
-	 * @param speedControllerTwo the second speed controller
-	 * @param speedControllerThree the third speed controller
+	 * Creates a group with three <code>SpeedController</code>.
+	 * @param controllerOne
+	 * 				the first <code>SpeedController</code>
+	 * @param controllerTwo
+	 * 				the second <code>SpeedController</code>
+	 * @param controllerThree
+	 * 				the third <code>SpeedController</code>
 	 */
-	public MotorGroup(SpeedController speedControllerOne, SpeedController speedControllerTwo, SpeedController speedControllerThree) {
-		vector.addElement(speedControllerOne);
-		vector.addElement(speedControllerTwo);
-		vector.addElement(speedControllerThree);
+	public MotorGroup(SpeedController controllerOne, SpeedController controllerTwo, SpeedController controllerThree) {
+		if (controllerOne != null)
+			motors.addElement(controllerOne);
+		if (controllerTwo != null)
+			motors.addElement(controllerTwo);
+		if (controllerThree != null)
+			motors.addElement(controllerThree);
 	}
-	/**
-	 * Sets the output to the value calculated by PIDController.
-	 * @param output the value calculated by the PIDController.
-	 */
+
 	public void pidWrite(double output) {
-		for (int i = 0; i < vector.size(); i++) {
-			((SpeedController) (vector.elementAt(i))).pidWrite(output);
-		}
-	}
-	
-	/**
-	 * Gets the <code>SpeedController</code> element at 0
-	 * @return the speed controller element at 0 in the vector
-	 */
-	public double get() {
-		return ((SpeedController) (vector.elementAt(0))).get();
-	}
-	/**
-	 * Sets the speed of the elements
-	 * @param speed speed of the motor
-	 * @param syncGroup the sync group
-	 */
-	public void set(double speed, byte syncGroup) {
-		for (int i = 0; i < vector.size(); i++) {
-			((SpeedController) (vector.elementAt(i))).set(speed, syncGroup);
-		}
-	}
-	/**
-	 * Sets the speed of the elements
-	 * @param speed the speed of the elements
-	 */
-	public void set(double speed) {
-		for (int i = 0; i < vector.size(); i++) {
-			((SpeedController) (vector.elementAt(i))).set(speed);
-		}
-	}
-	/**
-	 * Disables each element
-	 */
-	public void disable() {
-		for (int i = 0; i < vector.size(); i++) {
-			((SpeedController) (vector.elementAt(i))).disable();
+		for (int i = 0; i < this.motors.size(); i++) {
+			((SpeedController) (this.motors.elementAt(i))).pidWrite(output);
 		}
 	}
 
+	public double get() {
+		return ((SpeedController) this.motors.elementAt(0)).get();
+	}
+
+	public void set(double speed, byte syncGroup) {
+		for (int i = 0; i < this.motors.size(); i++) {
+			((SpeedController) this.motors.elementAt(i)).set(speed, syncGroup);
+		}
+	}
+
+	public void set(double speed) {
+		for (int i = 0; i < this.motors.size(); i++) {
+			((SpeedController) this.motors.elementAt(i)).set(speed);
+		}
+	}
+
+	public void disable() {
+		for (int i = 0; i < this.motors.size(); i++) {
+			((SpeedController) this.motors.elementAt(i)).disable();
+		}
+	}
 }
